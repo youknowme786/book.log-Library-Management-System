@@ -14,10 +14,10 @@ Ali Arfeen
 ### QA Leads
 Eva Simon, JC Scalabre
 
-### Instructions
+## Instructions
 
 TBD
 
-### Video of Functionality
+## Video of Functionality
 
 TBD
