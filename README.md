@@ -1,7 +1,7 @@
 # Project-2
 
 ## Collaborators
-Ali Arfeen, Imran Kazmi, Eva Simon, JC Scalabre
+[Ali Arfeen](https://github.com/youknowme786), [Imran Kazmi](https://github.com/itkazmi814), [Eva Simon](https://github.com/evasimon), [JC Scalabre](https://github.com/jcscalabre)
 
 ## Roles
 
