@@ -1,7 +1,5 @@
 # Project-2
 
-Imran's edit
-
 ## Collaborators
 Ali Arfeen, Imran Kazmi, Eva Simon, JC Scalabre
 
