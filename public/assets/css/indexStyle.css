@@ -1,0 +1,59 @@
+body {
+	/*background-image: url("../images/library-bg.png");*/
+	background-size: 100%;
+}
+
+.container {
+	margin-top: 150px;
+	/*background-color: grey;*/
+	height: 350px;
+	width: 950px;
+}
+
+#titlerow {
+	padding-top: 30px;
+}
+#bookrow {
+	padding-top: 32px;
+}
+
+#lefthr {
+	background-color: #cccccb;
+	margin-top: 18px;
+	margin-right: 24px;
+	width: 200px;
+	height: 1px;
+}
+
+#righthr {
+	background-color: #cccccb;
+	margin-top: 18px;
+	margin-left: 24px;
+	width: 200px;
+	height: 1px;
+}
+
+.card {
+	border: 0px;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+span {
+	margin-top: 5px;
+}
+
+.bookcover {
+	height: 250px;
+	width: 150px;
+}
+
+#LArrow {
+	height: 60px;
+	/*position: relative;
+	left: 14%;
+	top: 55%;*/
+}
+
+#RArrow {
+	height: 60px;
+}

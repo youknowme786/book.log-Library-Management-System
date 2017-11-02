@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/indexStyle.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div id="titlerow" class="row justify-content-md-center">
+      <hr id="lefthr">
+      <h3>New Arrivals</h3>
+      <hr id="righthr">
+    </div>
+    <div id="bookrow" class="row justify-content-md-center">
+    
+    <img id="LArrow" class="col-1.5 my-auto" src="assets/img/indexImages/LArrow.png">
+
+      <div class="col-10 owl-carousel owl-theme">
+
+        <div class="item">
+          <div class="card text-center" style="width: 11rem;">
+            <a href="#"><img class="bookcover" src="assets/img/indexImages/frost9.jpg"></a>
+            <span class="d-inline-block text-truncate" style="max-width: 175px;">
+              Fantasy Frost
+            </span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="card text-center" style="width: 11rem;">
+            <a href="#"><img class="bookcover" src="assets/img/indexImages/1984-book-covers-2.jpg"></a>
+            <span class="d-inline-block text-truncate" style="max-width: 175px;">
+              1984
+            </span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="card text-center" style="width: 11rem;">
+            <a href="#"><img class="bookcover" src="assets/img/indexImages/gameofthrones1.jpg"></a>
+            <span class="d-inline-block text-truncate" style="max-width: 175px;">
+              Game of Thrones
+            </span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="card text-center" style="width: 11rem;">
+            <a href="#"><img class="bookcover" src="assets/img/indexImages/tokyo-noir_2.jpg"></a>
+            <span class="d-inline-block text-truncate" style="max-width: 175px;">
+             Tokyo Noir
+           </span>
+         </div>
+       </div>
+
+     </div>
+
+    <img id="RArrow" class="col-1.5 my-auto" src="assets/img/indexImages/RArrow.png">
+
+
+   </div>
+ </div>
+</div>
+
+
+<!-- Links to jQuery, popper.js and bootstrap 4. -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.owl-carousel').owlCarousel({
+      loop:true,
+      margin: 25,
+      items:4,
+      nav: true,
+      navElement: "$('#LArrow')"
+      // stagePadding: -20
+    })
+  });
+
+  $("#LArrow").on("click", function () {
+    changed.owl.carousel
+  })
+
+</script>
+
+</body>
+</html>
