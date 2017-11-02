@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
 			},
 
 			review: {
-				type: DataTypes.TRUE,
+				type: DataTypes.BOOLEAN,
 				allowNull: true,
 				defaultValue: null
 			}

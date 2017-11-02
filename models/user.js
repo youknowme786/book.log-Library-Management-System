@@ -58,7 +58,15 @@ module.exports = (sequelize, DataTypes) => {
 			deletedAt: false
 		}
 	);
-	require("../public/js/parentAssociation.js")(User);
+
+	// require("../public/js/parentAssociation.js")(User);
+
+	User.associate = models => {
+		User.hasMany(models.CheckOutHistory);
+		User.hasMany(models.Reservation);
+		User.hasMany(models.SavedItem);
+		User.hasMany(models.Review);
+	};
 
 	return User;
 };
