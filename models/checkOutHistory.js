@@ -1,5 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-	var CheckOutHistory = sequelize.define("CheckOutHistory", {
+	var CheckOutHistory = sequelize.define(
+		"CheckOutHistory",
 		{
 			isCheckedOut: {
 				type: DataTypes.BOOLEAN,
@@ -20,21 +21,21 @@ module.exports = (sequelize, DataTypes) => {
 			updatedAt: "dateCheckedIn",
 			deletedAt: false
 		}
-	});
+	);
 
 	CheckOutHistory.associate = models => {
-        CheckOutHistory.belongsTo(models.Media, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
+		CheckOutHistory.belongsTo(models.Media, {
+			foreignKey: {
+				allowNull: false
+			}
+		});
 
-        CheckOutHistory.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    };
+		CheckOutHistory.belongsTo(models.User, {
+			foreignKey: {
+				allowNull: false
+			}
+		});
+	};
 
 	return CheckOutHistory;
-}
+};
