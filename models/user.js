@@ -59,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
 		}
 	);
 
-	// require("../public/js/parentAssociation.js")(User);
+	// require("./js/parentAssociation.js")(User);
 
 	User.associate = models => {
 		User.hasMany(models.CheckOutHistory);

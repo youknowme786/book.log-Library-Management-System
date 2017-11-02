@@ -40,18 +40,30 @@ module.exports = (sequelize, DataTypes) => {
 			totalNumCheckouts: {
 				type: DataTypes.INTEGER,
 				defaultValue: 0
+			},
+
+			createdAt: {
+				type: DataTypes.DATE,
+				field: "firstArrivalDate",
+				defaultValue: sequelize.literal("NOW()")
 			}
 		},
 
 		{
-			timestamps: true,
-			createdAt: "firstArrivalDate",
-			updatedAt: false,
-			deletedAt: false
+			timestamps: false
 		}
+
+		// {
+		// 	timestamps: true,
+		// 	createdAt: "firstArrivalDate",
+		// 	updatedAt: false,
+		// 	deletedAt: false
+		// }
 	);
 
-	// require("../public/js/parentAssociation.js")(Media);
+	console.log("DATE RIGHT NOW " + Date.now());
+
+	// require("./js/parentAssociation.js")(Media);
 
 	Media.associate = models => {
 		Media.hasMany(models.CheckOutHistory);
