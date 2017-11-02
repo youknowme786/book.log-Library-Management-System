@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-	var Media = sequelize.define(
-		"Media",
+	var Medium = sequelize.define(
+		"Medium",
 		{
 			// do we need any validation?
 			mediaType: {
@@ -63,14 +63,14 @@ module.exports = (sequelize, DataTypes) => {
 
 	console.log("DATE RIGHT NOW " + Date.now());
 
-	// require("./js/parentAssociation.js")(Media);
+	// require("./js/parentAssociation.js")(Medium);
 
-	Media.associate = models => {
-		Media.hasMany(models.CheckOutHistory);
-		Media.hasMany(models.Reservation);
-		Media.hasMany(models.SavedItem);
-		Media.hasMany(models.Review);
+	Medium.associate = models => {
+		Medium.hasMany(models.CheckOutHistory);
+		Medium.hasMany(models.Reservation);
+		Medium.hasMany(models.SavedItem);
+		Medium.hasMany(models.Review);
 	};
 
-	return Media;
+	return Medium;
 };
