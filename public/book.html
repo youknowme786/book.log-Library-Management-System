@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Read Log</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS / FontAwesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Muli:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-12 text-center book-title">
+                <h1>I Am a Book Title Please Read Me</h1>
+                <p>by
+                    <span>
+                        <a href="/">John Grisham</a>
+                    </span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </p>
+                <hr>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6 text-center book-cover">
+                <img src="img/fantasy-book.jpg" class="img-fluid rounded" alt="I am a book cover picture">
+            </div>
+            <div class="col-md-6">
+                <p>
+                    <b class="text-uppercase">Summary:</b> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                    been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                    type and scrambled it to make a type specimen book. It has survived not only five centuries, but also
+                    the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
+                    with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                    software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p>
+                    <b class="text-uppercase">ISBN:</b>
+                    <span> 978-0071463386</span>
+                </p>
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div>
+                            <span class="on-stock">5</span>
+                            <a href="">In Stock</a>
+                        </div>
+                        <span>
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <a href=""> Add to Favorites</a>
+                        </span>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <form action="/" method="POST">
+                            <button id="add-btn" class="btn btn-success text-uppercase" type="submit">Reserve Book
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <form action="/" method="POST">
+                            <button id="add-btn" class="btn btn-success text-uppercase" type="submit">Add to Waitlist
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- {{!-- Sets up the ice cream list that can be eaten by the user --}}
+            <ul class="list-group mt-3">
+                {{#each ice_cream}}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6">
+                            {{this.id}}. {{this.ice_cream_name}}
+                        </div>
+                        <div class="col-md-12 col-lg-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="customer_name" placeholder="Enter Name">
+                                <div class="input-group-btn">
+                                    <button data-ice_cream_id="{{this.id}}" class="btn btn-success devour_ice_cream float-right">Devour It!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {{/each}}
+            </ul> -->
+
+
+        <!-- {{!-- Sets up the devoured ice cream list --}}
+        <div class="col-md-6">
+            <h3>Devoured Ice Cream</h3>
+            <ul class="list-group">
+                {{#each ice_cream_eaten}}
+                <li class="list-group-item">
+                    {{this.id}}. {{this.ice_cream_name}} (Eaten by {{this.customer.customer_name}})
+                </li>
+                {{/each}}
+            </ul>
+        </div> -->
+    </div>
+    <footer class="text-center mx-auto">
+        <p>@ All Rights Reserved to read.log 2017</p>
+    </footer>
+</body>
+
+</html>
