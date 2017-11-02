@@ -43,12 +43,7 @@ module.exports = (sequelize, DataTypes) => {
 		}
 	);
 
-	Media.associate = models => {
-		Media.hasMany(models.CheckOutHistory);
-		Media.hasMany(models.Reservation);
-		Media.hasMany(models.SavedItem);
-		Media.hasMany(models.Review);
-	};
+	require("../public/js/parentAssociation.js")(Media);
 
 	return Media;
 };
