@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
 	);
 
 	CheckOutHistory.associate = models => {
-		CheckOutHistory.belongsTo(models.Media, {
+		CheckOutHistory.belongsTo(models.Medium, {
 			foreignKey: {
 				allowNull: false
 			}

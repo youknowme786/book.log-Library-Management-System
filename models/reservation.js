@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
 	);
 
 	Reservation.associate = models => {
-		Reservation.belongsTo(models.Media, {
+		Reservation.belongsTo(models.Medium, {
 			foreignKey: {
 				allowNull: false
 			}
