@@ -1,6 +1,48 @@
 body {
 	/*background-image: url("../images/library-bg.png");*/
 	background-size: 100%;
+	font-family: 'Muli', sans-serif;
+}
+
+h1,
+.logo {
+    font-family: 'Crimson Text', serif;
+}
+
+.logo {
+    font-size: xx-large;
+}
+
+.logo span {
+    color:#449d44;
+}
+
+.checked {
+    color: orange;
+}
+
+.log-in{
+    margin-left: 50px;
+}
+
+.log-in span{
+    color: rgba(255,255,255,.5);
+    font-size: smaller;
+}
+
+.log-in button {
+    color: rgb(240, 162, 28);
+}
+
+.log-in button:hover {
+    color: rgb(241, 181, 83);
+}
+
+header,
+footer {
+    height: 75px;
+    background-color: #040404;
+    color: #fff;
 }
 
 .container {
@@ -19,16 +61,16 @@ body {
 
 #lefthr {
 	background-color: #cccccb;
-	margin-top: 18px;
-	margin-right: 24px;
+	margin-top: 28px;
+	margin-right: 22px;
 	width: 200px;
 	height: 1px;
 }
 
 #righthr {
 	background-color: #cccccb;
-	margin-top: 18px;
-	margin-left: 24px;
+	margin-top: 28px;
+	margin-left: 22px;
 	width: 200px;
 	height: 1px;
 }
@@ -49,6 +91,7 @@ span {
 
 #LArrow {
 	height: 60px;
+	margin-top: 88px;
 	/*position: relative;
 	left: 14%;
 	top: 55%;*/
@@ -56,4 +99,5 @@ span {
 
 #RArrow {
 	height: 60px;
+	margin-top: 88px;
 }

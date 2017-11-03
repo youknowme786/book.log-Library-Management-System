@@ -2,14 +2,19 @@ module.exports = (sequelize, DataTypes) => {
 	var Medium = sequelize.define(
 		"Medium",
 		{
-			// do we need any validation?
+			title: {
+				type: DataTypes.STRING,
+				allowNull: false
+			},
+
 			mediaType: {
 				type: DataTypes.STRING,
 				allowNull: false
 			},
 
 			genericId: {
-				type: DataTypes.STRING
+				type: DataTypes.STRING,
+				allowNull: true
 			},
 
 			totalStock: {
@@ -32,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
 				defaultValue: 0
 			},
 
-			waitlistSize: {
+			ReservationListSize: {
 				type: DataTypes.INTEGER,
 				defaultValue: 0
 			},
@@ -61,16 +66,14 @@ module.exports = (sequelize, DataTypes) => {
 		// }
 	);
 
-	console.log("DATE RIGHT NOW " + Date.now());
+	require("./js/parentAssociation.js")(Medium);
 
-	// require("./js/parentAssociation.js")(Medium);
-
-	Medium.associate = models => {
-		Medium.hasMany(models.CheckOutHistory);
-		Medium.hasMany(models.Reservation);
-		Medium.hasMany(models.SavedItem);
-		Medium.hasMany(models.Review);
-	};
+	// Medium.associate = models => {
+	// 	Medium.hasMany(models.CheckOutHistory);
+	// 	Medium.hasMany(models.Reservation);
+	// 	Medium.hasMany(models.SavedItem);
+	// 	Medium.hasMany(models.Review);
+	// };
 
 	return Medium;
 };

@@ -1,17 +1,23 @@
 module.exports = (sequelize, DataTypes) => {
-	var SavedItem = sequelize.define("SavedItem", {
-		isFavorite: {
-			type: DataTypes.BOOLEAN,
-			allowNull: false,
-			defaultValue: false
-		},
+	var SavedItem = sequelize.define(
+		"SavedItem",
+		{
+			isFavorite: {
+				type: DataTypes.BOOLEAN,
+				allowNull: false,
+				defaultValue: false
+			},
 
-		isInCart: {
-			type: DataTypes.BOOLEAN,
-			allowNull: false,
-			defaultValue: false
+			isInCart: {
+				type: DataTypes.BOOLEAN,
+				allowNull: false,
+				defaultValue: false
+			}
+		},
+		{
+			timestamps: false
 		}
-	});
+	);
 
 	SavedItem.associate = models => {
 		SavedItem.belongsTo(models.Medium, {

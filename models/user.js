@@ -5,43 +5,67 @@ module.exports = (sequelize, DataTypes) => {
 			firstName: {
 				type: DataTypes.STRING,
 				allowNull: false
-				//validation
 			},
 
 			middleName: {
 				type: DataTypes.STRING,
 				allowNull: true
-				//validation
 			},
 
 			lastName: {
 				type: DataTypes.STRING,
 				allowNull: false
-				//validation
 			},
 
 			userType: {
 				type: DataTypes.STRING,
 				allowNull: false
-				//validation
 			},
 
 			phoneNumber: {
 				type: DataTypes.STRING,
-				allowNull: false
-				//validation
+				allowNull: false,
+				validate: {
+					len: [10, 10],
+					isNumeric: true
+				}
 			},
 
-			address: {
+			streetAddress: {
 				type: DataTypes.STRING,
 				allowNull: false
-				//validation
+			},
+
+			city: {
+				type: DataTypes.STRING,
+				allowNull: false,
+				validate: {
+					isAlpha: true
+				}
+			},
+
+			state: {
+				type: DataTypes.STRING,
+				allowNull: false,
+				validate: {
+					isAlpha: true
+				}
+			},
+
+			zipCode: {
+				type: DataTypes.INTEGER,
+				allowNull: false,
+				validate: {
+					isNumeric: true
+				}
 			},
 
 			emailAddress: {
 				type: DataTypes.STRING,
-				allowNull: false
-				//validation
+				allowNull: false,
+				validate: {
+					isEmail: true
+				}
 			},
 
 			isEmployee: {
@@ -69,14 +93,14 @@ module.exports = (sequelize, DataTypes) => {
 		// }
 	);
 
-	// require("./js/parentAssociation.js")(User);
+	require("./js/parentAssociation.js")(User);
 
-	User.associate = models => {
-		User.hasMany(models.CheckOutHistory);
-		User.hasMany(models.Reservation);
-		User.hasMany(models.SavedItem);
-		User.hasMany(models.Review);
-	};
+	// User.associate = models => {
+	// 	User.hasMany(models.CheckOutHistory);
+	// 	User.hasMany(models.Reservation);
+	// 	User.hasMany(models.SavedItem);
+	// 	User.hasMany(models.Review);
+	// };
 
 	return User;
 };
