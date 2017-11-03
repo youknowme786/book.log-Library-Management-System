@@ -20,6 +20,8 @@ VALUES (true,3.50,3,1), (true,0,6,3), (false,0,5,2), (false,10,1,4), (true,30,2,
 INSERT INTO reservations (MediumId, UserId)
 values (4,1) ,(5,2), (1,3), (1,4), (2,3), (6,1), (5,2), (1,4);
 
+INSERT INTO saveditems (isFavorite, isInCart, MediumId, UserId)
+VALUES (true,true,1,3), (false,true,4,1), (false, true, 4, 3), (true, false, 6,2);
+
 SELECT * FROM media;
 SELECT * FROM users;
-SELECT * FROM reservations;
