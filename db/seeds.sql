@@ -23,5 +23,12 @@ values (4,1) ,(5,2), (1,3), (1,4), (2,3), (6,1), (5,2), (1,4);
 INSERT INTO saveditems (isFavorite, isInCart, MediumId, UserId)
 VALUES (true,true,1,3), (false,true,4,1), (false, true, 4, 3), (true, false, 6,2);
 
+INSERT INTO reviews (rating, review, MediumId, UserId)
+VALUES (5,"so good",1,3), (3,"i've seen better",4,1), (1, "how to read??", 4, 3), (4, "wow", 6,2);
+
 SELECT * FROM media;
 SELECT * FROM users;
+SELECT * FROM checkouthistories;
+SELECT * FROM reservations;
+SELECT * FROM saveditems;
+SELECT * FROM reviews;

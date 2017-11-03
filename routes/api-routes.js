@@ -1,9 +1,17 @@
 var db = require("../models");
-//imported to allow use of NOW() for updatedAt field
-//done to make sure date format matches createdAt field
-var sequelize = require("sequelize");
 
-module.exports = function(app) {
+// imported to allow use of NOW() for updatedAt field
+// done to make sure date format matches createdAt field
+// var sequelize = require("sequelize");
+
+// note from ali
+// use db.Sequelize instead of this
+// per ../models/index.js:
+// var Sequelize = require("sequelize");
+// db.Sequelize = Sequelize;
+// module.exports = db;
+
+module.exports = app => {
 	//POST route for reserving a book
 	//CURL command:
 	//curl -H "Content-Type: application/json" -X POST -d '{"MediumId": 4, "UserId": 4}' http://localhost:3000/api/reservations/new
@@ -32,7 +40,7 @@ module.exports = function(app) {
 				{
 					isCheckedOut: false,
 					//this only works using "updatedAt", NOT the field name "dateCheckedIn"
-					updatedAt: sequelize.literal("NOW()")
+					updatedAt: db.Sequelize.literal("NOW()")
 				},
 				{
 					where: { id: req.body.id }

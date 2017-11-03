@@ -8,15 +8,20 @@ module.exports = (sequelize, DataTypes) => {
 			},
 
 			review: {
-				type: DataTypes.BOOLEAN,
+				type: DataTypes.TEXT,
 				allowNull: true,
 				defaultValue: null
+			},
+
+			createdAt: {
+				type: DataTypes.DATE,
+				field: "timestamp",
+				defaultValue: sequelize.literal("CURRENT_TIMESTAMP")
 			}
 		},
 
 		{
 			timestamps: true,
-			createdAt: "timestamp",
 			updatedAt: false,
 			deletedAt: false
 		}
