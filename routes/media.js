@@ -33,4 +33,37 @@ module.exports = app => {
 				res.json(data);
 			});
 	});
+
+	function put(action) {
+		switch (action) {
+			case checkoutNoRes:
+				console.log("checkoutNoRes");
+				break;
+
+			case checkoutWithRes:
+				console.log("checkoutWithRes");
+				break;
+
+			case checkIn:
+			// if ((numShelved + numReserved) < reservationListSize) {}
+			//
+			// if yes, numRes ++
+			// if no,
+		}
+
+		app.put("/api/media/:MediumId", (req, res) => {
+			db.Medium
+				.update(
+					{
+						// update text here
+					},
+					{
+						where: { id: req.params.MediumId }
+					}
+				)
+				.then(data => {
+					res.json(data);
+				});
+		});
+	}
 };
