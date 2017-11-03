@@ -13,13 +13,25 @@ $(document).ready(function() {
 	$("#FeaturedCarousel").owlCarousel({
 		loop: true,
 		margin: 0,
-		items: 1
+		items: 1,
+		autoplay: true,
+		autoplayTimeout: 4000,
+		smartSpeed: 750,
+		mouseDrag: false
 	})
 });
 
 var NewCarousel = $("#PopularCarousel");
 var PopularCarousel = $("#NewCarousel");
 var FeaturedCarousel = $("#FeaturedCarousel");
+
+$("#Featured-LArrow").on("click", function() {
+	FeaturedCarousel.trigger("prev.owl.carousel")
+})
+
+$("#Featured-RArrow").on("click", function() {
+	FeaturedCarousel.trigger("next.owl.carousel")
+})
 
 $("#Popular-RArrow").on("click", function() {
 	NewCarousel.trigger("next.owl.carousel")
@@ -36,3 +48,4 @@ $("#New-RArrow").on("click", function() {
 $("#New-LArrow").on("click", function() {
 	PopularCarousel.trigger("prev.owl.carousel")
 })
+
