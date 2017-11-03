@@ -5,25 +5,21 @@ module.exports = (sequelize, DataTypes) => {
 			firstName: {
 				type: DataTypes.STRING,
 				allowNull: false
-				//validation
 			},
 
 			middleName: {
 				type: DataTypes.STRING,
 				allowNull: true
-				//validation
 			},
 
 			lastName: {
 				type: DataTypes.STRING,
 				allowNull: false
-				//validation
 			},
 
 			userType: {
 				type: DataTypes.STRING,
 				allowNull: false
-				//validation
 			},
 
 			phoneNumber: {
@@ -33,13 +29,11 @@ module.exports = (sequelize, DataTypes) => {
 					len: [10, 10],
 					isNumeric: true
 				}
-				//validation
 			},
 
 			streetAddress: {
 				type: DataTypes.STRING,
 				allowNull: false
-				//validation
 			},
 
 			city: {
@@ -48,7 +42,6 @@ module.exports = (sequelize, DataTypes) => {
 				validate: {
 					isAlpha: true
 				}
-				//validation
 			},
 
 			state: {
@@ -57,7 +50,6 @@ module.exports = (sequelize, DataTypes) => {
 				validate: {
 					isAlpha: true
 				}
-				//validation
 			},
 
 			zipCode: {
@@ -66,7 +58,6 @@ module.exports = (sequelize, DataTypes) => {
 				validate: {
 					isNumeric: true
 				}
-				//validation
 			},
 
 			emailAddress: {
@@ -75,7 +66,6 @@ module.exports = (sequelize, DataTypes) => {
 				validate: {
 					isEmail: true
 				}
-				//validation
 			},
 
 			isEmployee: {

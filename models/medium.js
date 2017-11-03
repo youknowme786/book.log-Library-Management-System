@@ -2,14 +2,19 @@ module.exports = (sequelize, DataTypes) => {
 	var Medium = sequelize.define(
 		"Medium",
 		{
-			// do we need any validation?
+			title: {
+				type: DataTypes.STRING,
+				allowNull: false
+			},
+
 			mediaType: {
 				type: DataTypes.STRING,
 				allowNull: false
 			},
 
 			genericId: {
-				type: DataTypes.STRING
+				type: DataTypes.STRING,
+				allowNull: true
 			},
 
 			totalStock: {
@@ -60,8 +65,6 @@ module.exports = (sequelize, DataTypes) => {
 		// 	deletedAt: false
 		// }
 	);
-
-	console.log("DATE RIGHT NOW " + Date.now());
 
 	require("./js/parentAssociation.js")(Medium);
 
