@@ -8,12 +8,6 @@ module.exports = (sequelize, DataTypes) => {
 				defaultValue: true
 			},
 
-			lateFees: {
-				type: DataTypes.DECIMAL(10, 2),
-				allowNull: false,
-				defaultValue: 0
-			},
-
 			createdAt: {
 				type: DataTypes.DATE,
 				field: "dateCheckedOut",
@@ -24,6 +18,12 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.DATE,
 				field: "dateCheckedIn",
 				allowNull: true
+			},
+
+			lateFees: {
+				type: DataTypes.DECIMAL(10, 2),
+				allowNull: false,
+				defaultValue: 0
 			}
 		},
 
