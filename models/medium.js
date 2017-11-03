@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
 				defaultValue: 0
 			},
 
-			ReservationListSize: {
+			reservationListSize: {
 				type: DataTypes.INTEGER,
 				defaultValue: 0
 			},
