@@ -3,9 +3,26 @@ var db = require("../models");
 //done to make sure date format matches createdAt field
 var sequelize = require("sequelize");
 
-//Routes related to updating CheckOutHistory table
 module.exports = function(app) {
+	//POST route for reserving a book
+	//CURL command:
+	//curl -H "Content-Type: application/json" -X POST -d '{"MediumId": 4, "UserId": 4}' http://localhost:3000/api/reservations/new
+	app.post("/api/reservations/new", (req, res) => {
+		console.log(req.body);
+		//update to work for multiple books using an array of cartBooks and forEach
+		db.Reservation
+			.create({
+				MediumId: req.body.MediumId,
+				UserId: req.body.UserId
+			})
+			.then(data => {
+				res.json(data);
+			});
+	});
+
 	//PUT route for checking a book back in
+	//CURL command:
+	//curl -X PUT -H "Content-Type: application/json" -d '{"id": 2}' http://localhost:3000/api/checkouthistory/checkin
 	app.put("/api/checkouthistory/checkin", (req, res) => {
 		//validation to add:
 		//Only runs .update if isCheckedOut = true

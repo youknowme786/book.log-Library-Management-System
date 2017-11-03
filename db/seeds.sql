@@ -17,7 +17,9 @@ VALUES ("Ali", "Boosted", "Arfeen", "Patron", "555-555-5555", "poop road", "alia
 INSERT INTO checkouthistories (isCheckedOut, lateFees, MediumId, UserId)
 VALUES (true,3.50,3,1), (true,0,6,3), (false,0,5,2), (false,10,1,4), (true,30,2,4);
 
+INSERT INTO reservations (MediumId, UserId)
+values (4,1) ,(5,2), (1,3), (1,4), (2,3), (6,1), (5,2), (1,4);
 
-SELECT * FROM checkouthistories;
 SELECT * FROM media;
 SELECT * FROM users;
+SELECT * FROM reservations;
