@@ -45,12 +45,28 @@ footer {
     color: #fff;
 }
 
+#featuredrow {
+	margin: 0px;
+}
+
+#FeaturedCarousel {
+	border-bottom: solid 1px black
+}
+
 .container {
-	margin-top: 150px;
-	/*background-color: grey;*/
 	height: 350px;
 	width: 950px;
 }
+
+#Popular-Container {
+	margin-top: 35px;
+}
+
+#New-Container {
+	margin-top: 70px;
+	margin-bottom: 100px;
+}
+
 
 #titlerow {
 	padding-top: 30px;
@@ -60,19 +76,19 @@ footer {
 }
 
 #lefthr {
-	background-color: #cccccb;
+	background-color: rgba(0, 0, 0, 0.1);
 	margin-top: 28px;
 	margin-right: 22px;
 	width: 200px;
-	height: 1px;
+	height: 0px;
 }
 
 #righthr {
-	background-color: #cccccb;
+	background-color: rgba(0, 0, 0, 0.1);
 	margin-top: 28px;
 	margin-left: 22px;
 	width: 200px;
-	height: 1px;
+	height: 0px;
 }
 
 .card {
@@ -89,15 +105,22 @@ span {
 	width: 150px;
 }
 
-#LArrow {
-	height: 60px;
-	margin-top: 88px;
-	/*position: relative;
-	left: 14%;
-	top: 55%;*/
+#Popular-LArrow, #New-LArrow {
+	height: 50px;
+	margin-top: 103px;
+	margin-right: 5px;
 }
 
-#RArrow {
-	height: 60px;
-	margin-top: 88px;
+#Popular-RArrow, #New-RArrow {
+	height: 50px;
+	margin-top: 103px;
+	margin-left: 5px;
+}
+
+#Popular-LArrow, #Popular-RArrow, #New-LArrow, #New-RArrow { 
+	transition: all .2s ease-in-out; 
+}
+
+#Popular-LArrow:hover, #Popular-RArrow:hover, #New-LArrow:hover, #New-RArrow:hover { 
+	transform: scale(1.35); 
 }

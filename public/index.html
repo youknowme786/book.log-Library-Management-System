@@ -2,152 +2,209 @@
 <html>
 <head>
   <meta charset="UTF-8">
-	<title>Home</title>
+  <title>Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Muli:400,700" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-  <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+  <!-- <link rel="stylesheet" href="assets/css/owl.theme.default.min.css"> -->
   <link rel="stylesheet" type="text/css" href="assets/css/indexStyle.css">
 </head>
 <body>
 
-<header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand logo" href="#">
-                <span>read</span>.log</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+  <!-- Navbar:  -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand logo" href="#">
+        <span>book</span>.log</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Events</a>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <div class="input-group">
-                        <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Search">
-                        <div class="input-group-btn">
-                            <div class="dropdown-menu dropdown-menu-left">
-                                <a class="dropdown-item" href="#">All</a>
-                                <div role="separator" class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Title</a>
-                                <a class="dropdown-item" href="#">Author</a>
-                                <a class="dropdown-item" href="#">ISBN</a>
-                                <div role="separator" class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Events</a>
-                            </div>
-                            <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                <div class="log-in">
-                    <span>Already have an account? </span>
-                    <button type="button" class="btn btn-link">
-                        <i class="fa fa-sign-in" aria-hidden="true"></i> Log In</button>
-                </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Events</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <div class="input-group">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Search">
+            <div class="input-group-btn">
+              <div class="dropdown-menu dropdown-menu-left">
+                <a class="dropdown-item" href="#">All</a>
+                <div role="separator" class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Title</a>
+                <a class="dropdown-item" href="#">Author</a>
+                <a class="dropdown-item" href="#">ISBN</a>
+                <div role="separator" class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Events</a>
+              </div>
+              <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All
+              </button>
             </div>
-        </nav>
-    </header>
+          </div>
+        </form>
+        <div class="log-in">
+          <span>Already have an account? </span>
+          <button type="button" class="btn btn-link">
+            <i class="fa fa-sign-in" aria-hidden="true"></i> Log In</button>
+          </div>
+        </div>
+      </nav>
+  </header>
+  
+  <!-- Featured Row -->
+  <div id="featuredrow" class="row justify-content-md-center">
 
-<div class="container">
+      <div id="FeaturedCarousel" class="owl-carousel owl-theme">
 
-    <div id="titlerow" class="row justify-content-md-center">
-      <hr id="lefthr">
-      <h1>New Arrivals</h1>
-      <hr id="righthr">
-    </div>
-    <div id="bookrow" class="row justify-content-md-center">
-    
-    <img id="LArrow" class="col-1.5" src="assets/img/indexImages/LArrow.png">
+        <div class="item">
+          <a href="#"><img class="bookcover" src="assets/img/indexImages/featured1.jpg"></a>
+        </div>
 
-      <div class="col-10 owl-carousel owl-theme">
+        <div class="item">
+          <a href="#"><img class="bookcover" src="assets/img/indexImages/featured2.jpg"></a>             
+        </div>
+
+        <div class="item">
+          <a href="#"><img class="bookcover" src="assets/img/indexImages/featured3.jpg"></a>
+        </div>
+
+        <div class="item">
+          <a href="#"><img class="bookcover" src="assets/img/indexImages/featured4.jpg"></a>
+        </div>
+
+      </div>
+  </div>
+
+  <!-- Popular Books Row -->
+  <div id="Popular-Container" class="container">
+
+      <div id="titlerow" class="row justify-content-md-center">
+        <hr id="lefthr">
+        <h1>Popular Books</h1>
+        <hr id="righthr">
+      </div>
+      <div id="bookrow" class="row justify-content-md-center">
+
+      <img id="Popular-LArrow" class="col-1.5" src="assets/img/indexImages/LArrow.png">
+
+      <div id="PopularCarousel" class="col-10 owl-carousel owl-theme">
 
         <div class="item">
           <div class="card text-center" style="width: 11rem;">
             <a href="#"><img class="bookcover" src="assets/img/indexImages/frost9.jpg"></a>
-            <span class="d-inline-block text-truncate" style="max-width: 175px;">
-              Fantasy Frost
-            </span>
+              <span class="d-inline-block text-truncate" style="max-width: 175px;">
+                Fantasy Frost
+              </span>
+            </div>
           </div>
-        </div>
 
-        <div class="item">
-          <div class="card text-center" style="width: 11rem;">
-            <a href="#"><img class="bookcover" src="assets/img/indexImages/1984-book-covers-2.jpg"></a>
-            <span class="d-inline-block text-truncate" style="max-width: 175px;">
-              1984
-            </span>
+          <div class="item">
+            <div class="card text-center" style="width: 11rem;">
+              <a href="#"><img class="bookcover" src="assets/img/indexImages/1984-book-covers-2.jpg"></a>
+              <span class="d-inline-block text-truncate" style="max-width: 175px;">
+                1984
+              </span>
+            </div>
           </div>
-        </div>
 
-        <div class="item">
-          <div class="card text-center" style="width: 11rem;">
-            <a href="#"><img class="bookcover" src="assets/img/indexImages/gameofthrones1.jpg"></a>
-            <span class="d-inline-block text-truncate" style="max-width: 175px;">
-              Game of Thrones
-            </span>
+          <div class="item">
+            <div class="card text-center" style="width: 11rem;">
+              <a href="#"><img class="bookcover" src="assets/img/indexImages/gameofthrones1.jpg"></a>
+              <span class="d-inline-block text-truncate" style="max-width: 175px;">
+                Game of Thrones
+              </span>
+            </div>
           </div>
-        </div>
 
-        <div class="item">
-          <div class="card text-center" style="width: 11rem;">
-            <a href="#"><img class="bookcover" src="assets/img/indexImages/tokyo-noir_2.jpg"></a>
-            <span class="d-inline-block text-truncate" style="max-width: 175px;">
-             Tokyo Noir
-           </span>
+          <div class="item">
+            <div class="card text-center" style="width: 11rem;">
+              <a href="#"><img class="bookcover" src="assets/img/indexImages/tokyo-noir_2.jpg"></a>
+              <span class="d-inline-block text-truncate" style="max-width: 175px;">
+               Tokyo Noir
+             </span>
+           </div>
          </div>
+
        </div>
 
+       <img id="Popular-RArrow" class="col-1.5" src="assets/img/indexImages/RArrow.png">
+
      </div>
+  </div>
 
-    <img id="RArrow" class="col-1.5" src="assets/img/indexImages/RArrow.png">
+  <!-- New Arrivals Row -->
+  <div id="New-Container" class="container">
 
-   </div>
- </div>
-</div>
+      <div id="titlerow" class="row justify-content-md-center">
+        <hr id="lefthr">
+        <h1>New Arrivals</h1>
+        <hr id="righthr">
+      </div>
+      <div id="bookrow" class="row justify-content-md-center">
 
+      <img id="New-LArrow" class="col-1.5" src="assets/img/indexImages/LArrow.png">
 
-<!-- Links to jQuery, popper.js and bootstrap 4. -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-<script src="assets/js/owl.carousel.min.js"></script>
+      <div id="NewCarousel" class="col-10 owl-carousel owl-theme">
 
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('.owl-carousel').owlCarousel({
-      loop:true,
-      margin: 25,
-      items:4,
-      nav: true,
-      navElement: "$('#LArrow')"
-    })
-  });
+        <div class="item">
+          <div class="card text-center" style="width: 11rem;">
+            <a href="#"><img class="bookcover" src="assets/img/indexImages/frost9.jpg"></a>
+              <span class="d-inline-block text-truncate" style="max-width: 175px;">
+                Fantasy Frost
+              </span>
+            </div>
+          </div>
 
-  var newCarousel = $(".owl-carousel");
+          <div class="item">
+            <div class="card text-center" style="width: 11rem;">
+              <a href="#"><img class="bookcover" src="assets/img/indexImages/1984-book-covers-2.jpg"></a>
+              <span class="d-inline-block text-truncate" style="max-width: 175px;">
+                1984
+              </span>
+            </div>
+          </div>
 
-  $("#RArrow").on("click", function() {
-    newCarousel.trigger("next.owl.carousel")
-  })
+          <div class="item">
+            <div class="card text-center" style="width: 11rem;">
+              <a href="#"><img class="bookcover" src="assets/img/indexImages/gameofthrones1.jpg"></a>
+              <span class="d-inline-block text-truncate" style="max-width: 175px;">
+                Game of Thrones
+              </span>
+            </div>
+          </div>
 
-  $("#LArrow").on("click", function() {
-    newCarousel.trigger("prev.owl.carousel")
-  })
+          <div class="item">
+            <div class="card text-center" style="width: 11rem;">
+              <a href="#"><img class="bookcover" src="assets/img/indexImages/tokyo-noir_2.jpg"></a>
+              <span class="d-inline-block text-truncate" style="max-width: 175px;">
+               Tokyo Noir
+             </span>
+           </div>
+         </div>
 
+       </div>
 
+       <img id="New-RArrow" class="col-1.5" src="assets/img/indexImages/RArrow.png">
 
-</script>
+     </div>
+  </div>
+
+   <!-- Links to jQuery, popper.js, Bootstrap 4, OwlCarousel and indexJS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="assets/js/indexJS.js"></script>
 
 </body>
 </html>
