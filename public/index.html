@@ -1,24 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
 	<title>Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Muli:400,700" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
   <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/indexStyle.css">
 </head>
 <body>
 
+<header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand logo" href="#">
+                <span>read</span>.log</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Events</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <div class="input-group">
+                        <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Search">
+                        <div class="input-group-btn">
+                            <div class="dropdown-menu dropdown-menu-left">
+                                <a class="dropdown-item" href="#">All</a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Title</a>
+                                <a class="dropdown-item" href="#">Author</a>
+                                <a class="dropdown-item" href="#">ISBN</a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Events</a>
+                            </div>
+                            <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="log-in">
+                    <span>Already have an account? </span>
+                    <button type="button" class="btn btn-link">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i> Log In</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
 <div class="container">
 
     <div id="titlerow" class="row justify-content-md-center">
       <hr id="lefthr">
-      <h3>New Arrivals</h3>
+      <h1>New Arrivals</h1>
       <hr id="righthr">
     </div>
     <div id="bookrow" class="row justify-content-md-center">
     
-    <img id="LArrow" class="col-1.5 my-auto" src="assets/img/indexImages/LArrow.png">
+    <img id="LArrow" class="col-1.5" src="assets/img/indexImages/LArrow.png">
 
       <div class="col-10 owl-carousel owl-theme">
 
@@ -60,8 +111,7 @@
 
      </div>
 
-    <img id="RArrow" class="col-1.5 my-auto" src="assets/img/indexImages/RArrow.png">
-
+    <img id="RArrow" class="col-1.5" src="assets/img/indexImages/RArrow.png">
 
    </div>
  </div>
@@ -82,13 +132,20 @@
       items:4,
       nav: true,
       navElement: "$('#LArrow')"
-      // stagePadding: -20
     })
   });
 
-  $("#LArrow").on("click", function () {
-    changed.owl.carousel
+  var newCarousel = $(".owl-carousel");
+
+  $("#RArrow").on("click", function() {
+    newCarousel.trigger("next.owl.carousel")
   })
+
+  $("#LArrow").on("click", function() {
+    newCarousel.trigger("prev.owl.carousel")
+  })
+
+
 
 </script>
 
