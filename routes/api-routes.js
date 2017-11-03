@@ -1,15 +1,6 @@
 var db = require("../models");
 
-// imported to allow use of NOW() for updatedAt field
-// done to make sure date format matches createdAt field
-// var sequelize = require("sequelize");
-
-// note from ali
-// use db.Sequelize instead of this
-// per ../models/index.js:
-// var Sequelize = require("sequelize");
-// db.Sequelize = Sequelize;
-// module.exports = db;
+// make sure date format matches createdAt field
 
 module.exports = app => {
 	//POST route for reserving a book
@@ -46,6 +37,40 @@ module.exports = app => {
 					where: { id: req.body.id }
 				}
 			)
+			.then(data => {
+				res.json(data);
+			});
+	});
+
+	// POST route for adding a new user
+	// cURL command:
+	// curl -X POST -H "Content-Type: application/json" -d '{"firstName": "it", "lastName":"kazhmere", "userType":"Employee", "phoneNumber":"123-456-7890", "address":"i live here", "emailAddress":"i go here", "isEmployee":false}' http://localhost:3000/api/users/new
+	app.post("/api/users/new", (req, res) => {
+		console.log(req.body);
+
+		var middleNameInput;
+		if (req.body.middleName) {
+			middleNameInput = req.body.middleName.trim();
+		}
+
+		var isEmployeeInput = false;
+		if (req.body.userType === "Employee") {
+			isEmployeeInput = true;
+		}
+
+		var phoneNumberInput = req.body.phoneNumber.replace(/[^\d]/g, "");
+
+		db.User
+			.create({
+				firstName: req.body.firstName.trim(),
+				middleName: middleNameInput,
+				lastName: req.body.lastName.trim(),
+				userType: req.body.userType,
+				phoneNumber: req.body.phoneNumber.trim(),
+				address: req.body.address.trim(),
+				emailAddress: req.body.emailAddress.trim(),
+				isEmployee: isEmployeeInput
+			})
 			.then(data => {
 				res.json(data);
 			});

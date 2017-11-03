@@ -63,14 +63,14 @@ module.exports = (sequelize, DataTypes) => {
 
 	console.log("DATE RIGHT NOW " + Date.now());
 
-	// require("./js/parentAssociation.js")(Medium);
+	require("./js/parentAssociation.js")(Medium);
 
-	Medium.associate = models => {
-		Medium.hasMany(models.CheckOutHistory);
-		Medium.hasMany(models.Reservation);
-		Medium.hasMany(models.SavedItem);
-		Medium.hasMany(models.Review);
-	};
+	// Medium.associate = models => {
+	// 	Medium.hasMany(models.CheckOutHistory);
+	// 	Medium.hasMany(models.Reservation);
+	// 	Medium.hasMany(models.SavedItem);
+	// 	Medium.hasMany(models.Review);
+	// };
 
 	return Medium;
 };

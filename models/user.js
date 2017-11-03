@@ -28,19 +28,53 @@ module.exports = (sequelize, DataTypes) => {
 
 			phoneNumber: {
 				type: DataTypes.STRING,
+				allowNull: false,
+				validate: {
+					len: [10, 10],
+					isNumeric: true
+				}
+				//validation
+			},
+
+			streetAddress: {
+				type: DataTypes.STRING,
 				allowNull: false
 				//validation
 			},
 
-			address: {
+			city: {
 				type: DataTypes.STRING,
-				allowNull: false
+				allowNull: false,
+				validate: {
+					isAlpha: true
+				}
+				//validation
+			},
+
+			state: {
+				type: DataTypes.STRING,
+				allowNull: false,
+				validate: {
+					isAlpha: true
+				}
+				//validation
+			},
+
+			zipCode: {
+				type: DataTypes.INTEGER,
+				allowNull: false,
+				validate: {
+					isNumeric: true
+				}
 				//validation
 			},
 
 			emailAddress: {
 				type: DataTypes.STRING,
-				allowNull: false
+				allowNull: false,
+				validate: {
+					isEmail: true
+				}
 				//validation
 			},
 
@@ -69,14 +103,14 @@ module.exports = (sequelize, DataTypes) => {
 		// }
 	);
 
-	// require("./js/parentAssociation.js")(User);
+	require("./js/parentAssociation.js")(User);
 
-	User.associate = models => {
-		User.hasMany(models.CheckOutHistory);
-		User.hasMany(models.Reservation);
-		User.hasMany(models.SavedItem);
-		User.hasMany(models.Review);
-	};
+	// User.associate = models => {
+	// 	User.hasMany(models.CheckOutHistory);
+	// 	User.hasMany(models.Reservation);
+	// 	User.hasMany(models.SavedItem);
+	// 	User.hasMany(models.Review);
+	// };
 
 	return User;
 };

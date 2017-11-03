@@ -21,9 +21,10 @@ module.exports = (sequelize, DataTypes) => {
 		},
 
 		{
-			timestamps: true,
-			updatedAt: false,
-			deletedAt: false
+			timestamps: false
+			// timestamps: true,
+			// updatedAt: false,
+			// deletedAt: false
 		}
 	);
 

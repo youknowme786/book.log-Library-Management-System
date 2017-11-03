@@ -9,14 +9,17 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         field: "id"
       },
+
       name: {
         type: DataTypes.STRING,
         allowNull: true
       },
+
       created_at: {
         type: DataTypes.DATE,
         defaultValue: sequelize.literal("CURRENT_TIMESTAMP")
       },
+
       updated_at: {
         type: DataTypes.DATE,
         field: "dateupdated",
@@ -25,6 +28,7 @@ module.exports = function(sequelize, DataTypes) {
         )
       }
     },
+
     {
       timestamps: true,
       tableName: "t_test",
