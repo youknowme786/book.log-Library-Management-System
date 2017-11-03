@@ -6,7 +6,8 @@ body {
     font-family: 'Muli', sans-serif;
 }
 
-h1 {
+h1,
+.logo {
     font-family: 'Crimson Text', serif;
 }
 
@@ -21,31 +22,30 @@ footer {
     color: #fff;
 }
 
-    footer p {
-        padding: 55px 0;
-    }
+footer p {
+    padding: 55px 0;
+}
 
 footer { 
     height: 150px;
     color: rgb(163, 160, 160);
 }
 
-.row {
-    margin-bottom: 30px;
+.logo {
+    font-size: xx-large;
+}
+
+.logo span {
+    color:#449d44;
 }
 
 .container {
-    height: 800px;
     width: 70%;
 }
 
 /* css for font awesome */
 .checked {
     color: orange;
-}
-
-.book-title {
-    margin-top: 30px;
 }
 
 .book-cover {
@@ -77,108 +77,20 @@ footer {
         border-radius: 0;
 }
 
-
-/* Navbar Styles */
-
-.navbar {
-    border-radius: 0;
+.log-in{
+    margin-left: 50px;
 }
 
-#login-dp{
-    min-width: 250px;
-    padding: 14px 14px 0;
-    overflow:hidden;
-    background-color:rgba(255,255,255,.8);
-}
-#login-dp .help-block{
-    font-size:12px    
-}
-#login-dp .bottom{
-    background-color:rgba(255,255,255,.8);
-    border-top:1px solid #ddd;
-    clear:both;
-    padding:14px;
-}
-#login-dp .social-buttons{
-    margin:12px 0    
-}
-#login-dp .social-buttons a{
-    width: 49%;
-}
-#login-dp .form-group {
-    margin-bottom: 10px;
-}
-.btn-fb{
-    color: #fff;
-    background-color:#3b5998;
-}
-.btn-fb:hover{
-    color: #fff;
-    background-color:#496ebc 
-}
-.btn-tw{
-    color: #fff;
-    background-color:#55acee;
-}
-.btn-tw:hover{
-    color: #fff;
-    background-color:#59b5fa;
-}
-@media(max-width:768px){
-    #login-dp{
-        background-color: inherit;
-        color: #fff;
-    }
-    #login-dp .bottom{
-        background-color: inherit;
-        border-top:0 none;
-    }
+.log-in span{
+    color: rgba(255,255,255,.5);
+    font-size: smaller;
 }
 
-/* Navbar Styles End*/
-
-/* Navbar Search End*/
-
-.dropdown.dropdown-lg .dropdown-menu {
-    margin-top: -1px;
-    padding: 6px 20px;
-}
-.input-group-btn .btn-group {
-    display: flex !important;
-}
-.btn-group .btn {
-    border-radius: 0;
-    margin-left: -1px;
-}
-.btn-group .btn:last-child {
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-}
-.btn-group .form-horizontal .btn[type="submit"] {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-}
-.form-horizontal .form-group {
-    margin-left: 0;
-    margin-right: 0;
-}
-.form-group .form-control:last-child {
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+.log-in button {
+    color: rgb(240, 162, 28);
 }
 
-@media screen and (min-width: 768px) {
-    #adv-search {
-         width: 30%;    
-        margin: 0 auto;
-    }
-    .dropdown.dropdown-lg {
-        position: static !important;
-    }
-    .dropdown.dropdown-lg .dropdown-menu {
-        min-width: 500px;
-    }
+.log-in button:hover {
+    color: rgb(241, 181, 83);
+
 }
-
-/* Navbar Search End*/
-

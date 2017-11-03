@@ -6,28 +6,71 @@
     <title>Read Log</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS / FontAwesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Muli:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- jQuery CDN -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+    <link rel="stylesheet" href="assets/css/styles.css">
+
 </head>
 
 <body>
-    <header></header>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand logo" href="#">
+                <span>read</span>.log</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <div class="container">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Events</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <div class="input-group">
+                        <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Search">
+                        <div class="input-group-btn">
+                            <div class="dropdown-menu dropdown-menu-left">
+                                <a class="dropdown-item" href="#">All</a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Title</a>
+                                <a class="dropdown-item" href="#">Author</a>
+                                <a class="dropdown-item" href="#">ISBN</a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Events</a>
+                            </div>
+                            <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="log-in">
+                    <span>Already have an account? </span>
+                    <button type="button" class="btn btn-link">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i> Log In</button>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-        <div class="row">
+    <main class="container mb-5">
 
-            <div class="col-md-12 text-center book-title">
+        <div class="row mb-3">
+
+            <div class="col-md-12 text-center mt-5">
                 <h1>I Am a Book Title Please Read Me</h1>
                 <p>by
                     <span>
-                        <a href="/">John Grisham</a>
+                        <a href="#">John Grisham</a>
                     </span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
@@ -35,7 +78,7 @@
                     <span class="fa fa-star"></span>
                     <span class="fa fa-star"></span>
                 </p>
-                <hr>
+                <hr class="mt-3">
 
             </div>
         </div>
@@ -43,7 +86,7 @@
         <div class="row">
 
             <div class="col-md-6 text-center book-cover">
-                <img src="img/fantasy-book.jpg" class="img-fluid rounded" alt="I am a book cover picture">
+                <img src="assets/img/fantasy-book.jpg" class="img-fluid rounded" alt="I am a book cover picture">
             </div>
             <div class="col-md-6">
                 <p>
@@ -62,11 +105,11 @@
                     <div class="col-md-12">
                         <div>
                             <span class="on-stock">5</span>
-                            <a href="">In Stock</a>
+                            <a href="#">In Stock</a>
                         </div>
                         <span>
                             <i class="fa fa-heart-o" aria-hidden="true"></i>
-                            <a href=""> Add to Favorites</a>
+                            <a href="#"> Add to Favorites</a>
                         </span>
 
                     </div>
@@ -88,45 +131,20 @@
                 </div>
             </div>
         </div>
-
-
-        <!-- {{!-- Sets up the ice cream list that can be eaten by the user --}}
-            <ul class="list-group mt-3">
-                {{#each ice_cream}}
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-md-12 col-lg-6">
-                            {{this.id}}. {{this.ice_cream_name}}
-                        </div>
-                        <div class="col-md-12 col-lg-6">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="customer_name" placeholder="Enter Name">
-                                <div class="input-group-btn">
-                                    <button data-ice_cream_id="{{this.id}}" class="btn btn-success devour_ice_cream float-right">Devour It!</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                {{/each}}
-            </ul> -->
-
-
-        <!-- {{!-- Sets up the devoured ice cream list --}}
-        <div class="col-md-6">
-            <h3>Devoured Ice Cream</h3>
-            <ul class="list-group">
-                {{#each ice_cream_eaten}}
-                <li class="list-group-item">
-                    {{this.id}}. {{this.ice_cream_name}} (Eaten by {{this.customer.customer_name}})
-                </li>
-                {{/each}}
-            </ul>
-        </div> -->
-    </div>
+    </main>
     <footer class="text-center mx-auto">
         <p>@ All Rights Reserved to read.log 2017</p>
     </footer>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+
 </body>
 
 </html>
