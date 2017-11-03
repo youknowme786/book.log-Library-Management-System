@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Read Log</title>
+    <title>read.log</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS / FontAwesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -37,7 +37,7 @@
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <div class="input-group">
-                        <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Search">
+                        <input type="text" id="search-input" class="form-control" aria-label="Text input with dropdown button" placeholder="Search">
                         <div class="input-group-btn">
                             <div class="dropdown-menu dropdown-menu-left">
                                 <a class="dropdown-item" href="#">All</a>
@@ -85,7 +85,7 @@
 
         <div class="row">
 
-            <div class="col-md-6 text-center book-cover">
+            <div class="col-md-6 text-center border-lv">
                 <img src="assets/img/fantasy-book.jpg" class="img-fluid rounded" alt="I am a book cover picture">
             </div>
             <div class="col-md-6">
@@ -117,13 +117,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <form action="/" method="POST">
-                            <button id="add-btn" class="btn btn-success text-uppercase" type="submit">Reserve Book
+                            <button id="action-btn" class="btn btn-success text-uppercase" type="submit">Reserve Book
                             </button>
                         </form>
                     </div>
                     <div class="col-md-6">
                         <form action="/" method="POST">
-                            <button id="add-btn" class="btn btn-success text-uppercase" type="submit">Add to Waitlist
+                            <button id="action-btn" class="btn btn-success text-uppercase" type="submit">Add to Waitlist
                             </button>
                         </form>
                     </div>

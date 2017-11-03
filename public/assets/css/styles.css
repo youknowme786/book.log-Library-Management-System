@@ -7,6 +7,7 @@ body {
 }
 
 h1,
+h3,
 .logo {
     font-family: 'Crimson Text', serif;
 }
@@ -15,9 +16,11 @@ img {
     width: 70%;
 }
 
-header,
+article {
+    width: 100%;
+}
+
 footer {
-    height: 75px;
     background-color: #040404;
     color: #fff;
 }
@@ -35,8 +38,9 @@ footer {
     font-size: xx-large;
 }
 
-.logo span {
-    color:#449d44;
+.logo span,
+.nav-link {
+    color:#5cb85c;
 }
 
 .container {
@@ -48,33 +52,44 @@ footer {
     color: orange;
 }
 
-.book-cover {
-    border-right: 0.5px solid #ccc;
+.profile-img img {
+    width: 70%
 }
 
 .on-stock,
-.fa-heart-o {
+.fa-heart-o,
+.fa-envelope-o,
+.fa-phone,
+.fa-book
+ {
     display: inline-block;
     padding: 4px 10px;
-    margin: 10px 0;
+    margin: 0 10px;
     border-radius: 50%;
     border: 1px solid #5cb85c;
     color: #5cb85c;
 }
 
-.fa-heart-o{
+.fa-heart-o,
+.fa-envelope-o,
+.fa-book{
     padding: 7px;
 }
 
+.fa-phone {
+    padding: 7px 9px;
+}
+
 .on-stock:hover,
-.fa-heart-o:hover {
+.fa-heart-o:hover,
+.nav-tabs .nav-link:hover {
     color: #fff;
     background-color: #449d44;
     border-color: #398439;
 }
 
 .btn-success {
-        border-radius: 0;
+    border-radius: 0;
 }
 
 .log-in{
@@ -93,4 +108,9 @@ footer {
 .log-in button:hover {
     color: rgb(241, 181, 83);
 
+}
+
+.border-lv {
+    padding-left: 45px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
 }
