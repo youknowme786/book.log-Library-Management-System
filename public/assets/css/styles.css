@@ -114,3 +114,9 @@ footer {
     padding-left: 45px;
     border-left: 1px solid rgba(0, 0, 0, 0.1);
 }
+
+.alert{
+    padding: 0;
+    font-size: 12px;
+    color: red;
+}
