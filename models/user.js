@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
 			},
 
 			phoneNumber: {
-				type: DataTypes.INTEGER,
+				type: DataTypes.STRING,
 				allowNull: false
 				//validation
 			},
@@ -48,18 +48,28 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.BOOLEAN,
 				allowNull: false,
 				defaultValue: false
+			},
+
+			createdAt: {
+				type: DataTypes.DATE,
+				field: "memberSince",
+				defaultValue: sequelize.literal("NOW()")
 			}
 		},
 
 		{
-			timestamps: true,
-			createdAt: "memberSince",
-			updatedAt: false,
-			deletedAt: false
+			timestamps: false
 		}
+
+		// {
+		// 	timestamps: true,
+		// 	createdAt: "memberSince",
+		// 	updatedAt: false,
+		// 	deletedAt: false
+		// }
 	);
 
-	// require("../public/js/parentAssociation.js")(User);
+	// require("./js/parentAssociation.js")(User);
 
 	User.associate = models => {
 		User.hasMany(models.CheckOutHistory);

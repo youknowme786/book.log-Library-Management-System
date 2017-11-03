@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
 	);
 
 	Review.associate = models => {
-		Review.belongsTo(models.Media, {
+		Review.belongsTo(models.Medium, {
 			foreignKey: {
 				allowNull: false
 			}

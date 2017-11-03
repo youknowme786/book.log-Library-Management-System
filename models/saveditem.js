@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
 	});
 
 	SavedItem.associate = models => {
-		SavedItem.belongsTo(models.Media, {
+		SavedItem.belongsTo(models.Medium, {
 			foreignKey: {
 				allowNull: false
 			}

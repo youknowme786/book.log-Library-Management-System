@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-	var Media = sequelize.define(
-		"Media",
+	var Medium = sequelize.define(
+		"Medium",
 		{
 			// do we need any validation?
 			mediaType: {
@@ -40,25 +40,37 @@ module.exports = (sequelize, DataTypes) => {
 			totalNumCheckouts: {
 				type: DataTypes.INTEGER,
 				defaultValue: 0
+			},
+
+			createdAt: {
+				type: DataTypes.DATE,
+				field: "firstArrivalDate",
+				defaultValue: sequelize.literal("NOW()")
 			}
 		},
 
 		{
-			timestamps: true,
-			createdAt: "firstArrivalDate",
-			updatedAt: false,
-			deletedAt: false
+			timestamps: false
 		}
+
+		// {
+		// 	timestamps: true,
+		// 	createdAt: "firstArrivalDate",
+		// 	updatedAt: false,
+		// 	deletedAt: false
+		// }
 	);
 
-	// require("../public/js/parentAssociation.js")(Media);
+	console.log("DATE RIGHT NOW " + Date.now());
 
-	Media.associate = models => {
-		Media.hasMany(models.CheckOutHistory);
-		Media.hasMany(models.Reservation);
-		Media.hasMany(models.SavedItem);
-		Media.hasMany(models.Review);
+	// require("./js/parentAssociation.js")(Medium);
+
+	Medium.associate = models => {
+		Medium.hasMany(models.CheckOutHistory);
+		Medium.hasMany(models.Reservation);
+		Medium.hasMany(models.SavedItem);
+		Medium.hasMany(models.Review);
 	};
 
-	return Media;
+	return Medium;
 };
