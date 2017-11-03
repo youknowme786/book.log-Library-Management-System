@@ -38,7 +38,10 @@ module.exports = function(app) {
       })
       .then(data => {
         // data is an array of objects
+        // deep clone it into a deliverable variable
         var dataDeliverable = JSON.parse(JSON.stringify(data));
+
+        // modify the deliverable and add relevant fields
         dataDeliverable.forEach(item => {
           if (item.mediaType === "book") {
             // call google books API here
