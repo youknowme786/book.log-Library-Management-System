@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
 				defaultValue: 0
 			},
 
-			waitlistSize: {
+			reservationListSize: {
 				type: DataTypes.INTEGER,
 				defaultValue: 0
 			},
