@@ -29,6 +29,7 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/user.html"));
   });
 
+  //curl -i -H "Content-Type: application/json" -X GET http://localhost:3000/popular
   app.get("/popular", (req, res) => {
     db.Medium
       .findAll({
@@ -37,14 +38,21 @@ module.exports = function(app) {
       })
       .then(data => {
         // data is an array of objects
-        data.forEach(item => {
+        var dataDeliverable = JSON.parse(JSON.stringify(data));
+        dataDeliverable.forEach(item => {
           if (item.mediaType === "book") {
             // call google books API here
             console.log(item.genericId);
+
+            // // fill in these fields from API
+            // item.author = //author from API
+            // item.summary = //summary from API
+            // item.image = //image link from API
+            item.test = "test";
           }
         });
 
-        res.json(data);
+        res.json(dataDeliverable);
       });
   });
 };
