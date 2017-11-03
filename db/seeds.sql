@@ -8,15 +8,15 @@ VALUES ("Harry Potter and the Philosopher's Stone", "book","0-7475-3269-9",10,3,
 ("Harry Potter and the Half-Blood Prince", "book","0-7475-8108-8",4,0,1,3,5,15),
 ("Harry Potter and the Deathly Hallows", "book","0-545-01022-5",4,3,1,0,0,15);
 
-INSERT INTO media (title, mediaType, genericId, totalStock)
-VALUES ("testHarry Potter and the Philosopher's Stone", "book","10-7475-3269-9",10),
-("testHarry Potter and the Chamber of Secrets", "book","10-7475-3849-2",4),
-("testHarry Potter and the Prisoner of Azkaban", "book","10-7475-4215-5",12),
-("testHarry Potter and the Goblet of Fire", "book","10-7475-4624-X",14),
-("testHarry Potter and the Order of the Phoenix", "book","10-7475-5100-6",6),
-("testHarry Potter and the Half-Blood Prince", "book","10-7475-8108-8",4),
-("testHarry Potter and the Deathly Hallows", "book","10-545-01022-5",4);
-
+-- INSERT INTO media (title, mediaType, genericId, totalStock)
+-- VALUES ("testHarry Potter and the Philosopher's Stone", "book","10-7475-3269-9",10),
+-- ("testHarry Potter and the Chamber of Secrets", "book","10-7475-3849-2",4),
+-- ("testHarry Potter and the Prisoner of Azkaban", "book","10-7475-4215-5",12),
+-- ("testHarry Potter and the Goblet of Fire", "book","10-7475-4624-X",14),
+-- ("testHarry Potter and the Order of the Phoenix", "book","10-7475-5100-6",6),
+-- ("testHarry Potter and the Half-Blood Prince", "book","10-7475-8108-8",4),
+-- ("testHarry Potter and the Deathly Hallows", "book","10-545-01022-5",4);
+-- 
 INSERT INTO users (firstName, middleName, lastName, userType, phoneNumber, streetAddress, city, state, zipCode, emailAddress, isEmployee)
 VALUES ("Ali", "Boosted", "Arfeen", "Patron", "555-555-5555", "123 poop road", "chicago", "il", "60000", "aliarfeen@gmail.com", false),
 ("Eva", "", "Simon", "Employee", "234-555-5555", "321 pooper street", "whoville", "il", "12345", "evasimon@gmail.com", true),

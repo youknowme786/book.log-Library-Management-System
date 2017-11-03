@@ -3,9 +3,26 @@ var db = require("../models");
 // make sure date format matches createdAt field
 
 module.exports = app => {
+	// CURL command:
+	// curl -i -H "Content-Type: application/json" -X GET http://localhost:3000/api/media/
+	app.get("/api/media/:genericId?", (req, res) => {
+		var query = {};
+		if (req.params.genericId) {
+			query.genericId = req.params.genericId;
+		}
+
+		db.Medium
+			.findAll({
+				where: query
+			})
+			.then(data => {
+				res.json(data);
+			});
+	});
+
 	// POST route for adding a new book
 	// CURL command:
-	// curl -H "Content-Type: application/json" -X POST -d '{"title": "the chronicle of imran", "mediaType": "book", "genericId":"9780470199480", "totalStock":5}' http://localhost:3000/api/media/new
+	// curl -H "Content-Type: application/json" -X POST -d '{"title": "the chronicle of imran", "mediaType": "book", "genericId":"9780470199480", "totalStock":5, "numShelved":5}' http://localhost:3000/api/media/new
 	app.post("/api/media/new", (req, res) => {
 		console.log(req.body);
 
@@ -27,40 +44,85 @@ module.exports = app => {
 				title: req.body.title.trim(),
 				mediaType: req.body.mediaType,
 				genericId: genericIdInput,
-				totalStock: parseInt(req.body.totalStock, 10)
+				totalStock: parseInt(req.body.totalStock, 10),
+				numShelved: parseInt(req.body.totalStock, 10)
 			})
 			.then(data => {
 				res.json(data);
 			});
 	});
 
-	function put(action) {
+	function updateMediaTable(action) {
 		switch (action) {
-			case checkoutNoRes:
-				console.log("checkoutNoRes");
+			case "checkoutWithoutReservation":
+				console.log(action);
+
+				var updateQuery = {
+					// update text here
+				};
 				break;
 
-			case checkoutWithRes:
-				console.log("checkoutWithRes");
+			case "checkoutWithReservation":
+				console.log(action);
+
+				var updateQuery = {
+					// update text here
+				};
 				break;
 
-			case checkIn:
-			// if ((numShelved + numReserved) < reservationListSize) {}
-			//
-			// if yes, numRes ++
-			// if no,
+			case "checkIn":
+				// if ((numShelved + numReserved) < reservationListSize) {}
+				// numReserved++
+				// else numShelved++
+				console.log(action);
+
+				var updateQuery = {
+					// update text here
+				};
+				break;
+
+			case "makeReservation":
+				console.log(action);
+
+				var updateQuery = {
+					// update text here
+				};
+				break;
+
+			case "cancelReservation":
+				console.log(action);
+
+				var updateQuery = {
+					// update text here
+				};
+				break;
+
+			case "deleteItem":
+				console.log(action);
+
+				var updateQuery = {
+					// update text here
+				};
+				break;
+
+			case "addItem":
+				console.log(action);
+
+				var updateQuery = {
+					// update text here
+				};
+				break;
+
+			default:
+				console.log(action);
+				break;
 		}
 
 		app.put("/api/media/:MediumId", (req, res) => {
 			db.Medium
-				.update(
-					{
-						// update text here
-					},
-					{
-						where: { id: req.params.MediumId }
-					}
-				)
+				.update(updateQuery, {
+					where: { id: req.params.MediumId }
+				})
 				.then(data => {
 					res.json(data);
 				});
