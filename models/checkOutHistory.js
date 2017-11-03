@@ -5,21 +5,30 @@ module.exports = (sequelize, DataTypes) => {
 			isCheckedOut: {
 				type: DataTypes.BOOLEAN,
 				allowNull: false,
-				defaultValue: false
+				defaultValue: true
 			},
 
 			lateFees: {
 				type: DataTypes.INTEGER,
 				allowNull: false,
 				defaultValue: 0
+			},
+
+			createdAt: {
+				type: DataTypes.DATE,
+				field: "dateCheckedOut",
+				defaultValue: sequelize.literal("NOW()")
+			},
+
+			updatedAt: {
+				type: DataTypes.DATE,
+				field: "dateCheckedIn",
+				allowNull: true
 			}
 		},
 
 		{
-			timestamps: true,
-			createdAt: "dateCheckedOut",
-			updatedAt: "dateCheckedIn",
-			deletedAt: false
+			timestamps: false
 		}
 	);
 
