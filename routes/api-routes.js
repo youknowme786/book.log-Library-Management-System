@@ -98,7 +98,7 @@ module.exports = app => {
 	//POST route for reserving a book
 	//CURL command:
 	//curl -H "Content-Type: application/json" -X POST -d '{"MediumId": 4, "UserId": 4}' http://localhost:3000/api/reservations/new
-	app.post("/api/reservations", (req, res) => {
+	app.post("/api/reservations/create", (req, res) => {
 		db.Reservation
 			.create({
 				MediumId: req.body.MediumId,
@@ -112,10 +112,22 @@ module.exports = app => {
 
 	//FAVORITES ROUTES
 	//GET - using userId
+	//CURL command:
+	//curl -i http://localhost:3000/api/2/favorites
+	app.get("/api/:UserId/favorites", (req, res) => {
+		db.Favorite
+			.findAll({
+				where: { UserId: req.params.UserId }
+			})
+			.then(data => {
+				res.json(data);
+			});
+	});
+
 	//POST - favorite item
 	//CURL command:
-	//curl -H "Content-Type: application/json" -X POST -d '{"MediumId": 4, "UserId": 2}' http://localhost:3000/api/favorites
-	app.post("/api/favorites", (req, res) => {
+	//curl -H "Content-Type: application/json" -X POST -d '{"MediumId": 1, "UserId": 1}' http://localhost:3000/api/favorites/create
+	app.post("/api/favorites/create", (req, res) => {
 		db.Favorite
 			.create({
 				MediumId: req.body.MediumId,
@@ -126,15 +138,46 @@ module.exports = app => {
 				res.json(data);
 			});
 	});
-	//DELETE - favorite item
+
+	//DELETE - favorite item - see generic delete route
 
 	//CHECKOUT HISTORY ROUTES
 	//GET
+	//MAKE THIS A FUNCTION WHERE YOU PASS IN "MediumId" or "UserId"
+	app.get("/api/checkouthistories/media/:MediumId", (req, res) => {
+		db.CheckOutHistory
+			.findAll({
+				//will display as...
+				// where: { MediumId: req.body.MediumId } OR { UserId: req.body.UserId }
+				where: { MediumId: req.params.MediumId }
+			})
+			// console.log("THIS IS REQ.BODY");
+			// console.log(req.body);
+			.then(data => {
+				res.json(data);
+			});
+	});
+
+	//GET - using userId
+	//CURL command:
+	//curl -i http://localhost:3000/api/checkouthistories/user/6
+	app.get("/api/checkouthistories/user/:UserId", (req, res) => {
+		db.CheckOutHistory
+			.findAll({
+				//will display as...
+				// where: { MediumId: req.body.MediumId } OR { UserId: req.body.UserId }
+				where: { UserId: req.params.UserId }
+			})
+			.then(data => {
+				res.json(data);
+			});
+	});
+
 	//POST - CHECK OUT
 
 	//PUT route for checking a book back in
 	//CURL command:
-	//curl -X PUT -H "Content-Type: application/json" -d '{"id": 2}' http://localhost:3000/api/checkouthistory/checkin
+	//curl -X PUT -H "Content-Type: application/json" -d '{"UserId": 1, "MediumId": 3}' http://localhost:3000/api/checkouthistory/checkin
 	app.put("/api/checkouthistory/checkin", (req, res) => {
 		//validation to add:
 		//Only runs .update if isCheckedOut = true
@@ -147,7 +190,10 @@ module.exports = app => {
 					updatedAt: db.Sequelize.literal("NOW()")
 				},
 				{
-					where: { id: req.body.id }
+					where: {
+						UserId: req.body.UserId,
+						MediumId: req.body.MediumId
+					}
 				}
 			)
 			.then(data => {
