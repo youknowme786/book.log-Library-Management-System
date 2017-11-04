@@ -1,13 +1,13 @@
 USE librarymanagementsystem;
 
 INSERT INTO media (title, mediaType, genericId, totalStock, numShelved, numReserved, numCheckedOut, reservationListSize, totalNumCheckouts)
-VALUES ("Harry Potter and the Philosopher's Stone", "book","0-7475-3269-9",10,3,1,6,0,15),
-("Harry Potter and the Chamber of Secrets", "book","0-7475-3849-2",4,3,1,0,0,5),
-("Harry Potter and the Prisoner of Azkaban", "book","0-7475-4215-5",12,0,5,7,5,1),
-("Harry Potter and the Goblet of Fire", "book","0-7475-4624-X",14,3,1,10,0,12),
-("Harry Potter and the Order of the Phoenix", "book","0-7475-5100-6",6,3,1,2,0,8),
-("Harry Potter and the Half-Blood Prince", "book","0-7475-8108-8",4,0,1,3,5,6),
-("Harry Potter and the Deathly Hallows", "book","0-545-01022-5",4,3,1,0,0,17),
+VALUES ("Harry Potter and the Philosopher's Stone", "book","0747532699",10,3,1,6,0,15),
+("Harry Potter and the Chamber of Secrets", "book","0747538492",4,3,1,0,0,5),
+("Harry Potter and the Prisoner of Azkaban", "book","0747542155",12,0,5,7,5,1),
+("Harry Potter and the Goblet of Fire", "book","074754624X",14,3,1,10,0,12),
+("Harry Potter and the Order of the Phoenix", "book","0747551006",6,3,1,2,0,8),
+("Harry Potter and the Half-Blood Prince", "book","0747581088",4,0,1,3,5,6),
+("Harry Potter and the Deathly Hallows", "book","0545010225",4,3,1,0,0,17),
 ("Fantasy Frost", "book","9781535287968",7,2,1,3,1,7),
 ("1984", "book","9780451518651",2,2,0,0,0,19),
 ("A Game of Thrones", "book","9788496422612",24,22,1,1,1,12),

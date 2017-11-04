@@ -30,6 +30,7 @@ app.set("view engine", "handlebars");
 
 // establish routes for database access
 require("./routes/html-routes.js")(app);
+require("./routes/test-route.js")(app);
 require("./routes/api-routes.js")(app);
 require("./routes/media.js")(app);
 
