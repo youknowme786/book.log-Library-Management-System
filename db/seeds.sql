@@ -1,4 +1,5 @@
 USE librarymanagementsystem;
+
 INSERT INTO media (title, mediaType, genericId, totalStock, numShelved, numReserved, numCheckedOut, reservationListSize, totalNumCheckouts)
 VALUES ("Harry Potter and the Philosopher's Stone", "book","0-7475-3269-9",10,3,1,6,0,15),
 ("Harry Potter and the Chamber of Secrets", "book","0-7475-3849-2",4,3,1,0,0,5),

@@ -36,10 +36,13 @@ module.exports = app => {
 			});
 	});
 
-	//DELETE
+	//DELETE from any table
+	//provide the table name, user id, and medium id
+	//if deleting from the users or media table/ enter the id in the :UserId parameter
 	app.delete("/api/:table/:UserId/delete/:MediumId?", (req, res) => {
 		var query = {};
 
+		//Adjusts query if querying through users/media table where there are no foreign keys
 		if (req.params.table === "users" || req.params.table === "media") {
 			var id = req.params.UserId;
 			query = {
@@ -49,47 +52,44 @@ module.exports = app => {
 			};
 		} else {
 			query = {
-				where: {
-					UserId: req.params.UserId,
-					MediumId: req.params.MediumId
-				}
+				UserId: req.params.UserId,
+				MediumId: req.params.MediumId
 			};
 		}
 
-		var model;
+		var dbModel;
 
+		//Takes table parameter and determines which Model to use
 		switch (req.params.table) {
 			case "checkouthistory":
-				model = db.CheckOutHistory;
+				dbModel = db.CheckOutHistory;
 				break;
 
 			case "media":
-				model = db.Medium;
+				dbModel = db.Medium;
 				break;
 
 			case "reservations":
-				model = db.Reservation;
+				dbModel = db.Reservation;
 				break;
 
 			case "reviews":
-				model = db.Review;
+				dbModel = db.Review;
 				break;
 
 			case "saveditems":
-				model = db.SavedItem;
+				dbModel = db.SavedItem;
 				break;
 
 			case "users":
-				model = db.User;
+				dbModel = db.User;
 				break;
 
 			default:
 			//go to error function
 		}
 
-		console.log(model);
-
-		model.destroy(query).then(data => {
+		dbModel.destroy({ where: query }).then(data => {
 			console.log("RECORD DELETED");
 			res.json(data);
 		});
@@ -98,22 +98,35 @@ module.exports = app => {
 	//POST route for reserving a book
 	//CURL command:
 	//curl -H "Content-Type: application/json" -X POST -d '{"MediumId": 4, "UserId": 4}' http://localhost:3000/api/reservations/new
-	app.post("/api/reservations/new", (req, res) => {
+	app.post("/api/reservations", (req, res) => {
 		db.Reservation
 			.create({
 				MediumId: req.body.MediumId,
 				UserId: req.body.UserId
 			})
 			.then(data => {
-				console.log("RECORD ADDED");
+				console.log("RESERVATION ADDED");
 				res.json(data);
 			});
 	});
 
-	//SAVED ITEM ROUTES
+	//FAVORITES ROUTES
 	//GET - using userId
-	//POST - favorite and/or cart item
-	//DELETE - favorite and/or cart item
+	//POST - favorite item
+	//CURL command:
+	//curl -H "Content-Type: application/json" -X POST -d '{"MediumId": 4, "UserId": 2}' http://localhost:3000/api/favorites
+	app.post("/api/favorites", (req, res) => {
+		db.Favorite
+			.create({
+				MediumId: req.body.MediumId,
+				UserId: req.body.UserId
+			})
+			.then(data => {
+				console.log("FAVORITE ADDED");
+				res.json(data);
+			});
+	});
+	//DELETE - favorite item
 
 	//CHECKOUT HISTORY ROUTES
 	//GET
