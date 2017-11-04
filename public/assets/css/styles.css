@@ -13,7 +13,7 @@ h3,
     font-family: 'Crimson Text', serif;
 }
 
-img {
+.book img {
     width: 70%;
 }
 
@@ -22,17 +22,8 @@ article {
 }
 
 footer {
-    background-color: #040404;
-    color: #fff;
-}
-
-footer p {
-    padding: 55px 0;
-}
-
-footer { 
     height: 150px;
-    color: rgb(163, 160, 160);
+    background-color: #040404;
 }
 
 .logo {

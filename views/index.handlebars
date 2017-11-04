@@ -1,0 +1,64 @@
+
+{{!-- Popular Carousel --}}
+<div id="Popular-Container" class="container">
+
+	<div id="titlerow" class="row justify-content-md-center">
+		<hr id="lefthr">
+		<h1>Popular Books</h1>
+		<hr id="righthr">
+	</div>
+	<div id="bookrow" class="row justify-content-md-center">
+
+		<img id="Popular-LArrow" class="col-1.5" src="assets/img/indexImages/LArrow.png">
+
+		<div id="PopularCarousel" class="col-10 owl-carousel owl-theme">
+
+			{{#each popular}}
+			<div class="item">
+				<div class="card text-center" style="width: 11rem;">
+					<a href="#"><img data-toggle="modal" data-target=".bd-example-modal-lg" class="bookcover" src="assets/img/indexImages/frost9.jpg"></a>
+					<span data-{{this.id}} ='{{this.id}}' class="d-inline-block text-truncate" style="max-width: 175px;">
+						{{this.title}}
+					</span>
+				</div>
+			</div>
+			{{/each}}
+
+		</div>
+
+		<img id="Popular-RArrow" class="col-1.5" src="assets/img/indexImages/RArrow.png">
+
+	</div>
+</div>
+
+{{!-- New Carousel --}}
+<div id="New-Container" class="container">
+
+	<div id="titlerow" class="row justify-content-md-center">
+		<hr id="lefthr">
+		<h1>New Arrivals</h1>
+		<hr id="righthr">
+	</div>
+	<div id="bookrow" class="row justify-content-md-center">
+
+		<img id="New-LArrow" class="col-1.5" src="assets/img/indexImages/LArrow.png">
+
+		<div id="NewCarousel" class="col-10 owl-carousel owl-theme">	
+
+			{{#each new}}
+			<div class="item">
+				<div class="card text-center" style="width: 11rem;">
+					<a href="#"><img data-toggle="modal" data-target=".bd-example-modal-lg" class="bookcover" src="assets/img/indexImages/frost9.jpg"></a>
+					<span data-{{this.id}} ='{{this.id}}' class="d-inline-block text-truncate" style="max-width: 175px;">
+						{{this.title}}
+					</span>
+				</div>
+			</div>
+			{{/each}}
+
+		</div>
+
+		<img id="New-RArrow" class="col-1.5" src="assets/img/indexImages/RArrow.png">
+
+	</div>
+</div>
