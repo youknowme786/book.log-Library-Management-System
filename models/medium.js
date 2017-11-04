@@ -14,7 +14,10 @@ module.exports = (sequelize, DataTypes) => {
 
 			genericId: {
 				type: DataTypes.STRING,
-				allowNull: true
+				allowNull: true,
+				validate: {
+					isAlphanumeric: true
+				}
 			},
 
 			totalStock: {

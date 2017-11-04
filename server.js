@@ -30,12 +30,13 @@ app.set("view engine", "handlebars");
 
 // establish routes for database access
 require("./routes/html-routes.js")(app);
+require("./routes/test-route.js")(app);
 require("./routes/api-routes.js")(app);
 require("./routes/media.js")(app);
 
 var port = process.env.PORT || 3000;
 // connect to database, sync with database, then listen on port 3000
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync().then(() => {
 	app.listen(port, () => {
 		console.log(`Listening on port ${port}`);
 	});
