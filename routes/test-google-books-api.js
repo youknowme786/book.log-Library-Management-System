@@ -13,11 +13,7 @@ module.exports = function getBookInfoByISBN(arrayOfDataArrays, res) {
         var isbn = item.genericId;
         console.log(isbn);
 
-        var queryURL =
-          "https://www.googleapis.com/books/v1/volumes?q=isbn:" +
-          isbn +
-          "&key=" +
-          apiKey;
+        var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + isbn;
         console.log(queryURL);
 
         request(queryURL, (err, res, body) => {
@@ -31,34 +27,33 @@ module.exports = function getBookInfoByISBN(arrayOfDataArrays, res) {
               `================PARSEDBODY FOR ${isbn} ABOVE======================`
             );
 
-            // // modify 
-the deliverable and add relevant fields
+            // // modify the deliverable and add relevant fields
             if (parsedBody.items[0].volumeInfo.title) {
               item.dataTitle = parsedBody.items[0].volumeInfo.title;
             }
 
-            // if (parsedBody.items[0].volumeInfo.authors) {
-            //   item.dataAuthor = parsedBody.items[0].volumeInfo.authors[0];
-            // }
+            if (parsedBody.items[0].volumeInfo.authors) {
+              item.dataAuthor = parsedBody.items[0].volumeInfo.authors[0];
+            }
 
-            // if (parsedBody.items[0].volumeInfo.description) {
-            //   item.dataSummary = parsedBody.items[0].volumeInfo.description;
-            // }
+            if (parsedBody.items[0].volumeInfo.description) {
+              item.dataSummary = parsedBody.items[0].volumeInfo.description;
+            }
 
-            // if (parsedBody.items[0].volumeInfo.imageLinks) {
-            //   item.dataImage =
-            //     parsedBody.items[0].volumeInfo.imageLinks.thumbnail;
-            // }
+            if (parsedBody.items[0].volumeInfo.imageLinks) {
+              item.dataImage =
+                parsedBody.items[0].volumeInfo.imageLinks.thumbnail;
+            }
 
-            // if (parsedBody.items[0].volumeInfo.industryIdentifiers) {
-            //   item.dataGenericId =
-            //     parsedBody.items[0].volumeInfo.industryIdentifiers[0].identifier;
-            // }
+            if (parsedBody.items[0].volumeInfo.industryIdentifiers) {
+              item.dataGenericId =
+                parsedBody.items[0].volumeInfo.industryIdentifiers[0].identifier;
+            }
 
-            // if (parsedBody.items[0].volumeInfo.industryIdentifiers[1]) {
-            //   item.dataISBN13 =
-            //     parsedBody.items[0].volumeInfo.industryIdentifiers[1].identifier;
-            // }
+            if (parsedBody.items[0].volumeInfo.industryIdentifiers[1]) {
+              item.dataISBN13 =
+                parsedBody.items[0].volumeInfo.industryIdentifiers[1].identifier;
+            }
           }
         });
       }
