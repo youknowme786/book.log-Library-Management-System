@@ -13,7 +13,7 @@ var getBookInfoByISBN = require("./test-google-books-api.js");
 module.exports = function(app) {
     //curl -i -H "Content-Type: application/json" -X GET http://localhost:3000/popular
     app.get("/popularandnew", (req, res) => {
-        var dataArray = [];
+        var dataObject = {};
 
         db.Medium
             .findAll({
@@ -23,11 +23,11 @@ module.exports = function(app) {
             .then(data => {
                 // data is an array of objects
                 // deep clone it into a deliverable variable
-                dataArray[0] = JSON.parse(JSON.stringify(data));
+                dataObject.popular = JSON.parse(JSON.stringify(data));
 
-                return dataArray;
+                return dataObject;
             })
-            .then(dataArray => {
+            .then(dataObject => {
                 db.Medium
                     .findAll({
                         limit: 10,
@@ -36,13 +36,16 @@ module.exports = function(app) {
                     .then(data => {
                         // data is an array of objects
                         // deep clone it into a deliverable variable
-                        dataArray[1] = JSON.parse(JSON.stringify(data));
+                        dataObject.new = JSON.parse(JSON.stringify(data));
 
-                        return getBookInfoByISBN(dataArray, res);
-                        // res.json(dataArray);
+                        // Promise(
+                        getBookInfoByISBN(dataObject, res);
+                        // ).then(dataDeliverable => {
+                        // console.log(dataDeliverable);
+                        // });
                     })
-                    .then(dataDeliverable => {
-                        res.json(dataDeliverable);
+                    .then(() => {
+                        res.json(dataObject);
                     });
             });
     });

@@ -1,72 +1,88 @@
-module.exports = function getBookInfoByISBN(arrayOfDataArrays, res) {
-  var request = require("request");
-  var apiKey = "AIzaSyBVaPHihkOt3MSXrw5Hf-HjJB7TrOdawlo";
+var path = require("path");
+var request = require("request");
 
-  // // dataArray is an array of objects
+module.exports = function getBookInfoByISBN(dataObject, res) {
+  let apiKey = "AIzaSyBVaPHihkOt3MSXrw5Hf-HjJB7TrOdawlo";
+
+  // // dataObject is an object of arrays
   // // deep clone it into a deliverable variable
-  var dataDeliverable = JSON.parse(JSON.stringify(arrayOfDataArrays));
+  let dataDeliverable = JSON.parse(JSON.stringify(dataObject));
+
+  let counter = 0;
+  let goal = 20;
+  // console.log("goal " + goal);
 
   // dataDeliverable.forEach(dataArray => {
-  for (let i = 0; i < dataDeliverable.length; i++) {
+  for (let item in dataDeliverable) {
     // dataArray.forEach(item => {
-    for (let j = 0; j < dataDeliverable[i].length; j++) {
-      if (dataDeliverable[i][j].mediaType === "book") {
-        //isbn must be entered as a string
-        var isbn = dataDeliverable[i][j].genericId;
-        console.log(isbn);
+    for (let i = 0; i < dataDeliverable[item].length; i++) {
+      if (dataDeliverable[item][i].mediaType === "book") {
+        counter++;
+        console.log("counter " + counter);
 
-        var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + isbn;
-        console.log(queryURL);
+        //isbn must be entered as a string
+        let isbn = dataDeliverable[item][i].genericId;
+        // console.log(isbn);
+
+        let queryURL =
+          "https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
+        // console.log(queryURL);
 
         request(queryURL, (err, res, body) => {
           if (!err && res.statusCode === 200) {
-            var parsedBody = JSON.parse(body);
-            console.log(
-              `================PARSEDBODY FOR ${isbn} BELOW======================`
-            );
-            console.log(parsedBody.items[0]);
-            console.log(
-              `================PARSEDBODY FOR ${isbn} ABOVE======================`
-            );
+            let parsedBody = JSON.parse(body);
+            // console.log(
+            //   `================PARSEDBODY FOR ${isbn} BELOW======================`
+            // );
+            // console.log(parsedBody.items[0]);
+            // console.log(
+            //   `================PARSEDBODY FOR ${isbn} ABOVE======================`
+            // );
 
             // // modify the deliverable and add relevant fields
             if (parsedBody.items[0].volumeInfo.title) {
-              dataDeliverable[i][j].dataTitle =
+              dataDeliverable[item][i].dataTitle =
                 parsedBody.items[0].volumeInfo.title;
             }
 
             if (parsedBody.items[0].volumeInfo.authors) {
-              dataDeliverable[i][j].dataAuthor =
+              dataDeliverable[item][i].dataAuthor =
                 parsedBody.items[0].volumeInfo.authors[0];
             }
 
             if (parsedBody.items[0].volumeInfo.description) {
-              dataDeliverable[i][j].dataSummary =
+              dataDeliverable[item][i].dataSummary =
                 parsedBody.items[0].volumeInfo.description;
             }
 
             if (parsedBody.items[0].volumeInfo.imageLinks) {
-              dataDeliverable[i][j].dataImage =
+              dataDeliverable[item][i].dataImage =
                 parsedBody.items[0].volumeInfo.imageLinks.thumbnail;
             }
 
             if (parsedBody.items[0].volumeInfo.industryIdentifiers) {
-              dataDeliverable[i][j].dataGenericId =
+              dataDeliverable[item][i].dataGenericId =
                 parsedBody.items[0].volumeInfo.industryIdentifiers[0].identifier;
             }
 
             // if (parsedBody.items[0].volumeInfo.industryIdentifiers[1]) {
-            //   dataDeliverable[i][j].dataISBN13 =
+            //   dataDeliverable[item][i].dataISBN13 =
             //     parsedBody.items[0].volumeInfo.industryIdentifiers[1].identifier;
             // }
+
+            if (counter === 20) {
+              console.log("==================");
+              console.log(dataDeliverable);
+              // res.json(dataDeliverable);
+            }
           }
         });
       }
     }
   }
 
-  console.log(dataDeliverable);
-  return dataDeliverable;
+  // console.log(dataDeliverable);
+  // return dataDeliverable;
 };
 
 //Example call

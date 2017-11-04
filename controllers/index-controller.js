@@ -30,12 +30,9 @@ module.exports = function(app) {
 						// deep clone it into a deliverable variable
 						dataObject.new = JSON.parse(JSON.stringify(data));
 
-						return dataObject;
-						// res.json(dataObject);
+						return res.render("index", dataObject);
+						// return res.json(dataObject)
 					})
-					.then(dataObject => {
-						res.json(dataObject);
-					});
 			});
 	});
 };

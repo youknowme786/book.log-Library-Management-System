@@ -1,3 +1,5 @@
+console.log("Index.js is linked.")
+
 $(document).ready(function() {
 	$("#PopularCarousel").owlCarousel({
 		loop: true,
