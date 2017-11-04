@@ -6,11 +6,13 @@ module.exports = function getBookInfoByISBN(arrayOfDataArrays, res) {
   // // deep clone it into a deliverable variable
   var dataDeliverable = JSON.parse(JSON.stringify(arrayOfDataArrays));
 
-  dataDeliverable.forEach(dataArray => {
-    dataArray.forEach(item => {
-      if (item.mediaType === "book") {
+  // dataDeliverable.forEach(dataArray => {
+  for (let i = 0; i < dataDeliverable.length; i++) {
+    // dataArray.forEach(item => {
+    for (let j = 0; j < dataDeliverable[i].length; j++) {
+      if (dataDeliverable[i][j].mediaType === "book") {
         //isbn must be entered as a string
-        var isbn = item.genericId;
+        var isbn = dataDeliverable[i][j].genericId;
         console.log(isbn);
 
         var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + isbn;
@@ -29,36 +31,39 @@ module.exports = function getBookInfoByISBN(arrayOfDataArrays, res) {
 
             // // modify the deliverable and add relevant fields
             if (parsedBody.items[0].volumeInfo.title) {
-              item.dataTitle = parsedBody.items[0].volumeInfo.title;
+              dataDeliverable[i][j].dataTitle =
+                parsedBody.items[0].volumeInfo.title;
             }
 
             if (parsedBody.items[0].volumeInfo.authors) {
-              item.dataAuthor = parsedBody.items[0].volumeInfo.authors[0];
+              dataDeliverable[i][j].dataAuthor =
+                parsedBody.items[0].volumeInfo.authors[0];
             }
 
             if (parsedBody.items[0].volumeInfo.description) {
-              item.dataSummary = parsedBody.items[0].volumeInfo.description;
+              dataDeliverable[i][j].dataSummary =
+                parsedBody.items[0].volumeInfo.description;
             }
 
             if (parsedBody.items[0].volumeInfo.imageLinks) {
-              item.dataImage =
+              dataDeliverable[i][j].dataImage =
                 parsedBody.items[0].volumeInfo.imageLinks.thumbnail;
             }
 
             if (parsedBody.items[0].volumeInfo.industryIdentifiers) {
-              item.dataGenericId =
+              dataDeliverable[i][j].dataGenericId =
                 parsedBody.items[0].volumeInfo.industryIdentifiers[0].identifier;
             }
 
             // if (parsedBody.items[0].volumeInfo.industryIdentifiers[1]) {
-            //   item.dataISBN13 =
+            //   dataDeliverable[i][j].dataISBN13 =
             //     parsedBody.items[0].volumeInfo.industryIdentifiers[1].identifier;
             // }
           }
         });
       }
-    });
-  });
+    }
+  }
 
   console.log(dataDeliverable);
   return dataDeliverable;
