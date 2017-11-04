@@ -144,6 +144,8 @@ module.exports = app => {
 	//CHECKOUT HISTORY ROUTES
 	//GET
 	//MAKE THIS A FUNCTION WHERE YOU PASS IN "MediumId" or "UserId"
+	//CURL command:
+	//curl -i http://localhost:3000/api/checkouthistories/media/3
 	app.get("/api/checkouthistories/media/:MediumId", (req, res) => {
 		db.CheckOutHistory
 			.findAll({
@@ -174,6 +176,19 @@ module.exports = app => {
 	});
 
 	//POST - CHECK OUT
+	//CURL command:
+	//curl -H "Content-Type: application/json" -X POST -d '{"MediumId": 8, "UserId": 4}' http://localhost:3000/api/checkouthistories/create
+	app.post("/api/checkouthistories/create", (req, res) => {
+		db.CheckOutHistory
+			.create({
+				MediumId: req.body.MediumId,
+				UserId: req.body.UserId
+			})
+			.then(data => {
+				console.log("MEDIA CHECKED OUT");
+				res.json(data);
+			});
+	});
 
 	//PUT route for checking a book back in
 	//CURL command:
