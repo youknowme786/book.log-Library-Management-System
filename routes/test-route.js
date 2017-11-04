@@ -6,14 +6,14 @@
 // =============================================================
 var path = require("path");
 var db = require("../models");
-var getBookInfoByISBN = require("./google-books-api.js");
+var getBookInfoByISBN = require("./test-google-books-api.js");
 
 // Routes
 // =============================================================
 module.exports = function(app) {
     //curl -i -H "Content-Type: application/json" -X GET http://localhost:3000/popular
     app.get("/popularandnew", (req, res) => {
-        var dataObject = [];
+        var dataArray = [];
 
         db.Medium
             .findAll({
@@ -23,18 +23,11 @@ module.exports = function(app) {
             .then(data => {
                 // data is an array of objects
                 // deep clone it into a deliverable variable
-                dataObject.push(JSON.parse(JSON.stringify(data)));
+                dataArray[0] = JSON.parse(JSON.stringify(data));
 
-                dataObject[0].forEach(item => {
-                    if (item.mediaType === "book") {
-                        console.log("popular " + item.genericId);
-                        item.test = "popular test";
-                    }
-                });
-
-                return dataObject;
+                return dataArray;
             })
-            .then(dataObject => {
+            .then(dataArray => {
                 db.Medium
                     .findAll({
                         limit: 10,
@@ -43,20 +36,14 @@ module.exports = function(app) {
                     .then(data => {
                         // data is an array of objects
                         // deep clone it into a deliverable variable
-                        dataObject.push(JSON.parse(JSON.stringify(data)));
+                        dataArray[1] = JSON.parse(JSON.stringify(data));
 
-                        dataObject[1].forEach(item => {
-                            if (item.mediaType === "book") {
-                                console.log("new " + item.genericId);
-                                item.test = "new test";
-                            }
-                        });
-
-                        // getBookInfoByISBN(dataObject);
-                        res.json(dataObject);
+                        return getBookInfoByISBN(dataArray, res);
+                        // res.json(dataArray);
+                    })
+                    .then(dataDeliverable => {
+                        res.json(dataDeliverable);
                     });
-                1;
             });
-        1;
     });
 };
