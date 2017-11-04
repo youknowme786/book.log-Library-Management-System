@@ -13,7 +13,7 @@ h3,
     font-family: 'Crimson Text', serif;
 }
 
-img {
+.book img {
     width: 70%;
 }
 
@@ -35,7 +35,7 @@ footer {
     color:#5cb85c;
 }
 
-.container {
+.book.container {
     width: 90%;
 }
 

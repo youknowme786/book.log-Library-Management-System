@@ -68,11 +68,11 @@
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-content">
             <main class="container">
+                {{#each}}
 
                 <div class="row">
-
                     <div class="col-md-12 text-center mt-5">
-                        <h1>Harry Potter and the Philosopher's Stone</h1>
+                        <h1>{{this.title}}</h1>
                         <p>by
                             <span>
                                 <a href="#">J. K. Rowling</a>
@@ -90,7 +90,7 @@
 
                 <div class="row">
 
-                    <div class="col-md-4 text-center">
+                    <div class="col-md-4 text-center book">
                         <img src="assets/img/fantasy-book.jpg" class="img-fluid rounded" alt="I am a book cover picture">
                     </div>
                     <div class="col-md-8 border-lv mb-5">
@@ -104,7 +104,7 @@
                             Lorem Ipsum.</p>
                         <p>
                             <b class="text-uppercase">ISBN: </b>
-                            <span id="isbn">0-7475-3269-9</span>
+                            <span id="isbn" data-{{this.id}}='{{this.id}}'>{{this.genericId}}/span>
                         </p>
                         <div class="row">
 
@@ -138,6 +138,8 @@
                         </div>
                     </div>
                 </div>
+                {{/each}}
+
             </main>
         </div>
     </div>
