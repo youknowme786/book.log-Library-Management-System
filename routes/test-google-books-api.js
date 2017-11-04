@@ -50,10 +50,10 @@ module.exports = function getBookInfoByISBN(arrayOfDataArrays, res) {
                 parsedBody.items[0].volumeInfo.industryIdentifiers[0].identifier;
             }
 
-            if (parsedBody.items[0].volumeInfo.industryIdentifiers[1]) {
-              item.dataISBN13 =
-                parsedBody.items[0].volumeInfo.industryIdentifiers[1].identifier;
-            }
+            // if (parsedBody.items[0].volumeInfo.industryIdentifiers[1]) {
+            //   item.dataISBN13 =
+            //     parsedBody.items[0].volumeInfo.industryIdentifiers[1].identifier;
+            // }
           }
         });
       }
