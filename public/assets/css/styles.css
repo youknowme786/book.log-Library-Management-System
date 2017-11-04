@@ -8,6 +8,7 @@ body {
 
 h1,
 h3,
+.card-title,    
 .logo {
     font-family: 'Crimson Text', serif;
 }
@@ -44,7 +45,7 @@ footer {
 }
 
 .container {
-    width: 70%;
+    width: 90%;
 }
 
 /* css for font awesome */
