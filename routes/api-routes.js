@@ -217,10 +217,25 @@ module.exports = app => {
 	});
 
 	//USER ROUTES
+	//GET route for viewing a user
+	//CURL command:
+	//curl -i http://localhost:3000/api/users/4
+	app.get("/api/users/:id", (req, res) => {
+		db.User
+			.findAll({
+				//will display as...
+				// where: { MediumId: req.body.MediumId } OR { UserId: req.body.UserId }
+				where: { id: req.params.id }
+			})
+			.then(data => {
+				res.json(data);
+			});
+	});
+
 	// POST route for adding a new user
 	// cURL command:
 	// curl -X POST -H "Content-Type: application/json" -d '{"firstName": "it", "lastName":"kazhmere", "userType":"Employee", "phoneNumber":"123-456-7890", "address":"i live here", "emailAddress":"i go here", "isEmployee":false}' http://localhost:3000/api/users/new
-	app.post("/api/users/new", (req, res) => {
+	app.post("/api/users/create", (req, res) => {
 		console.log(req.body);
 
 		var middleNameInput;
@@ -246,6 +261,28 @@ module.exports = app => {
 				emailAddress: req.body.emailAddress.trim(),
 				isEmployee: isEmployeeInput
 			})
+			.then(data => {
+				res.json(data);
+			});
+	});
+
+	//PUT route for updating a user
+	//CURL command:
+	//curl -X PUT -H "Content-Type: application/json" -d '{"UserId": 1, "MediumId": 3}' http://localhost:3000/api/checkouthistory/checkin
+	app.put("/api/users/update", (req, res) => {
+		//Logic to set update Query goes here - similar to media PUT route
+
+		db.CheckOutHistory
+			.update(
+				{
+					updateQuery
+				},
+				{
+					where: {
+						id: req.body.id
+					}
+				}
+			)
 			.then(data => {
 				res.json(data);
 			});
