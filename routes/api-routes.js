@@ -3,39 +3,6 @@ var db = require("../models");
 // make sure date format matches createdAt field
 
 module.exports = app => {
-	//RESERVATION ROUTES
-
-	//GET - using mediaId
-	//MAKE THIS A FUNCTION WHERE YOU PASS IN "MediumId" or "UserId"
-	app.get("/api/reservations/media/:MediumId", (req, res) => {
-		db.Reservation
-			.findAll({
-				//will display as...
-				// where: { MediumId: req.body.MediumId } OR { UserId: req.body.UserId }
-				where: { MediumId: req.params.MediumId }
-			})
-			// console.log("THIS IS REQ.BODY");
-			// console.log(req.body);
-			.then(data => {
-				res.json(data);
-			});
-	});
-
-	//GET - using userId
-	//CURL command:
-	//curl -i http://localhost:3000/api/reservations/user/2
-	app.get("/api/reservations/user/:UserId", (req, res) => {
-		db.Reservation
-			.findAll({
-				//will display as...
-				// where: { MediumId: req.body.MediumId } OR { UserId: req.body.UserId }
-				where: { UserId: req.params.UserId }
-			})
-			.then(data => {
-				res.json(data);
-			});
-	});
-
 	//DELETE from any table
 	//provide the table name, user id, and medium id
 	//if deleting from the users or media table/ enter the id in the :UserId parameter
@@ -93,6 +60,39 @@ module.exports = app => {
 			console.log("RECORD DELETED");
 			res.json(data);
 		});
+	});
+
+	//RESERVATION ROUTES
+
+	//GET - using mediaId
+	//MAKE THIS A FUNCTION WHERE YOU PASS IN "MediumId" or "UserId"
+	app.get("/api/reservations/media/:MediumId", (req, res) => {
+		db.Reservation
+			.findAll({
+				//will display as...
+				// where: { MediumId: req.body.MediumId } OR { UserId: req.body.UserId }
+				where: { MediumId: req.params.MediumId }
+			})
+			// console.log("THIS IS REQ.BODY");
+			// console.log(req.body);
+			.then(data => {
+				res.json(data);
+			});
+	});
+
+	//GET - using userId
+	//CURL command:
+	//curl -i http://localhost:3000/api/reservations/user/2
+	app.get("/api/reservations/user/:UserId", (req, res) => {
+		db.Reservation
+			.findAll({
+				//will display as...
+				// where: { MediumId: req.body.MediumId } OR { UserId: req.body.UserId }
+				where: { UserId: req.params.UserId }
+			})
+			.then(data => {
+				res.json(data);
+			});
 	});
 
 	//POST route for reserving a book
