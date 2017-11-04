@@ -1,5 +1,4 @@
 body {
-	/*background-image: url("../images/library-bg.png");*/
 	background-size: 100%;
 	font-family: 'Muli', sans-serif;
 }
@@ -103,6 +102,22 @@ span {
 .bookcover {
 	height: 250px;
 	width: 150px;
+}
+
+#Featured-LArrow {
+	height: 55px;
+	position: absolute;
+	top: 166px;
+	left: 50px;
+	z-index: 2;
+}
+
+#Featured-RArrow {
+	height: 55px;
+	position: absolute;
+	top: 166px;
+	right: 50px;
+	z-index: 2;
 }
 
 #Popular-LArrow, #New-LArrow {

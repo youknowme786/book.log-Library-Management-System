@@ -4,7 +4,7 @@ var db = require("../models");
 
 module.exports = app => {
 	// CURL command:
-	// curl -i -H "Content-Type: application/json" -X GET http://localhost:3000/api/media/
+	// curl -i -H "Content-Type: application/json" -X GET http://localhost:3000/api/media/0-7475-3269-9
 	app.get("/api/media/:genericId?", (req, res) => {
 		var query = {};
 		if (req.params.genericId) {
@@ -16,7 +16,7 @@ module.exports = app => {
 				where: query
 			})
 			.then(data => {
-				res.json(data);
+				return data[0].id;
 			});
 	});
 
