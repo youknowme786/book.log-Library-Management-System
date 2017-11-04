@@ -58,4 +58,33 @@ module.exports = function(app) {
         res.json(dataDeliverable);
       });
   });
+
+  app.get("/new", (req, res) => {
+    db.Medium
+      .findAll({
+        limit: 10,
+        order: [["createdAt", "DESC"]]
+      })
+      .then(data => {
+        // data is an array of objects
+        // deep clone it into a deliverable variable
+        var dataDeliverable = JSON.parse(JSON.stringify(data));
+
+        // modify the deliverable and add relevant fields
+        dataDeliverable.forEach(item => {
+          if (item.mediaType === "book") {
+            // call google books API here
+            console.log(item.genericId);
+
+            // // fill in these fields from API
+            // item.author = //author from API
+            // item.summary = //summary from API
+            // item.image = //image link from API
+            item.test = "test";
+          }
+        });
+
+        res.json(dataDeliverable);
+      });
+  });
 };
