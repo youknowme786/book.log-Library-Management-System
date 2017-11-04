@@ -52,9 +52,11 @@ module.exports = function(app) {
                             }
                         });
 
-                        getBookInfoByISBN(dataObject);
-                        // res.json(dataObject);
+                        // getBookInfoByISBN(dataObject);
+                        res.json(dataObject);
                     });
+                1;
             });
+        1;
     });
 };
