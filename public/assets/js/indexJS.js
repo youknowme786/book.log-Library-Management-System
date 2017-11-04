@@ -3,12 +3,27 @@ $(document).ready(function() {
 		loop: true,
 		margin: 25,
 		items: 4,
-		mouseDrag: false
+		responsive: {
+			500: {
+				items: 3
+			},
+			1000: {
+				items: 4
+			}
+		}
 	})
 	$('#NewCarousel').owlCarousel({
 		loop: true,
 		margin: 25,
 		items: 4,
+		responsive: {
+			500: {
+				items: 3
+			},
+			1000: {
+				items: 4
+			}
+		}
 	})
 	$("#FeaturedCarousel").owlCarousel({
 		loop: true,
