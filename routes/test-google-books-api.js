@@ -1,25 +1,18 @@
-var path = require("path");
-var request = require("request");
+let path = require("path");
+let request = require("request");
 
-module.exports = function getBookInfoByISBN(dataObject, res) {
+module.exports = function getBookInfoByISBN(dataObject, results) {
   let apiKey = "AIzaSyBVaPHihkOt3MSXrw5Hf-HjJB7TrOdawlo";
 
   // // dataObject is an object of arrays
   // // deep clone it into a deliverable variable
   let dataDeliverable = JSON.parse(JSON.stringify(dataObject));
 
-  let counter = 0;
-  let goal = 20;
-  // console.log("goal " + goal);
-
   // dataDeliverable.forEach(dataArray => {
   for (let item in dataDeliverable) {
     // dataArray.forEach(item => {
     for (let i = 0; i < dataDeliverable[item].length; i++) {
       if (dataDeliverable[item][i].mediaType === "book") {
-        counter++;
-        console.log("counter " + counter);
-
         //isbn must be entered as a string
         let isbn = dataDeliverable[item][i].genericId;
         // console.log(isbn);
@@ -61,19 +54,13 @@ module.exports = function getBookInfoByISBN(dataObject, res) {
             }
 
             if (parsedBody.items[0].volumeInfo.industryIdentifiers) {
-              dataDeliverable[item][i].dataGenericId =
+              dataDeliverable[item][i].dataISBN10 =
                 parsedBody.items[0].volumeInfo.industryIdentifiers[0].identifier;
             }
 
-            // if (parsedBody.items[0].volumeInfo.industryIdentifiers[1]) {
-            //   dataDeliverable[item][i].dataISBN13 =
-            //     parsedBody.items[0].volumeInfo.industryIdentifiers[1].identifier;
-            // }
-
-            if (counter === 20) {
-              console.log("==================");
-              console.log(dataDeliverable);
-              // res.json(dataDeliverable);
+            if (parsedBody.items[0].volumeInfo.industryIdentifiers[1]) {
+              dataDeliverable[item][i].dataISBN13 =
+                parsedBody.items[0].volumeInfo.industryIdentifiers[1].identifier;
             }
           }
         });
@@ -81,6 +68,11 @@ module.exports = function getBookInfoByISBN(dataObject, res) {
     }
   }
 
+  console.log("==================");
+  console.log(dataDeliverable);
+  setTimeout(() => {
+    results.json(dataDeliverable);
+  }, 1000);
   // console.log(dataDeliverable);
   // return dataDeliverable;
 };

@@ -43,10 +43,10 @@ module.exports = function(app) {
                         // ).then(dataDeliverable => {
                         // console.log(dataDeliverable);
                         // });
-                    })
-                    .then(() => {
-                        res.json(dataObject);
                     });
+                // .then(() => {
+                //     res.json(dataObject);
+                // });
             });
     });
 };
