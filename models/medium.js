@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			title: {
 				type: DataTypes.STRING,
-				allowNull: false
+				allowNull: true,
+				defaultValue: null
 			},
 
 			mediaType: {
@@ -17,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: true,
 				validate: {
 					isAlphanumeric: true
-				}
+				},
+				defaultValue: null
 			},
 
 			totalStock: {
@@ -54,6 +56,24 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.DATE,
 				field: "firstArrivalDate",
 				defaultValue: sequelize.literal("NOW()")
+			},
+
+			author: {
+				type: DataTypes.STRING,
+				allowNull: true,
+				defaultValue: null
+			},
+
+			summary: {
+				type: DataTypes.TEXT,
+				allowNull: true,
+				defaultValue: null
+			},
+
+			image: {
+				type: DataTypes.STRING,
+				allowNull: false,
+				defaultValue: "/assets/img/placeholder.gif"
 			}
 		},
 

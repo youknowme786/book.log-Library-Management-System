@@ -6,14 +6,26 @@ module.exports = app => {
 		var query = {};
 		query.id = req.params.userId;
 
-		db.User
+		let dataDeliverable = {};
+
+		dataDeliverable.userData = db.User
 			.findAll({
 				where: query
 			})
 			.then(data => {
-				var dataDeliverable = JSON.parse(JSON.stringify(data[0]));
-				// response.json(dataDeliverable);
-				response.render("user", dataDeliverable);
+				dataDeliverable.userData = JSON.parse(JSON.stringify(data[0]));
+				response.json(dataDeliverable);
+				// response.render("user", dataDeliverable);
 			});
+
+		// dataDeliverable.userData = db.User
+		// 	.findAll({
+		// 		where: query
+		// 	})
+		// 	.then(data => {
+		// 		dataDeliverable.userData = JSON.parse(JSON.stringify(data[0]));
+		// 		response.json(dataDeliverable);
+		// 		// response.render("user", dataDeliverable);
+		// 	});
 	});
 };
