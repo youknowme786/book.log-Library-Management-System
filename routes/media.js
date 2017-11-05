@@ -66,80 +66,106 @@ module.exports = app => {
 		});
 	}); // app.post
 
-	function updateMediaTable(action) {
-		switch (action) {
-			case "checkoutWithoutReservation":
-				console.log(action);
+	// function updateMediaTable(action, mediumId) {
+	app.get("/testupdate/:mediumId", (req, res) => {
+		db.Medium
+			.findAll({
+				// where: { id: mediumId }
+				where: { id: req.params.mediumId }
+			})
+			.then(data => {
+				console.log(data);
 
-				var updateQuery = {
-					// update text here
-				};
-				break;
+				var dataDeliverable = {};
+				dataDeliverable.numShelved = data[0].numShelved;
+				dataDeliverable.numReserved = data[0].numReserved;
+				dataDeliverable.reservationListSize =
+					data[0].reservationListSize;
 
-			case "checkoutWithReservation":
-				console.log(action);
+				console.log(dataDeliverable);
 
-				var updateQuery = {
-					// update text here
-				};
-				break;
+				if (dataDeliverable.numShelved > 0) {
+					dataDeliverable.numShelved--;
+					dataDeliverable.numReserved++;
+				}
+				dataDeliverable.reservationListSize++;
 
-			case "checkIn":
-				// if ((numShelved + numReserved) < reservationListSize) {}
-				// numReserved++
-				// else numShelved++
-				console.log(action);
+				console.log(dataDeliverable);
+				res.json(data);
 
-				var updateQuery = {
-					// update text here
-				};
-				break;
+				// switch (action) {
+				// 	case "reserveMedia":
+				// 		console.log(action);
 
-			case "makeReservation":
-				console.log(action);
+				// 		var updateQuery = {
+				// 			// update text here
+				// 		};
+				// 		break;
 
-				var updateQuery = {
-					// update text here
-				};
-				break;
+				// 	case "checkoutWithoutReservation":
+				// 		console.log(action);
 
-			case "cancelReservation":
-				console.log(action);
+				// 		var updateQuery = {
+				// 			// update text here
+				// 		};
+				// 		break;
 
-				var updateQuery = {
-					// update text here
-				};
-				break;
+				// 	case "checkoutWithReservation":
+				// 		console.log(action);
 
-			case "deleteItem":
-				console.log(action);
+				// 		var updateQuery = {
+				// 			// update text here
+				// 		};
+				// 		break;
 
-				var updateQuery = {
-					// update text here
-				};
-				break;
+				// 	case "checkIn":
+				// 		// if ((numShelved + numReserved) < reservationListSize) {}
+				// 		// numReserved++
+				// 		// else numShelved++
+				// 		console.log(action);
 
-			case "addItem":
-				console.log(action);
+				// 		var updateQuery = {
+				// 			// update text here
+				// 		};
+				// 		break;
 
-				var updateQuery = {
-					// update text here
-				};
-				break;
+				// 	case "cancelReservation":
+				// 		console.log(action);
 
-			default:
-				console.log(action);
-				break;
-		}
+				// 		var updateQuery = {
+				// 			// update text here
+				// 		};
+				// 		break;
 
-		app.put("/api/media/:MediumId", (req, res) => {
-			db.Medium
-				.update(updateQuery, {
-					where: { id: req.params.MediumId }
-				})
-				.then(data => {
-					res.json(data);
-				});
-		});
-	}
+				// 	case "deleteItem":
+				// 		console.log(action);
+
+				// 		var updateQuery = {
+				// 			// update text here
+				// 		};
+				// 		break;
+
+				// 	case "addItem":
+				// 		console.log(action);
+
+				// 		var updateQuery = {
+				// 			// update text here
+				// 		};
+				// 		break;
+
+				// 	default:
+				// 		console.log(action);
+				// 		break;
+				// }
+
+				// db.Medium
+				// 	.update(updateQuery, {
+				// 		where: { id: mediumId }
+				// 	})
+				// 	.then(data => {
+				// 		res.json(data);
+				// 	});
+			}); // db.medium.findAll().then()
+	}); // app.get()
+	// } // function updateMediaTable(){}
 };
