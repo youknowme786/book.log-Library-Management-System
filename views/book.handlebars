@@ -35,13 +35,14 @@
 
                 <div class="col-md-12 col-lg-6 mb-3">
                     <div>
-                        <span class="on-stock">{{this.numShelved}}</span> On Shelves
+                        <span class="on-stock">{{this.numShelved}}</span>
+                        <b>On Shelves</b>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-6 mb-3">
                     <span>
                         <a class="favorite-book" href="#">
-                            <i class="fa fa-heart-o" aria-hidden="true" data-mediaId={{this.mediaId}} data-userId={{this.userId}}></i>Add to Favorites</a>
+                            <i class="fa fa-heart-o" aria-hidden="true" data-mediaId={{this.id}} data-userId={{this.userId}}></i>Add to Favorites</a>
                     </span>
                 </div>
             </div>
@@ -49,13 +50,13 @@
                 <div id="reserveBook" class="col-md-12 mt-3 visible">
                     <!-- <form action="/" method="POST"> -->
                     <form>
-                        <button id="action-btn-reserve" class="btn btn-success text-uppercase" type="submit" data-mediaId={{this.mediaId}} data-userId={{this.userId}}>Reserve Book
+                        <button id="action-btn-reserve" class="btn btn-success text-uppercase" type="submit" data-mediaid={{this.id}} data-userId={{this.userId}}>Reserve Book
                         </button>
                     </form>
                 </div>
                 <div id="addToWhishList" class="col-md-12 mt-3 invisible">
                     <form action="/" method="POST">
-                        <button id="action-btn" class="btn btn-success text-uppercase" type="submit" data-mediaId={{this.mediaId}} data-userId={{this.userId}}>Add to Waitlist
+                        <button id="action-btn" class="btn btn-success text-uppercase" type="submit" data-mediaId={{this.id}} data-userId={{this.userId}}>Add to Waitlist
                         </button>
                     </form>
                 </div>
