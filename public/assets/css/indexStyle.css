@@ -14,13 +14,8 @@ h3,
     font-family: 'Crimson Text', serif;
 }
 
-.container {
-	height: 350px;
-	width: 85%;
-}
-
 footer {
-	height: 75px;
+	height: 100px;
 	background-color: #040404;
 }
 
@@ -30,7 +25,8 @@ footer {
 }
 
 .logo span,
-.nav-link {
+.nav-link,
+footer span {
 	color:#5cb85c;
 }
 
@@ -72,7 +68,6 @@ footer {
 
 main.container {
 	width: 70%;
-	height: 1000px;
 }
 
 .profile-img img {
@@ -157,8 +152,15 @@ p.book-summary{
 	font-size: 12px;
 	color: red;
 }
-/* Book Styling End*/
 
+
+/*Popular and New Carousel Styling: */
+
+#Popular-Container.container,
+#New-Container.container {
+	height: 350px;
+	width: 85%;
+}
 
 #Popular-Container {
 	margin-top: 35px;
