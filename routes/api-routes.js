@@ -28,7 +28,7 @@ module.exports = app => {
 
 		//Takes table parameter and determines which Model to use
 		switch (req.params.table) {
-			case "checkouthistory":
+			case "checkouthistories":
 				dbModel = db.CheckOutHistory;
 				break;
 
@@ -88,8 +88,9 @@ module.exports = app => {
 				}
 
 				console.log(reservationsDeliverable);
-				res.json(reservationsDeliverable);
+				//implement this line once we have the user.handlebars file
 				// res.render(/*some file*/, reservationsDeliverable);
+				res.json(reservationsDeliverable);
 			});
 	});
 
@@ -105,6 +106,7 @@ module.exports = app => {
 			})
 			.then(data => {
 				res.json(data);
+				// res.render(/*some file*/, data);
 			});
 	});
 
@@ -119,7 +121,7 @@ module.exports = app => {
 			})
 			.then(data => {
 				console.log("RESERVATION ADDED");
-				res.json(data);
+				// res.json(data);
 			});
 	});
 
@@ -134,6 +136,7 @@ module.exports = app => {
 			})
 			.then(data => {
 				res.json(data);
+				// res.render(/*some file*/, data);
 			});
 	});
 
@@ -170,6 +173,7 @@ module.exports = app => {
 			// console.log(req.body);
 			.then(data => {
 				res.json(data);
+				// res.render(/*some file*/, data);
 			});
 	});
 
@@ -185,6 +189,7 @@ module.exports = app => {
 			})
 			.then(data => {
 				res.json(data);
+				// resrender(/*some file*/, data);
 			});
 	});
 
@@ -206,7 +211,7 @@ module.exports = app => {
 	//PUT route for checking a book back in
 	//CURL command:
 	//curl -X PUT -H "Content-Type: application/json" -d '{"UserId": 1, "MediumId": 3}' http://localhost:3000/api/checkouthistory/checkin
-	app.put("/api/checkouthistory/checkin", (req, res) => {
+	app.put("/api/checkouthistories/checkin", (req, res) => {
 		//validation to add:
 		//Only runs .update if isCheckedOut = true
 		//if isCheckedOut = false, displays error
@@ -242,6 +247,7 @@ module.exports = app => {
 			})
 			.then(data => {
 				res.json(data);
+				// resrender(/*some file*/, data);
 			});
 	});
 
