@@ -1,5 +1,4 @@
 var db = require("../models");
-var getBookInfoByISBN = require("../routes/test-google-books-api.js");
 
 // index route for handlebars testing (returns titles and isbns)
 module.exports = function(app) {
@@ -29,11 +28,9 @@ module.exports = function(app) {
 
 						console.log("==================");
 						console.log(dataDeliverable);
-						res.json(dataDeliverable);
+						// res.json(dataDeliverable);
+						res.render("index", dataDeliverable);
 					});
-				// .then(() => {
-				//     res.json(dataDeliverable);
-				// });
 			});
 	});
 };

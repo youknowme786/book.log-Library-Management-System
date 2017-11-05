@@ -19,7 +19,7 @@ module.exports = app => {
 			.then(data => {
 				res.json(data);
 			});
-	});
+	}); // app.get
 
 	// POST route for adding a new book
 	// CURL command:
@@ -58,22 +58,13 @@ module.exports = app => {
 
 				console.log(newMedium);
 
-				db.Medium
-					.create(
-						newMedium
-						// {
-						// 	title: req.body.title.trim(),
-						// 	mediaType: req.body.mediaType,
-						// 	industryIdentifier: industryIdentifierInput,
-						// }
-					)
-					.then(data => {
-						console.log(data);
-						response.json(data);
-					});
+				db.Medium.create(newMedium).then(data => {
+					console.log(data);
+					response.json(data);
+				});
 			}
 		});
-	});
+	}); // app.post
 
 	function updateMediaTable(action) {
 		switch (action) {
