@@ -13,7 +13,7 @@ $(document).ready(function () {
         });
     }
 
-    function isInStock() {
+    function isOnShelves() {
         var stockStatus = parseInt($('.on-stock').html());
         console.log(stockStatus);
 
@@ -33,8 +33,7 @@ $(document).ready(function () {
         $(this).removeClass('fav-on');
     })
 
-    isInStock();
-
+    isOnShelves();
 
     $(document).on('click', 'a.dropdown-item', function () {
         var keyWord = $('#search-input').val().trim();
@@ -43,8 +42,8 @@ $(document).ready(function () {
 
     $('#action-btn-reserve').on('click', function (event) {
         event.preventDefault()
-        // gets the book id of the ice cream and the cutomer name
-        var id = $('#isbn').html();
+        // gets the book id
+        var id = $(this).data('mediaid');
         console.log(id);
         // var customer = $(this).parent().closest('.input-group').children('.form-control').val();
         // if (customer === "") {
@@ -54,7 +53,7 @@ $(document).ready(function () {
         // sets a PUT ajax call to update the database
         $.ajax('/api/reservations/create', {
             data: {
-                "MediumId": 4,
+                "MediumId": id,
                 "UserId": 4
             },
             type: 'POST'
@@ -62,10 +61,12 @@ $(document).ready(function () {
             function (data) {
                 console.log('updated id ', id);
                 console.log(data);
-                // reloads the page to get the updated list
-                // location.reload();
+
+                // need position infomation to send back to user
             }
             )
     })
+
+    // need the route to add to waitinglist
 
 })  
