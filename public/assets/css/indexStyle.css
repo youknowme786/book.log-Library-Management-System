@@ -67,15 +67,20 @@ footer {
 
 /* Book Styling */
 .book img {
-width: 70%;
+	width: 70%;
 }
 
-.modal .container {
-width: 90%
+main.container {
+	width: 70%;
+	height: 1000px;
 }
 
 .profile-img img {
-width: 70%
+	width: 70%
+}
+
+p.book-summary{
+	line-height: 2em;
 }
 
 .on-stock,
@@ -85,11 +90,16 @@ width: 70%
 .fa-book
 	{
 	display: inline-block;
-	padding: 4px 10px;
-	margin: 0 10px;
+	padding: 4px 11px;
+	margin: 0 12px 0 0;;
 	border-radius: 50%;
 	border: 1px solid #5cb85c;
 	color: #5cb85c;
+}
+
+.stock-alert {
+	color: #f21111;
+	border-color: #f21111;
 }
 
 .fa-heart-o,
@@ -102,9 +112,14 @@ width: 70%
 	padding: 7px 9px;
 }
 
-.on-stock:hover,
-.fa-heart-o:hover,
+/* .fa-heart-o:hover,
 .nav-tabs .nav-link:hover {
+	color: #fff;
+	background-color: #449d44;
+	border-color: #398439;
+} */
+
+.fav-on .fa-heart-o {
 	color: #fff;
 	background-color: #449d44;
 	border-color: #398439;
@@ -117,6 +132,24 @@ width: 70%
 .border-lv {
 	padding-left: 45px;
 	border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.action-book-row {
+	position: relative
+}
+
+#reserveBook,
+#addToWhishList {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.visible {
+  visibility: visible;
+}
+.invisible {
+  visibility: hidden;
 }
 
 .alert{

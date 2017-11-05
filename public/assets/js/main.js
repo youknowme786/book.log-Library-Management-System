@@ -13,6 +13,29 @@ $(document).ready(function () {
         });
     }
 
+    function isInStock() {
+        var stockStatus = parseInt($('.on-stock').html());
+        console.log(stockStatus);
+
+        if (stockStatus === 0) {
+            $('#reserveBook').removeClass('visible')
+            $('#reserveBook').addClass('invisible')
+            $('#addToWhishList').removeClass('invisible');
+            $('#addToWhishList').addClass('visible');
+            $('.on-stock').addClass('stock-alert');
+
+        }
+    }
+
+    $('.favorite-book').hover(function () {
+        $(this).addClass('fav-on');
+    }, function () {
+        $(this).removeClass('fav-on');
+    })
+
+    isInStock();
+
+
     $(document).on('click', 'a.dropdown-item', function () {
         var keyWord = $('#search-input').val().trim();
         populateBook(keyWord);

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Muli:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/indexStyle.css">
 
 </head>
 
@@ -63,84 +63,83 @@
     </header>
 
     <!-- Large modal -->
-    <button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+    <!-- <button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
 
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-content">
-            <main class="container">
+        <div class="modal-dialog modal-lg modal-content"> -->
+    <main class="container">
 
-                <div class="row">
+        <div class="row">
 
-                    <div class="col-md-12 text-center mt-5">
-                        <h1>Harry Potter and the Philosopher's Stone</h1>
-                        <p>by
-                            <span>
-                                <a href="#">J. K. Rowling</a>
-                            </span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                        </p>
-                        <hr class="mt-3">
+            <div class="col-md-12 text-center mt-5">
+                <h1>Harry Potter and the Philosopher's Stone</h1>
+                <p>by
+                    <span>
+                        <a href="#">J. K. Rowling</a>
+                    </span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </p>
+                <hr class="mt-3">
 
-                    </div>
-                </div>
-
-                <div class="row">
-
-                    <div class="col-md-4 text-center book">
-                        <img src="assets/img/fantasy-book.jpg" class="img-fluid rounded" alt="I am a book cover picture">
-                    </div>
-                    <div class="col-md-8 border-lv mb-5">
-                        <p>
-                            <b class="text-uppercase">Summary:</b> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                            Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-                            took a galley of type and scrambled it to make a type specimen book. It has survived not only
-                            five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                            and more recently with desktop publishing software like Aldus PageMaker including versions of
-                            Lorem Ipsum.</p>
-                        <p>
-                            <b class="text-uppercase">ISBN: </b>
-                            <span id="isbn">0-7475-3269-9</span>
-                        </p>
-                        <div class="row">
-
-                            <div class="col-md-12">
-                                <div>
-                                    <span class="on-stock">5</span>
-                                    <a href="#">In Stock</a>
-                                </div>
-                                <span>
-                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                    <a href="#"> Add to Favorites</a>
-                                </span>
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <!-- <form action="/" method="POST"> -->
-                                <form>
-                                    <button id="action-btn-reserve" class="btn btn-success text-uppercase" type="submit">Reserve Book
-                                    </button>
-                                </form>
-                            </div>
-                            <div class="col-md-6">
-                                <form action="/" method="POST">
-                                    <button id="action-btn" class="btn btn-success text-uppercase" type="submit">Add to Waitlist
-                                    </button>
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </main>
+            </div>
         </div>
-    </div>
+
+        <div class="row mt-3">
+
+            <div class="col-md-4 text-center book">
+                <img src="assets/img/fantasy-book.jpg" class="img-fluid rounded" alt="I am a book cover picture">
+            </div>
+            <div class="col-md-8 border-lv mb-5">
+                <p class="book-summary">
+                    <b class="text-uppercase mr-2">Summary:</b> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                    been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                    type and scrambled it to make a type specimen book. It has survived not only five centuries, but also
+                    the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
+                    with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                    software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p>
+                    <b class="text-uppercase">ISBN: </b>
+                    <span id="isbn">0-7475-3269-9</span>
+                </p>
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <div>
+                            <span class="on-stock">8</span>In Stock
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <span>
+                            <a class="favorite-book" href="#">
+                                <i class="fa fa-heart-o" aria-hidden="true"></i>Add to Favorites</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="row action-book-row">
+                    <div id="reserveBook" class="col-md-12 mt-3 visible">
+                        <!-- <form action="/" method="POST"> -->
+                        <form>
+                            <button id="action-btn-reserve" class="btn btn-success text-uppercase" type="submit">Reserve Book
+                            </button>
+                        </form>
+                    </div>
+                    <div id="addToWhishList" class="col-md-12 mt-3 invisible">
+                        <form action="/" method="POST">
+                            <button id="action-btn" class="btn btn-success text-uppercase" type="submit">Add to Waitlist
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- </div>
+    </div> -->
     <footer class="footer">
         <div class="container text-center">
             <span class="text-muted">@ All Rights Reserved to
