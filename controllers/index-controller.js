@@ -1,5 +1,6 @@
 var path = require("path");
 var db = require("../models");
+var getBookInfoByISBN = require("../routes/test-google-books-api.js");
 
 // index route for handlebars testing (returns titles and isbns)
 module.exports = function(app) {
@@ -17,9 +18,6 @@ module.exports = function(app) {
 				// deep clone it into a deliverable variable
 				dataObject.popular = JSON.parse(JSON.stringify(data));
 
-				return dataObject;
-			})
-			.then(dataObject => {
 				db.Medium
 					.findAll({
 						limit: 10,
@@ -30,9 +28,15 @@ module.exports = function(app) {
 						// deep clone it into a deliverable variable
 						dataObject.new = JSON.parse(JSON.stringify(data));
 
-						return res.render("index", dataObject);
-						// return res.json(dataObject)
-					})
+						// Promise(
+						getBookInfoByISBN(dataObject, res);
+						// ).then(dataDeliverable => {
+						// console.log(dataDeliverable);
+						// });
+					});
+				// .then(() => {
+				//     res.json(dataObject);
+				// });
 			});
 	});
 };
