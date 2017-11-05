@@ -98,4 +98,25 @@ $(document).ready(function() {
                 );
             });
     }
+
+    function deleteReservation(mediumIdCancelling, userIdCancelling) {
+        console.log("Entering fxn deleteReservation");
+        //DELETE from reservations table
+        $.ajax({
+            url:
+                "/api/reservations/" +
+                userIdCancelling +
+                "/delete/" +
+                mediumIdCancelling,
+            type: "DELETE",
+            success: result => {
+                console.log("RECORD DELETED");
+                console.log(result);
+            }
+        });
+
+        //PUT to media table
+    }
+
+    deleteReservation(4, 1);
 });
