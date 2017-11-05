@@ -7,7 +7,8 @@ module.exports = function getBookInfoByISBN(dataObject, results) {
   // // dataObject is an object of arrays
   // // deep clone it into a deliverable variable
   let dataDeliverable = JSON.parse(JSON.stringify(dataObject));
-
+  let counter = 0;
+  let target = 20;
   // dataDeliverable.forEach(dataArray => {
   for (let item in dataDeliverable) {
     // dataArray.forEach(item => {
@@ -62,17 +63,24 @@ module.exports = function getBookInfoByISBN(dataObject, results) {
               dataDeliverable[item][i].dataISBN13 =
                 parsedBody.items[0].volumeInfo.industryIdentifiers[1].identifier;
             }
+
+            counter++;
+            if (counter === 20) {
+              console.log("==================");
+              console.log(dataDeliverable);
+              results.json(dataDeliverable);
+            }
           }
         });
       }
     }
   }
 
-  console.log("==================");
-  console.log(dataDeliverable);
-  setTimeout(() => {
-    results.json(dataDeliverable);
-  }, 1000);
+  // console.log("==================");
+  // console.log(dataDeliverable);
+  // setTimeout(() => {
+  //   results.json(dataDeliverable);
+  // }, 1000);
   // console.log(dataDeliverable);
   // return dataDeliverable;
 };

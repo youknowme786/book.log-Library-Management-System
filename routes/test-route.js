@@ -25,9 +25,6 @@ module.exports = function(app) {
                 // deep clone it into a deliverable variable
                 dataObject.popular = JSON.parse(JSON.stringify(data));
 
-                return dataObject;
-            })
-            .then(dataObject => {
                 db.Medium
                     .findAll({
                         limit: 10,
