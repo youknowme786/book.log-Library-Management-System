@@ -26,7 +26,7 @@ app.set("view engine", "handlebars");
 // establish routes for database access
 require("./controllers/index-controller.js")(app);
 require("./controllers/book-controller.js")(app);
-require("./routes/test-route.js")(app);
+require("./controllers/user-controller.js")(app);
 require("./routes/api-routes.js")(app);
 require("./routes/media.js")(app);
 

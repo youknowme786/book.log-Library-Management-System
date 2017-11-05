@@ -1,5 +1,4 @@
 var db = require("../models");
-var path = require("path");
 let request = require("request");
 
 module.exports = app => {

@@ -1,4 +1,3 @@
-let path = require("path");
 let request = require("request");
 
 module.exports = function getBookInfoByISBN(dataObject, results) {
