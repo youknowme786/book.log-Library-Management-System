@@ -65,18 +65,31 @@ module.exports = app => {
 	//RESERVATION ROUTES
 
 	//GET - using mediaId
-	//MAKE THIS A FUNCTION WHERE YOU PASS IN "MediumId" or "UserId"
-	app.get("/api/reservations/media/:MediumId", (req, res) => {
+	app.get("/api/reservations/media/:MediumId/:UserId?", (req, res) => {
 		db.Reservation
 			.findAll({
-				//will display as...
-				// where: { MediumId: req.body.MediumId } OR { UserId: req.body.UserId }
 				where: { MediumId: req.params.MediumId }
 			})
-			// console.log("THIS IS REQ.BODY");
-			// console.log(req.body);
 			.then(data => {
-				res.json(data);
+				var reservationsDeliverable = {};
+				reservationsDeliverable.mediumReservations = data;
+
+				//This block determines the User's position in the reservation list for a specific product if a UserId to search for is specified
+				if (req.params.UserId !== undefined) {
+					var UserId = parseInt(req.params.UserId);
+					console.log("UserId: ", UserId);
+					for (let i = 0; i < data.length; i++) {
+						if (data[i].UserId === UserId) {
+							console.log("Found user's position on list");
+							reservationsDeliverable.userPosition = i;
+							break;
+						}
+					}
+				}
+				console.log("RESERVATIONSDELIVERABLE");
+				console.log(reservationsDeliverable);
+				res.json(reservationsDeliverable);
+				// res.render(/*some file*/, reservationsDeliverable);
 			});
 	});
 
@@ -97,7 +110,7 @@ module.exports = app => {
 
 	//POST route for reserving a book
 	//CURL command:
-	//curl -H "Content-Type: application/json" -X POST -d '{"MediumId": 4, "UserId": 4}' http://localhost:3000/api/reservations/new
+	//curl -H "Content-Type: application/json" -X POST -d '{"MediumId": 10, "UserId": 4}' http://localhost:3000/api/reservations/create
 	app.post("/api/reservations/create", (req, res) => {
 		db.Reservation
 			.create({

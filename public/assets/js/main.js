@@ -17,7 +17,7 @@ $(document).ready(function() {
         });
     }
 
-    function isInStock() {
+    function isOnShelves() {
         var stockStatus = parseInt($(".on-stock").html());
         console.log(stockStatus);
 
@@ -39,7 +39,7 @@ $(document).ready(function() {
         }
     );
 
-    isInStock();
+    isOnShelves();
 
     $(document).on("click", "a.dropdown-item", function() {
         var keyWord = $("#search-input")
@@ -49,28 +49,55 @@ $(document).ready(function() {
     });
 
     $("#action-btn-reserve").on("click", function(event) {
-        console.log("reserve button pressed");
+        // console.log("reserve button pressed");
         event.preventDefault();
         // gets the book id of the ice cream and the cutomer name
         var id = $("#isbn").html();
         console.log(id);
+
         // var customer = $(this).parent().closest('.input-group').children('.form-control').val();
         // if (customer === "") {
         //     alert("Please enter your name!");
         //     return;
         // }
         // sets a PUT ajax call to update the database
-        // $.ajax("/api/reservations/create", {
-        //     data: {
-        //         MediumId: 4,
-        //         UserId: 4
-        //     },
-        //     type: "POST"
-        // }).then(function(data) {
-        //     console.log("updated id ", id);
-        //     console.log(data);
-        //     // reloads the page to get the updated list
-        //     // location.reload();
-        // });
+        reserveMedia(6, 1);
+        // need position infomation to send back to user
     });
+
+    // need the route to add to waitinglist
+
+    function reserveMedia(mediumIdReserving, userIdReserving) {
+        console.log("Reserving new media");
+        var newReservation = {
+            MediumId: mediumIdReserving,
+            UserId: userIdReserving
+        };
+
+        //POST to reservations table
+        $.post("/api/reservations/create", newReservation, reservation => {
+            console.log("NEW RESERVATION MADE:");
+            console.log(newReservation);
+        })
+            .then(() => {
+                console.log("TO DO: update media table quantities");
+                //PUT to media table
+            })
+            .then(() => {
+                console.log("Entering block with $.get");
+                console.log("UserID: ", userIdReserving);
+                $.get(
+                    "/api/reservations/media/" +
+                        mediumIdReserving +
+                        "/" +
+                        userIdReserving,
+                    data => {
+                        console.log("Returned from $.get");
+                        console.log(data);
+                    }
+                );
+            });
+
+        //PUT to media table
+    }
 });
