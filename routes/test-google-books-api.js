@@ -1,7 +1,9 @@
 let request = require("request");
 
-module.exports = function getBookInfoByISBN(dataObject, results) {
-  let apiKey = "AIzaSyBVaPHihkOt3MSXrw5Hf-HjJB7TrOdawlo";
+module.exports = function getBookInfoByISBN(dataObject, response) {
+  // storing multiple api keys here in case one gets rate limited for the day
+  let apiKey = "AIzaSyDHgOaKEpv8i56Zj-PqAnsEvrvs0xpM-jo"; // ali's api key
+  // let apiKey = "AIzaSyBVaPHihkOt3MSXrw5Hf-HjJB7TrOdawlo"; // eva's api key
 
   // // dataObject is an object of arrays
   // // deep clone it into a deliverable variable
@@ -18,7 +20,10 @@ module.exports = function getBookInfoByISBN(dataObject, results) {
         // console.log(isbn);
 
         let queryURL =
-          "https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
+          "https://www.googleapis.com/books/v1/volumes?q=isbn:" +
+          isbn +
+          "&key=" +
+          apiKey;
         // console.log(queryURL);
 
         request(queryURL, (err, res, body) => {
@@ -51,6 +56,8 @@ module.exports = function getBookInfoByISBN(dataObject, results) {
             if (parsedBody.items[0].volumeInfo.imageLinks) {
               dataDeliverable[item][i].dataImage =
                 parsedBody.items[0].volumeInfo.imageLinks.thumbnail;
+            } else {
+              dataDeliverable.dataImage = "/assets/img/placeholder.gif";
             }
 
             if (parsedBody.items[0].volumeInfo.industryIdentifiers[0]) {
@@ -73,44 +80,12 @@ module.exports = function getBookInfoByISBN(dataObject, results) {
             if (counter === 20) {
               console.log("==================");
               console.log(dataDeliverable);
-              results.render("index", dataDeliverable);
+              response.json(dataDeliverable);
+              // response.render("index", dataDeliverable);
             }
           }
         });
       }
     }
   }
-
-  // console.log("==================");
-  // console.log(dataDeliverable);
-  // setTimeout(() => {
-  //   results.json(dataDeliverable);
-  // }, 1000);
 };
-
-//Example call
-// getBookInfoByISBN("0747532699");
-
-// // dataArray is an array of objects
-// // deep clone it into a deliverable variable
-// var dataDeliverable = JSON.parse(JSON.stringify(dataArray));
-
-// // modify the deliverable and add relevant fields
-
-// dataDeliverable.forEach(item => {
-//     if (item.mediaType === "book") {
-//         // call google books API here
-//         console.log(item.industryIdentifier);
-
-//         // // fill in these fields from API
-//         // item.author = //author from API
-//         // item.summary = //summary from API
-//         // item.image = //image link from API
-
-//         item.bookInfo = getBookInfoByISBN(item.industryIdentifier);
-
-//         item.test = "test";
-//     }
-// });
-
-// return dataDeliverable;
