@@ -1,5 +1,5 @@
 USE librarymanagementsystem;
-INSERT INTO media (title, mediaType, genericId, totalStock, numShelved, numReserved, numCheckedOut, reservationListSize, totalNumCheckouts)
+INSERT INTO media (title, mediaType, industryIdentifier, totalStock, numShelved, numReserved, numCheckedOut, reservationListSize, totalNumCheckouts)
 VALUES ("Harry Potter and the Sorcerer's Stone", "book","9780439708180",10,3,1,6,0,15),
 ("Harry Potter and the Chamber of Secrets", "book","9781781100509",4,3,1,0,0,5),
 ("Harry Potter and the Prisoner of Azkaban", "book","9781408869130",12,0,5,7,5,1),
@@ -11,7 +11,7 @@ VALUES ("Harry Potter and the Sorcerer's Stone", "book","9780439708180",10,3,1,6
 ("1984", "book","9780451518651",2,2,0,0,0,19),
 ("A Game of Thrones (A Song of Ice and Fire, Book 1)", "book","9780553897845",24,22,1,1,1,12);
 
--- INSERT INTO media (title, mediaType, genericId, totalStock)
+-- INSERT INTO media (title, mediaType, industryIdentifier, totalStock)
 -- VALUES ("testHarry Potter and the Philosopher's Stone", "book","10-7475-3269-9",10),
 -- ("testHarry Potter and the Chamber of Secrets", "book","10-7475-3849-2",4),
 -- ("testHarry Potter and the Prisoner of Azkaban", "book","10-7475-4215-5",12),

@@ -47,14 +47,14 @@ module.exports = function(app) {
                 dataDeliverable.forEach(item => {
                     if (item.mediaType === "book") {
                         //         // call google books API here
-                        //         console.log(item.genericId);
+                        //         console.log(item.industryIdentifier);
 
                         //         // // fill in these fields from API
                         //         // item.author = //author from API
                         //         // item.summary = //summary from API
                         //         // item.image = //image link from API
 
-                        //         item.bookInfo = getBookInfoByISBN(item.genericId);
+                        //         item.bookInfo = getBookInfoByISBN(item.industryIdentifier);
 
                         item.test = "popular test";
                     }
@@ -84,7 +84,7 @@ module.exports = function(app) {
                 dataDeliverable.forEach(item => {
                     if (item.mediaType === "book") {
                         // call google books API here
-                        console.log(item.genericId);
+                        console.log(item.industryIdentifier);
 
                         // // fill in these fields from API
                         // item.author = //author from API

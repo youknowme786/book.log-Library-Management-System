@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false
 			},
 
-			genericId: {
+			industryIdentifier: {
 				type: DataTypes.STRING,
 				allowNull: true,
 				validate: {

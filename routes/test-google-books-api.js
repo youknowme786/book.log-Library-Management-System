@@ -15,7 +15,7 @@ module.exports = function getBookInfoByISBN(dataObject, results) {
     for (let i = 0; i < dataDeliverable[item].length; i++) {
       if (dataDeliverable[item][i].mediaType === "book") {
         //isbn must be entered as a string
-        let isbn = dataDeliverable[item][i].genericId;
+        let isbn = dataDeliverable[item][i].industryIdentifier;
         // console.log(isbn);
 
         let queryURL =
@@ -95,14 +95,14 @@ module.exports = function getBookInfoByISBN(dataObject, results) {
 // dataDeliverable.forEach(item => {
 //     if (item.mediaType === "book") {
 //         // call google books API here
-//         console.log(item.genericId);
+//         console.log(item.industryIdentifier);
 
 //         // // fill in these fields from API
 //         // item.author = //author from API
 //         // item.summary = //summary from API
 //         // item.image = //image link from API
 
-//         item.bookInfo = getBookInfoByISBN(item.genericId);
+//         item.bookInfo = getBookInfoByISBN(item.industryIdentifier);
 
 //         item.test = "test";
 //     }

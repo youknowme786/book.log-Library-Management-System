@@ -20,12 +20,7 @@ app.use(methodOverride("_method"));
 
 // initiate handlebars with default layout
 var exphbs = require("express-handlebars");
-app.engine(
-	"handlebars",
-	exphbs({
-		defaultLayout: "main"
-	})
-);
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // establish routes for database access
