@@ -76,13 +76,11 @@ module.exports = function getBookInfoByISBN(dataObject, results) {
     }
   }
 
-<<<<<<< HEAD
   // console.log("==================");
   // console.log(dataDeliverable);
   // setTimeout(() => {
   //   results.json(dataDeliverable);
   // }, 1000);
-
 };
 
 //Example call
