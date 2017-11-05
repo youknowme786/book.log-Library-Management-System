@@ -148,7 +148,11 @@ module.exports = app => {
 						break;
 
 					case "addItem":
-						updateData.numShelved++;
+						if (updateData.reservationListSize > updateData.numReserved) {
+							updateData.numReserved++;
+						} else {
+							updateData.numShelved++;
+						}
 						break;
 
 					default:
