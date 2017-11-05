@@ -86,7 +86,7 @@ module.exports = app => {
 						}
 					}
 				}
-				console.log("RESERVATIONSDELIVERABLE");
+
 				console.log(reservationsDeliverable);
 				res.json(reservationsDeliverable);
 				// res.render(/*some file*/, reservationsDeliverable);

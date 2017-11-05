@@ -22,7 +22,8 @@ module.exports = app => {
 					if (!err && res.statusCode === 200) {
 						var parsedBody = JSON.parse(body);
 						if (parsedBody.items[0].volumeInfo.title) {
-							dataDeliverable.dataTitle = parsedBody.items[0].volumeInfo.title;
+							dataDeliverable.dataTitle =
+								parsedBody.items[0].volumeInfo.title;
 						}
 
 						if (parsedBody.items[0].volumeInfo.authors) {
@@ -39,21 +40,30 @@ module.exports = app => {
 							dataDeliverable.dataImage =
 								parsedBody.items[0].volumeInfo.imageLinks.thumbnail;
 						} else {
-							dataDeliverable.dataImage = "/assets/img/placeholder.gif";
+							dataDeliverable.dataImage =
+								"/assets/img/placeholder.gif";
 						}
 
-						if (parsedBody.items[0].volumeInfo.industryIdentifiers[0]) {
+						if (
+							parsedBody.items[0].volumeInfo
+								.industryIdentifiers[0]
+						) {
 							dataDeliverable[
 								"data" +
-									parsedBody.items[0].volumeInfo.industryIdentifiers[0].type
+									parsedBody.items[0].volumeInfo
+										.industryIdentifiers[0].type
 							] =
 								parsedBody.items[0].volumeInfo.industryIdentifiers[0].identifier;
 						}
 
-						if (parsedBody.items[0].volumeInfo.industryIdentifiers[1]) {
+						if (
+							parsedBody.items[0].volumeInfo
+								.industryIdentifiers[1]
+						) {
 							dataDeliverable[
 								"data" +
-									parsedBody.items[0].volumeInfo.industryIdentifiers[1].type
+									parsedBody.items[0].volumeInfo
+										.industryIdentifiers[1].type
 							] =
 								parsedBody.items[0].volumeInfo.industryIdentifiers[1].identifier;
 						}
@@ -62,6 +72,8 @@ module.exports = app => {
 					// response.json(dataDeliverable);
 					console.log(dataDeliverable);
 					response.render("book", dataDeliverable);
+					//sends the datadeliverable obj to handlebars
+					//hbrs renders on the "book page"
 				});
 			});
 	});

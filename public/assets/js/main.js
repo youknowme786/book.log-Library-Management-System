@@ -54,6 +54,7 @@ $(document).ready(function() {
         // gets the book id of the ice cream and the cutomer name
         var id = $("#isbn").html();
         console.log(id);
+        reserveMedia(6, 1);
 
         // var customer = $(this).parent().closest('.input-group').children('.form-control').val();
         // if (customer === "") {
@@ -61,11 +62,8 @@ $(document).ready(function() {
         //     return;
         // }
         // sets a PUT ajax call to update the database
-        reserveMedia(6, 1);
         // need position infomation to send back to user
     });
-
-    // need the route to add to waitinglist
 
     function reserveMedia(mediumIdReserving, userIdReserving) {
         console.log("Reserving new media");
@@ -92,7 +90,6 @@ $(document).ready(function() {
                         "/" +
                         userIdReserving,
                     data => {
-                        console.log("Returned from $.get");
                         console.log(data);
                     }
                 );
