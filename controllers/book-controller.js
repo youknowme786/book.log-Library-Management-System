@@ -18,8 +18,6 @@ module.exports = app => {
 					"https://www.googleapis.com/books/v1/volumes?q=isbn:" +
 					dataDeliverable.industryIdentifier;
 
-				console.log(queryURL);
-
 				request(queryURL, (err, res, body) => {
 					if (!err && res.statusCode === 200) {
 						var parsedBody = JSON.parse(body);
@@ -59,7 +57,8 @@ module.exports = app => {
 						}
 					}
 
-					response.json(dataDeliverable);
+					// response.json(dataDeliverable);
+					response.render("book", dataDeliverable);
 				});
 			});
 	});

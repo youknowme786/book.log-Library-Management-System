@@ -1,13 +1,11 @@
-<main class="container">
+<main class="container mb-5">
 
-    {{#each book}}
     <div class="row">
         <div class="col-md-12 text-center mt-5">
-
-            <h1>{{this.title}}</h1>
+            <h1>{{this.dataTitle}}</h1>
             <p>by
                 <span>
-                    <a href="#">J. K. Rowling</a>
+                    <a href="#">{{this.dataAuthor}}</a>
                 </span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
@@ -20,48 +18,44 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mt-3">
 
         <div class="col-md-4 text-center book">
-            <img src="assets/img/fantasy-book.jpg" class="img-fluid rounded" alt="I am a book cover picture">
+            <img src="{{this.dataImage}}" class="img-fluid" alt="I am a book cover picture"> {{!--
+            <img src="assets/img/fantasy-book.jpg" class="img-fluid" alt="I am a book cover picture"> --}}
         </div>
         <div class="col-md-8 border-lv mb-5">
-            <p>
-                <b class="text-uppercase">Summary:</b> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release
-                of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-                Aldus PageMaker including versions of Lorem Ipsum.</p>
+            <p class="book-summary">
+                <b class="text-uppercase mr-2">Summary:</b> {{this.dataSummary}}</p>
             <p>
                 <b class="text-uppercase">ISBN: </b>
-                <span id="isbn" data-{{this.id}}='{{this.id}}'>{{this.industryIdentifier}}</span>
+                <span id="isbn">{{this.industryIdentifier}}</span>
             </p>
             <div class="row">
 
-                <div class="col-md-12">
+                <div class="col-md-12 col-lg-6 mb-3">
                     <div>
-                        <span class="on-stock">5</span>
-                        <a href="#">In Stock</a>
+                        <span class="on-stock">{{this.numShelved}}</span>On Shelve
                     </div>
+                </div>
+                <div class="col-md-12 col-lg-6 mb-3">
                     <span>
-                        <i class="fa fa-heart-o" aria-hidden="true"></i>
-                        <a href="#"> Add to Favorites</a>
+                        <a class="favorite-book" href="#">
+                            <i class="fa fa-heart-o" aria-hidden="true" data-mediaId={{this.mediaId}} data-userId={{this.userId}}></i>Add to Favorites</a>
                     </span>
-
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row action-book-row">
+                <div id="reserveBook" class="col-md-12 mt-3 visible">
                     <!-- <form action="/" method="POST"> -->
                     <form>
-                        <button id="action-btn-reserve" class="btn btn-success text-uppercase" type="submit">Reserve Book
+                        <button id="action-btn-reserve" class="btn btn-success text-uppercase" type="submit" data-mediaId={{this.mediaId}} data-userId={{this.userId}}>Reserve Book
                         </button>
                     </form>
                 </div>
-                <div class="col-md-6">
+                <div id="addToWhishList" class="col-md-12 mt-3 invisible">
                     <form action="/" method="POST">
-                        <button id="action-btn" class="btn btn-success text-uppercase" type="submit">Add to Waitlist
+                        <button id="action-btn" class="btn btn-success text-uppercase" type="submit" data-mediaId={{this.mediaId}} data-userId={{this.userId}}>Add to Waitlist
                         </button>
                     </form>
                 </div>
@@ -69,6 +63,4 @@
             </div>
         </div>
     </div>
-    {{/each}}
-
 </main>
