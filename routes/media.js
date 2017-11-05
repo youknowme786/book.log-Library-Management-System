@@ -1,4 +1,5 @@
 var db = require("../models");
+let request = require("request");
 
 // make sure date format matches createdAt field
 
@@ -22,34 +23,56 @@ module.exports = app => {
 
 	// POST route for adding a new book
 	// CURL command:
-	// curl -H "Content-Type: application/json" -X POST -d '{"title": "the chronicle of imran", "mediaType": "book", "industryIdentifier":"9780470199480", "totalStock":5, "numShelved":5}' http://localhost:3000/api/media/new
-	app.post("/api/media/new", (req, res) => {
+	// curl -H "Content-Type: application/json" -X POST -d '{"mediaType": "book", "industryIdentifier":"9780470199480", "totalStock":5, "numShelved":5}' http://localhost:3000/api/media/new
+	app.post("/api/media/new", (req, response) => {
 		console.log(req.body);
 
-		var industryIdentifierInput = req.body.industryIdentifier.trim();
-		if (industryIdentifierInput === "") {
-			industryIdentifierInput = null;
+		var newMedium = {};
+		newMedium.mediaType = req.body.mediaType;
+
+		if (newMedium.mediaType === "book") {
+			var isbn = req.body.industryIdentifier;
+			newMedium.industryIdentifier = isbn;
 		}
 
-		// var numReservedInput = req.body.numReserved.trim();
-		// if (numReservedInput === "") {
-		// 	numReservedInput === 0;
-		// }
+		var queryURL =
+			"https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
 
-		// var waitlistSizeInput = numReservedInput;
+		request(queryURL, (err, res, body) => {
+			if (!err && res.statusCode === 200) {
+				var parsedBody = JSON.parse(body);
+				volumeInfo = parsedBody.items[0].volumeInfo;
 
-		//update to work for multiple books using an array of cartBooks and forEach
-		db.Medium
-			.create({
-				title: req.body.title.trim(),
-				mediaType: req.body.mediaType,
-				industryIdentifier: industryIdentifierInput,
-				totalStock: parseInt(req.body.totalStock, 10),
-				numShelved: parseInt(req.body.totalStock, 10)
-			})
-			.then(data => {
-				res.json(data);
-			});
+				newMedium.title = volumeInfo.title;
+				newMedium.author = volumeInfo.authors[0];
+				newMedium.summary = volumeInfo.description;
+
+				if (volumeInfo.imageLinks) {
+					newMedium.image = volumeInfo.imageLinks.thumbnail;
+				} else {
+					newMedium.image = "/assets/img/placeholder.gif";
+				}
+
+				newMedium.totalStock = 10;
+				newMedium.numShelved = 10;
+
+				console.log(newMedium);
+
+				db.Medium
+					.create(
+						newMedium
+						// {
+						// 	title: req.body.title.trim(),
+						// 	mediaType: req.body.mediaType,
+						// 	industryIdentifier: industryIdentifierInput,
+						// }
+					)
+					.then(data => {
+						console.log(data);
+						response.json(data);
+					});
+			}
+		});
 	});
 
 	function updateMediaTable(action) {

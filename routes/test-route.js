@@ -13,7 +13,7 @@ var getBookInfoByISBN = require("./test-google-books-api.js");
 module.exports = function(app) {
     //curl -i -H "Content-Type: application/json" -X GET http://localhost:3000/popular
     app.get("/index", (req, res) => {
-        var dataObject = {};
+        var dataDeliverable = {};
 
         db.Medium
             .findAll({
@@ -23,7 +23,7 @@ module.exports = function(app) {
             .then(data => {
                 // data is an array of objects
                 // deep clone it into a deliverable variable
-                dataObject.popular = JSON.parse(JSON.stringify(data));
+                dataDeliverable.popular = JSON.parse(JSON.stringify(data));
 
                 db.Medium
                     .findAll({
@@ -33,22 +33,20 @@ module.exports = function(app) {
                     .then(data => {
                         // data is an array of objects
                         // deep clone it into a deliverable variable
-                        dataObject.new = JSON.parse(JSON.stringify(data));
+                        dataDeliverable.new = JSON.parse(JSON.stringify(data));
 
-                        // Promise(
-                        getBookInfoByISBN(dataObject, res);
-                        // ).then(dataDeliverable => {
-                        // console.log(dataDeliverable);
-                        // });
+                        console.log("==================");
+                        console.log(dataDeliverable);
+                        response.json(dataDeliverable);
                     });
                 // .then(() => {
-                //     res.json(dataObject);
+                //     res.json(dataDeliverable);
                 // });
             });
     });
 
     app.get("/book", (req, res) => {
-        var dataObject = {};
+        var dataDeliverable = {};
 
         db.Medium
             .findAll({
@@ -58,7 +56,7 @@ module.exports = function(app) {
             .then(data => {
                 // data is an array of objects
                 // deep clone it into a deliverable variable
-                dataObject.popular = JSON.parse(JSON.stringify(data));
+                dataDeliverable.popular = JSON.parse(JSON.stringify(data));
 
                 db.Medium
                     .findAll({
@@ -68,16 +66,16 @@ module.exports = function(app) {
                     .then(data => {
                         // data is an array of objects
                         // deep clone it into a deliverable variable
-                        dataObject.new = JSON.parse(JSON.stringify(data));
+                        dataDeliverable.new = JSON.parse(JSON.stringify(data));
 
                         // Promise(
-                        getBookInfoByISBN(dataObject, res);
+                        getBookInfoByISBN(dataDeliverable, res);
                         // ).then(dataDeliverable => {
                         // console.log(dataDeliverable);
                         // });
                     });
                 // .then(() => {
-                //     res.json(dataObject);
+                //     res.json(dataDeliverable);
                 // });
             });
     });
