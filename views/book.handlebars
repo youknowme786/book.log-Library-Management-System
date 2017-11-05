@@ -1,9 +1,9 @@
 <main class="container mb-5">
 
+    {{#each book}}
     <div class="row">
-        {{#each book}}
         <div class="col-md-12 text-center mt-5">
-            <h1>{{this.title}}</h1>
+            <h1>{{this.dataTitle}}</h1>
             <p>by
                 <span>
                     <a href="#">{{this.dataAuthor}}</a>
@@ -22,26 +22,27 @@
     <div class="row mt-3">
 
         <div class="col-md-4 text-center book">
-            <img src="assets/img/fantasy-book.jpg" class="img-fluid" alt="I am a book cover picture">
+            <img src="{{this.dataImage}}" class="img-fluid" alt="I am a book cover picture"> {{!--
+            <img src="assets/img/fantasy-book.jpg" class="img-fluid" alt="I am a book cover picture"> --}}
         </div>
         <div class="col-md-8 border-lv mb-5">
             <p class="book-summary">
                 <b class="text-uppercase mr-2">Summary:</b> {{this.dataSummary}}</p>
             <p>
                 <b class="text-uppercase">ISBN: </b>
-                <span id="isbn">{{this.industyIdentifier}}</span>
+                <span id="isbn">{{this.industryIdentifier}}</span>
             </p>
             <div class="row">
 
                 <div class="col-md-12 col-lg-6 mb-3">
                     <div>
-                        <span class="on-stock">{{this.mediaId}}</span>In Stock
+                        <span class="on-stock">{{this.numShelved}}</span>On Shelve
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-6 mb-3">
                     <span>
                         <a class="favorite-book" href="#">
-                            <i class="fa fa-heart-o" aria-hidden="true"></i>Add to Favorites</a>
+                            <i class="fa fa-heart-o" aria-hidden="true" data-mediaId={{this.mediaId}} data-userId={{this.userId}}></i>Add to Favorites</a>
                     </span>
                 </div>
             </div>
@@ -49,13 +50,13 @@
                 <div id="reserveBook" class="col-md-12 mt-3 visible">
                     <!-- <form action="/" method="POST"> -->
                     <form>
-                        <button id="action-btn-reserve" class="btn btn-success text-uppercase" type="submit">Reserve Book
+                        <button id="action-btn-reserve" class="btn btn-success text-uppercase" type="submit" data-mediaId={{this.mediaId}} data-userId={{this.userId}}>Reserve Book
                         </button>
                     </form>
                 </div>
                 <div id="addToWhishList" class="col-md-12 mt-3 invisible">
                     <form action="/" method="POST">
-                        <button id="action-btn" class="btn btn-success text-uppercase" type="submit">Add to Waitlist
+                        <button id="action-btn" class="btn btn-success text-uppercase" type="submit" data-mediaId={{this.mediaId}} data-userId={{this.userId}}>Add to Waitlist
                         </button>
                     </form>
                 </div>
@@ -63,4 +64,5 @@
             </div>
         </div>
     </div>
+    {{/each}}
 </main>
