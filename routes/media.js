@@ -35,8 +35,7 @@ module.exports = app => {
 			newMedium.industryIdentifier = isbn;
 		}
 
-		var queryURL =
-			"https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
+		var queryURL = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
 
 		request(queryURL, (err, res, body) => {
 			if (!err && res.statusCode === 200) {
@@ -66,80 +65,108 @@ module.exports = app => {
 		});
 	}); // app.post
 
-	function updateMediaTable(action) {
-		switch (action) {
-			case "checkoutWithoutReservation":
-				console.log(action);
+	// function updateMediaTable(action, mediumId) {
 
-				var updateQuery = {
-					// update text here
-				};
-				break;
+	// // comment out below if using fxn
+	app.get("/testupdate/:action/:mediumId", (req, res) => {
+		action = req.params.action;
+		mediumId = req.params.mediumId;
+		// // comment out above if using fxn
 
-			case "checkoutWithReservation":
-				console.log(action);
+		db.Medium
+			.findAll({
+				where: { id: mediumId }
+			})
+			.then(data => {
+				console.log(action + " medium:" + mediumId);
 
-				var updateQuery = {
-					// update text here
-				};
-				break;
+				var updateData = {};
+				updateData.totalStock = data[0].totalStock;
+				updateData.numShelved = data[0].numShelved;
+				updateData.numReserved = data[0].numReserved;
+				updateData.reservationListSize = data[0].reservationListSize;
+				updateData.numCheckedOut = data[0].numCheckedOut;
+				updateData.totalNumCheckouts = data[0].totalNumCheckouts;
 
-			case "checkIn":
-				// if ((numShelved + numReserved) < reservationListSize) {}
-				// numReserved++
-				// else numShelved++
-				console.log(action);
+				console.log(updateData);
 
-				var updateQuery = {
-					// update text here
-				};
-				break;
+				switch (action) {
+					case "reserveMedia":
+						if (updateData.numShelved > 0) {
+							updateData.numShelved--;
+							updateData.numReserved++;
+						}
+						updateData.reservationListSize++;
+						break;
 
-			case "makeReservation":
-				console.log(action);
+					case "cancelReservation":
+						if (updateData.numReserved > 0) {
+							if (updateData.numReserved === updateData.reservationListSize) {
+								updateData.numShelved++;
+								updateData.numReserved--;
+							}
+							updateData.reservationListSize--;
+						}
+						break;
 
-				var updateQuery = {
-					// update text here
-				};
-				break;
+					case "checkoutWithoutReservation":
+						if (updateData.numShelved > 0) {
+							updateData.numShelved--;
+							updateData.numCheckedOut++;
+							updateData.totalNumCheckouts++;
+						}
+						break;
 
-			case "cancelReservation":
-				console.log(action);
+					case "checkoutWithReservation":
+						if (updateData.numReserved > 0) {
+							updateData.numReserved--;
+							updateData.reservationListSize--;
+							updata.numCheckedOut++;
+							updateData.totalNumCheckouts++;
+						}
+						break;
 
-				var updateQuery = {
-					// update text here
-				};
-				break;
+					case "checkIn":
+						if (updateData.numCheckedOut > 0) {
+							if (updateData.numReserved < reservationListSize) {
+								updateData.numReserved++;
+							} else {
+								updateData.numShelved++;
+							}
+							updateData.numCheckedOut--;
+						}
+						break;
 
-			case "deleteItem":
-				console.log(action);
+					case "deleteItem":
+						if (updateData.totalStock > 0) {
+							if (updateData.numShelved > 0) {
+								updateData.numShelved--;
+							} else if (updateData.numReserved > 0) {
+								updateData.numReserved--;
+							}
+						}
+						break;
 
-				var updateQuery = {
-					// update text here
-				};
-				break;
+					case "addItem":
+						updateData.numShelved++;
+						break;
 
-			case "addItem":
-				console.log(action);
+					default:
+						console.log(action);
 
-				var updateQuery = {
-					// update text here
-				};
-				break;
+						res.json("feature not yet implemented");
+						break;
+				}
+				console.log(updateData);
 
-			default:
-				console.log(action);
-				break;
-		}
-
-		app.put("/api/media/:MediumId", (req, res) => {
-			db.Medium
-				.update(updateQuery, {
-					where: { id: req.params.MediumId }
-				})
-				.then(data => {
-					res.json(data);
-				});
-		});
-	}
+				db.Medium
+					.update(updateData, {
+						where: { id: mediumId }
+					})
+					.then(data => {
+						res.json("rows affected: " + data[0]);
+					});
+			}); // db.medium.findAll().then()
+	}); // app.get() // comment out if using fxn
+	// } // function updateMediaTable(){}
 };
