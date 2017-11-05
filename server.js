@@ -20,12 +20,7 @@ app.use(methodOverride("_method"));
 
 // initiate handlebars with default layout
 var exphbs = require("express-handlebars");
-app.engine(
-	"handlebars",
-	exphbs({
-		defaultLayout: "main"
-	})
-);
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // establish routes for database access
@@ -36,7 +31,7 @@ require("./routes/media.js")(app);
 
 var port = process.env.PORT || 3000;
 // connect to database, sync with database, then listen on port 3000
-db.sequelize.sync().then(() => {
+db.sequelize.sync({ force: true }).then(() => {
 	app.listen(port, () => {
 		console.log(`Listening on port ${port}`);
 	});

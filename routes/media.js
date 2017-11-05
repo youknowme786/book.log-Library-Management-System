@@ -5,10 +5,10 @@ var db = require("../models");
 module.exports = app => {
 	// CURL command:
 	// curl -i -H "Content-Type: application/json" -X GET http://localhost:3000/api/media/0-7475-3269-9
-	app.get("/api/media/:genericId?", (req, res) => {
+	app.get("/api/media/:industryIdentifier?", (req, res) => {
 		var query = {};
-		if (req.params.genericId) {
-			query.genericId = req.params.genericId;
+		if (req.params.industryIdentifier) {
+			query.industryIdentifier = req.params.industryIdentifier;
 		}
 
 		db.Medium
@@ -22,13 +22,13 @@ module.exports = app => {
 
 	// POST route for adding a new book
 	// CURL command:
-	// curl -H "Content-Type: application/json" -X POST -d '{"title": "the chronicle of imran", "mediaType": "book", "genericId":"9780470199480", "totalStock":5, "numShelved":5}' http://localhost:3000/api/media/new
+	// curl -H "Content-Type: application/json" -X POST -d '{"title": "the chronicle of imran", "mediaType": "book", "industryIdentifier":"9780470199480", "totalStock":5, "numShelved":5}' http://localhost:3000/api/media/new
 	app.post("/api/media/new", (req, res) => {
 		console.log(req.body);
 
-		var genericIdInput = req.body.genericId.trim();
-		if (genericIdInput === "") {
-			genericIdInput = null;
+		var industryIdentifierInput = req.body.industryIdentifier.trim();
+		if (industryIdentifierInput === "") {
+			industryIdentifierInput = null;
 		}
 
 		// var numReservedInput = req.body.numReserved.trim();
@@ -43,7 +43,7 @@ module.exports = app => {
 			.create({
 				title: req.body.title.trim(),
 				mediaType: req.body.mediaType,
-				genericId: genericIdInput,
+				industryIdentifier: industryIdentifierInput,
 				totalStock: parseInt(req.body.totalStock, 10),
 				numShelved: parseInt(req.body.totalStock, 10)
 			})
