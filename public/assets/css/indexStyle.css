@@ -247,3 +247,19 @@ p.book-summary{
 #Popular-LArrow:hover, #Popular-RArrow:hover, #New-LArrow:hover, #New-RArrow:hover { 
 	transform: scale(1.35); 
 }
+
+/* Media Queries */
+@media (max-width: 767px) {
+	.book-summary {
+		margin-top: 40px;
+	}
+
+	.border-lv {
+		padding: 0;
+		border-left: none;
+	}
+
+	.action-book-row .btn {
+		width: 100%;	
+	}
+}
