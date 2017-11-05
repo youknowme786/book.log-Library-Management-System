@@ -67,105 +67,119 @@ module.exports = app => {
 	}); // app.post
 
 	// function updateMediaTable(action, mediumId) {
-	app.get("/testupdate/:mediumId", (req, res) => {
+
+	// // comment out below if using fxn
+	app.get("/testupdate/:action/:mediumId", (req, res) => {
+		action = req.params.action;
+		mediumId = req.params.mediumId;
+		// // comment out above if using fxn
+
 		db.Medium
 			.findAll({
-				// where: { id: mediumId }
-				where: { id: req.params.mediumId }
+				where: { id: mediumId }
 			})
 			.then(data => {
-				console.log(data);
+				console.log(action + " " + mediumId);
 
-				var dataDeliverable = {};
-				dataDeliverable.numShelved = data[0].numShelved;
-				dataDeliverable.numReserved = data[0].numReserved;
-				dataDeliverable.reservationListSize =
-					data[0].reservationListSize;
+				var updateData = {};
+				updateData.numShelved = data[0].numShelved;
+				updateData.numReserved = data[0].numReserved;
+				updateData.reservationListSize = data[0].reservationListSize;
 
-				console.log(dataDeliverable);
+				console.log(updateData);
 
-				if (dataDeliverable.numShelved > 0) {
-					dataDeliverable.numShelved--;
-					dataDeliverable.numReserved++;
+				switch (action) {
+					case "reserveMedia":
+						if (updateData.numShelved > 0) {
+							updateData.numShelved--;
+							updateData.numReserved++;
+						}
+						updateData.reservationListSize++;
+						console.log(updateData);
+						break;
+
+					case "cancelReservation":
+						if (updateData.numReserved > 0) {
+							if (
+								updateData.numReserved ===
+								updateData.reservationListSize
+							) {
+								updateData.numShelved++;
+								updateData.numReserved--;
+							}
+							updateData.reservationListSize--;
+						}
+						console.log(updateData);
+						break;
+
+					case "checkoutWithoutReservation":
+						console.log(action);
+
+						var updateQuery = {
+							// update text here
+						};
+
+						res.json("feature not yet implemented");
+						break;
+
+					case "checkoutWithReservation":
+						console.log(action);
+
+						var updateQuery = {
+							// update text here
+						};
+
+						res.json("feature not yet implemented");
+						break;
+
+					case "checkIn":
+						// if ((numShelved + numReserved) < reservationListSize) {}
+						// numReserved++
+						// else numShelved++
+						console.log(action);
+
+						var updateQuery = {
+							// update text here
+						};
+
+						res.json("feature not yet implemented");
+						break;
+
+					case "deleteItem":
+						console.log(action);
+
+						var updateQuery = {
+							// update text here
+						};
+
+						res.json("feature not yet implemented");
+						break;
+
+					case "addItem":
+						console.log(action);
+
+						var updateQuery = {
+							// update text here
+						};
+
+						res.json("feature not yet implemented");
+						break;
+
+					default:
+						console.log(action);
+
+						res.json("feature not yet implemented");
+						break;
 				}
-				dataDeliverable.reservationListSize++;
 
-				console.log(dataDeliverable);
-				res.json(data);
-
-				// switch (action) {
-				// 	case "reserveMedia":
-				// 		console.log(action);
-
-				// 		var updateQuery = {
-				// 			// update text here
-				// 		};
-				// 		break;
-
-				// 	case "checkoutWithoutReservation":
-				// 		console.log(action);
-
-				// 		var updateQuery = {
-				// 			// update text here
-				// 		};
-				// 		break;
-
-				// 	case "checkoutWithReservation":
-				// 		console.log(action);
-
-				// 		var updateQuery = {
-				// 			// update text here
-				// 		};
-				// 		break;
-
-				// 	case "checkIn":
-				// 		// if ((numShelved + numReserved) < reservationListSize) {}
-				// 		// numReserved++
-				// 		// else numShelved++
-				// 		console.log(action);
-
-				// 		var updateQuery = {
-				// 			// update text here
-				// 		};
-				// 		break;
-
-				// 	case "cancelReservation":
-				// 		console.log(action);
-
-				// 		var updateQuery = {
-				// 			// update text here
-				// 		};
-				// 		break;
-
-				// 	case "deleteItem":
-				// 		console.log(action);
-
-				// 		var updateQuery = {
-				// 			// update text here
-				// 		};
-				// 		break;
-
-				// 	case "addItem":
-				// 		console.log(action);
-
-				// 		var updateQuery = {
-				// 			// update text here
-				// 		};
-				// 		break;
-
-				// 	default:
-				// 		console.log(action);
-				// 		break;
-				// }
-
-				// db.Medium
-				// 	.update(updateQuery, {
-				// 		where: { id: mediumId }
-				// 	})
-				// 	.then(data => {
-				// 		res.json(data);
-				// 	});
+				db.Medium
+					.update(updateData, {
+						where: { id: mediumId }
+					})
+					.then(data => {
+						res.json("rows affected: " + data[0]);
+					});
 			}); // db.medium.findAll().then()
-	}); // app.get()
+	}); // app.get() // comment out if using fxn
 	// } // function updateMediaTable(){}
 };
