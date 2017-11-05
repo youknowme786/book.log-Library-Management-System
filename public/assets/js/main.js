@@ -61,19 +61,16 @@ $(document).ready(function() {
         //     alert("Please enter your name!");
         //     return;
         // }
-        // sets a PUT ajax call to update the database
-        // need position infomation to send back to user
     });
 
-    function reserveMedia(mediumIdReserving, userIdReserving) {
-        console.log("Reserving new media");
+    function reserveMedia(mediumId, userId) {
         var newReservation = {
-            MediumId: mediumIdReserving,
-            UserId: userIdReserving
+            MediumId: mediumId,
+            UserId: userId
         };
 
         //POST to reservations table
-        $.post("/api/reservations/create", newReservation, reservation => {
+        $.post("/api/reservations/create", newReservation, result => {
             console.log("NEW RESERVATION MADE:");
             console.log(newReservation);
         })
@@ -83,15 +80,12 @@ $(document).ready(function() {
             })
             .then(() => {
                 console.log("Entering block with $.get");
-                console.log("UserID: ", userIdReserving);
+                console.log("UserID: ", userId);
                 $.get(
-                    "/api/reservations/media/" +
-                        mediumIdReserving +
-                        "/" +
-                        userIdReserving,
+                    "/api/reservations/media/" + mediumId + "/" + userId,
                     data => {
                         console.log(data);
-                        $("#test-id").text(
+                        $("#reservation-position").text(
                             `You are number ${data.userPosition} in line`
                         );
                     }
@@ -99,15 +93,13 @@ $(document).ready(function() {
             });
     }
 
-    function deleteReservation(mediumIdCancelling, userIdCancelling) {
+    //Verified the function works using:
+    //deleteReservation(4, 1);
+    function deleteReservation(mediumId, userId) {
         console.log("Entering fxn deleteReservation");
         //DELETE from reservations table
         $.ajax({
-            url:
-                "/api/reservations/" +
-                userIdCancelling +
-                "/delete/" +
-                mediumIdCancelling,
+            url: "/api/reservations/" + userId + "/delete/" + mediumId,
             type: "DELETE",
             success: result => {
                 console.log("RECORD DELETED");
@@ -118,5 +110,41 @@ $(document).ready(function() {
         //PUT to media table
     }
 
-    deleteReservation(4, 1);
+    //Verified the function works using:
+    //checkOutMedia(8, 2);
+    function checkOutMedia(mediumId, userId) {
+        var newCheckout = {
+            MediumId: mediumId,
+            UserId: userId
+        };
+
+        //POST to checkouthistories table
+        $.post("/api/checkouthistories/create", newCheckout, result => {
+            console.log("NEW CHECKOUT MADE:");
+            console.log(newCheckout);
+        }).then(() => {
+            console.log("TO DO: update media table quantities");
+            //PUT to media table
+        });
+    }
+    checkInMedia(8, 2);
+    function checkInMedia(mediumId, userId) {
+        console.log("Entering fxn checkInMedia");
+        var newCheckin = {
+            MediumId: mediumId,
+            UserId: userId
+        };
+
+        //PUT to checkouthistories table
+        $.ajax({
+            url: "/api/checkouthistories/checkin",
+            type: "PUT",
+            success: result => {
+                console.log("RECORD UPDATED");
+                console.log(result);
+            }
+        });
+
+        //PUT to media table
+    }
 });
