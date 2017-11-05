@@ -71,7 +71,8 @@ module.exports = function getBookInfoByISBN(dataObject, results) {
   console.log("==================");
   console.log(dataDeliverable);
   setTimeout(() => {
-    results.json(dataDeliverable);
+    // results.json(dataDeliverable);
+    res.render("index", dataDeliverable)
   }, 1000);
   // console.log(dataDeliverable);
   // return dataDeliverable;

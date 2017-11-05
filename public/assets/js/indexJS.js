@@ -3,7 +3,7 @@ console.log("Index.js is linked.")
 $(document).ready(function() {
 	$("#PopularCarousel").owlCarousel({
 		loop: true,
-		margin: 25,
+		margin: 10,
 		items: 4,
 		responsive: {
 			500: {
@@ -16,7 +16,7 @@ $(document).ready(function() {
 	})
 	$('#NewCarousel').owlCarousel({
 		loop: true,
-		margin: 25,
+		margin: 10,
 		items: 4,
 		responsive: {
 			500: {
