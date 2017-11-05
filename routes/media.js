@@ -16,7 +16,7 @@ module.exports = app => {
 				where: query
 			})
 			.then(data => {
-				return data[0].id;
+				res.json(data);
 			});
 	});
 

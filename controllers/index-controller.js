@@ -4,7 +4,7 @@ var getBookInfoByISBN = require("../routes/test-google-books-api.js");
 
 // index route for handlebars testing (returns titles and isbns)
 module.exports = function(app) {
-	//curl -i -H "Content-Type: application/json" -X GET http://localhost:3000/popular
+	//curl -i -H "Content-Type: application/json" -X GET http://localhost:3000/index
 	app.get("/index", (req, res) => {
 		var dataObject = {};
 

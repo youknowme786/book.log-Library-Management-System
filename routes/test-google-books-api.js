@@ -54,13 +54,19 @@ module.exports = function getBookInfoByISBN(dataObject, results) {
                 parsedBody.items[0].volumeInfo.imageLinks.thumbnail;
             }
 
-            if (parsedBody.items[0].volumeInfo.industryIdentifiers) {
-              dataDeliverable[item][i].dataISBN10 =
+            if (parsedBody.items[0].volumeInfo.industryIdentifiers[0]) {
+              dataDeliverable[
+                "data" +
+                  parsedBody.items[0].volumeInfo.industryIdentifiers[0].type
+              ] =
                 parsedBody.items[0].volumeInfo.industryIdentifiers[0].identifier;
             }
 
             if (parsedBody.items[0].volumeInfo.industryIdentifiers[1]) {
-              dataDeliverable[item][i].dataISBN13 =
+              dataDeliverable[
+                "data" +
+                  parsedBody.items[0].volumeInfo.industryIdentifiers[1].type
+              ] =
                 parsedBody.items[0].volumeInfo.industryIdentifiers[1].identifier;
             }
 
