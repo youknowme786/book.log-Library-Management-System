@@ -19,14 +19,17 @@ footer {
 	background-color: #040404;
 }
 
+footer .logo {
+	font-size: 1.25rem;
+}
+
 /* Navbar Styling: */
 .logo {
 	font-size: xx-large;
 }
 
 .logo span,
-.nav-link,
-footer span {
+.nav-link {
 	color:#5cb85c;
 }
 
