@@ -1,5 +1,4 @@
 var db = require("../models");
-var getBookInfoByISBN = require("../routes/test-google-books-api.js");
 
 // index route for handlebars testing (returns titles and isbns)
 module.exports = function(app) {

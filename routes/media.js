@@ -19,7 +19,7 @@ module.exports = app => {
 			.then(data => {
 				res.json(data);
 			});
-	});
+	}); // app.get
 
 	// POST route for adding a new book
 	// CURL command:
@@ -64,7 +64,7 @@ module.exports = app => {
 				});
 			}
 		});
-	});
+	}); // app.post
 
 	function updateMediaTable(action) {
 		switch (action) {
