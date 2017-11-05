@@ -4,6 +4,7 @@ let request = require("request");
 module.exports = app => {
 	app.get("/media/:mediaType/:industryIdentifier", (req, response) => {
 		var query = {};
+		query.mediaType = req.params.mediaType;
 		query.industryIdentifier = req.params.industryIdentifier;
 
 		db.Medium
@@ -37,6 +38,8 @@ module.exports = app => {
 						if (parsedBody.items[0].volumeInfo.imageLinks) {
 							dataDeliverable.dataImage =
 								parsedBody.items[0].volumeInfo.imageLinks.thumbnail;
+						} else {
+							dataDeliverable.dataImage = "/assets/img/placeholder.gif";
 						}
 
 						if (parsedBody.items[0].volumeInfo.industryIdentifiers[0]) {
@@ -57,6 +60,7 @@ module.exports = app => {
 					}
 
 					// response.json(dataDeliverable);
+					console.log(dataDeliverable);
 					response.render("book", dataDeliverable);
 				});
 			});
