@@ -35,8 +35,7 @@ module.exports = app => {
 			newMedium.industryIdentifier = isbn;
 		}
 
-		var queryURL =
-			"https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
+		var queryURL = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
 
 		request(queryURL, (err, res, body) => {
 			if (!err && res.statusCode === 200) {
@@ -85,6 +84,8 @@ module.exports = app => {
 				updateData.numShelved = data[0].numShelved;
 				updateData.numReserved = data[0].numReserved;
 				updateData.reservationListSize = data[0].reservationListSize;
+				updateData.numCheckedOut = data[0].numCheckedOut;
+				updateData.totalNumCheckouts = data[0].totalNumCheckouts;
 
 				console.log(updateData);
 
@@ -95,72 +96,54 @@ module.exports = app => {
 							updateData.numReserved++;
 						}
 						updateData.reservationListSize++;
-						console.log(updateData);
 						break;
 
 					case "cancelReservation":
 						if (updateData.numReserved > 0) {
-							if (
-								updateData.numReserved ===
-								updateData.reservationListSize
-							) {
+							if (updateData.numReserved === updateData.reservationListSize) {
 								updateData.numShelved++;
 								updateData.numReserved--;
 							}
 							updateData.reservationListSize--;
 						}
-						console.log(updateData);
 						break;
 
 					case "checkoutWithoutReservation":
-						console.log(action);
-
-						var updateQuery = {
-							// update text here
-						};
-
-						res.json("feature not yet implemented");
+						if (updateData.numShelved > 0) {
+							updateData.numShelved--;
+							updateData.numCheckedOut++;
+							updateData.totalNumCheckouts++;
+						}
 						break;
 
 					case "checkoutWithReservation":
-						console.log(action);
-
-						var updateQuery = {
-							// update text here
-						};
-
-						res.json("feature not yet implemented");
+						if (updateData.numReserved > 0) {
+							updateData.numReserved--;
+							updateData.reservationListSize--;
+							updata.numCheckedOut++;
+							updateData.totalNumCheckouts++;
+						}
 						break;
 
 					case "checkIn":
-						// if ((numShelved + numReserved) < reservationListSize) {}
-						// numReserved++
-						// else numShelved++
-						console.log(action);
-
-						var updateQuery = {
-							// update text here
-						};
-
-						res.json("feature not yet implemented");
+						if (updateData.numCheckedOut > 0) {
+							if (updateData.numReserved < reservationListSize) {
+								updateData.numReserved++;
+							} else {
+								updateData.numShelved++;
+							}
+							updateData.numCheckedOut--;
+						}
 						break;
 
 					case "deleteItem":
 						console.log(action);
-
-						var updateQuery = {
-							// update text here
-						};
 
 						res.json("feature not yet implemented");
 						break;
 
 					case "addItem":
 						console.log(action);
-
-						var updateQuery = {
-							// update text here
-						};
 
 						res.json("feature not yet implemented");
 						break;
@@ -171,6 +154,7 @@ module.exports = app => {
 						res.json("feature not yet implemented");
 						break;
 				}
+				console.log(updateData);
 
 				db.Medium
 					.update(updateData, {
