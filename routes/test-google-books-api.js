@@ -68,7 +68,7 @@ module.exports = function getBookInfoByISBN(dataObject, results) {
             if (counter === 20) {
               console.log("==================");
               console.log(dataDeliverable);
-              results.json(dataDeliverable);
+              results.render("index", dataDeliverable);
             }
           }
         });
@@ -76,11 +76,13 @@ module.exports = function getBookInfoByISBN(dataObject, results) {
     }
   }
 
+<<<<<<< HEAD
   // console.log("==================");
   // console.log(dataDeliverable);
   // setTimeout(() => {
   //   results.json(dataDeliverable);
   // }, 1000);
+
 };
 
 //Example call
