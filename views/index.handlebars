@@ -1,33 +1,43 @@
 {{!-- Featured Carousel --}}
 <div id="featuredrow" class="row justify-content-md-center">
 
-      <img id="Featured-LArrow" src="assets/img/indexImages/B&WLArrow.png">
+	<img id="Featured-LArrow" src="assets/img/indexImages/B&WLArrow.png">
 
-      <img id="Featured-RArrow" src="assets/img/indexImages/B&WRArrow.png">
+	<img id="Featured-RArrow" src="assets/img/indexImages/B&WRArrow.png">
 
-      <div id="FeaturedCarousel" class="owl-carousel owl-theme">
+	<div id="FeaturedCarousel" class="owl-carousel owl-theme">
 
-        <div class="item">
-          <a href="#"><img class="bookcover" src="assets/img/indexImages/featured1.jpg"></a>
-        </div>
+		<div class="item">
+			<a href="#">
+				<img class="bookcover" src="assets/img/indexImages/featured1.jpg">
+			</a>
+		</div>
 
-        <div class="item">
-          <a href="#"><img class="bookcover" src="assets/img/indexImages/featured2.jpg"></a>             
-        </div>
+		<div class="item">
+			<a href="#">
+				<img class="bookcover" src="assets/img/indexImages/featured2.jpg">
+			</a>
+		</div>
 
-        <div class="item">
-          <a href="#"><img class="bookcover" src="assets/img/indexImages/featured3.jpg"></a>
-        </div>
+		<div class="item">
+			<a href="#">
+				<img class="bookcover" src="assets/img/indexImages/featured3.jpg">
+			</a>
+		</div>
 
-        <div class="item">
-          <a href="#"><img class="bookcover" src="assets/img/indexImages/featured4.jpg"></a>
-        </div>
+		<div class="item">
+			<a href="#">
+				<img class="bookcover" src="assets/img/indexImages/featured4.jpg">
+			</a>
+		</div>
 
-        <div class="item">
-          <a href="#"><img class="bookcover" src="assets/img/indexImages/featured5.jpg"></a>
-        </div>
+		<div class="item">
+			<a href="#">
+				<img class="bookcover" src="assets/img/indexImages/featured5.jpg">
+			</a>
+		</div>
 
-      </div>
+	</div>
 </div>
 
 {{!-- Popular Carousel --}}
@@ -47,8 +57,10 @@
 			{{#each popular}}
 			<div class="item">
 				<div class="card text-center" style="width: 11rem;">
-					<a href="#"><img data-toggle="modal" data-target=".bd-example-modal-lg" class="bookcover" src="assets/img/indexImages/frost9.jpg"></a>
-					<span data-id ='{{this.id}}' data-title='{{this.dataTitle}}' class="d-inline-block text-truncate" style="max-width: 175px;">
+					<a href="#">
+						<img class="bookcover" src="assets/img/indexImages/frost9.jpg">
+					</a>
+					<span data-id='{{this.id}}' data-title='{{this.dataTitle}}' class="d-inline-block text-truncate" style="max-width: 175px;">
 						{{this.title}}
 					</span>
 				</div>
@@ -74,13 +86,15 @@
 
 		<img id="New-LArrow" class="col-1.5" src="assets/img/indexImages/LArrow.png">
 
-		<div id="NewCarousel" class="col-10 owl-carousel owl-theme">	
+		<div id="NewCarousel" class="col-10 owl-carousel owl-theme">
 
 			{{#each new}}
 			<div class="item">
 				<div class="card text-center" style="width: 11rem;">
-					<a href="#"><img data-toggle="modal" data-target=".bd-example-modal-lg" class="bookcover" src="assets/img/indexImages/frost9.jpg"></a>
-					<span data-{{this.id}} ='{{this.id}}' class="d-inline-block text-truncate" style="max-width: 175px;">
+					<a href="#">
+						<img data-toggle="modal" data-target=".bd-example-modal-lg" class="bookcover" src="assets/img/indexImages/frost9.jpg">
+					</a>
+					<span data-{{this.id}}='{{this.id}}' class="d-inline-block text-truncate" style="max-width: 175px;">
 						{{this.title}}
 					</span>
 				</div>
