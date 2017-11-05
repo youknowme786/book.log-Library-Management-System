@@ -91,10 +91,11 @@ $(document).ready(function() {
                         userIdReserving,
                     data => {
                         console.log(data);
+                        $("#test-id").text(
+                            `You are number ${data.userPosition} in line`
+                        );
                     }
                 );
             });
-
-        //PUT to media table
     }
 });
