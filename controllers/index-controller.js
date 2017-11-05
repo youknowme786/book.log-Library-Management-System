@@ -29,11 +29,9 @@ module.exports = function(app) {
 
 						console.log("==================");
 						console.log(dataDeliverable);
-						res.json(dataDeliverable);
+						// res.json(dataDeliverable);
+						res.render("index", dataDeliverable);
 					});
-				// .then(() => {
-				//     res.json(dataDeliverable);
-				// });
 			});
 	});
 };

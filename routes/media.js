@@ -58,19 +58,10 @@ module.exports = app => {
 
 				console.log(newMedium);
 
-				db.Medium
-					.create(
-						newMedium
-						// {
-						// 	title: req.body.title.trim(),
-						// 	mediaType: req.body.mediaType,
-						// 	industryIdentifier: industryIdentifierInput,
-						// }
-					)
-					.then(data => {
-						console.log(data);
-						response.json(data);
-					});
+				db.Medium.create(newMedium).then(data => {
+					console.log(data);
+					response.json(data);
+				});
 			}
 		});
 	});
