@@ -78,9 +78,10 @@ module.exports = app => {
 				where: { id: mediumId }
 			})
 			.then(data => {
-				console.log(action + " " + mediumId);
+				console.log(action + " medium:" + mediumId);
 
 				var updateData = {};
+				updateData.totalStock = data[0].totalStock;
 				updateData.numShelved = data[0].numShelved;
 				updateData.numReserved = data[0].numReserved;
 				updateData.reservationListSize = data[0].reservationListSize;
@@ -137,15 +138,17 @@ module.exports = app => {
 						break;
 
 					case "deleteItem":
-						console.log(action);
-
-						res.json("feature not yet implemented");
+						if (updateData.totalStock > 0) {
+							if (updateData.numShelved > 0) {
+								updateData.numShelved--;
+							} else if (updateData.numReserved > 0) {
+								updateData.numReserved--;
+							}
+						}
 						break;
 
 					case "addItem":
-						console.log(action);
-
-						res.json("feature not yet implemented");
+						updateData.numShelved++;
 						break;
 
 					default:
