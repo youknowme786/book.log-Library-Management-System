@@ -30,7 +30,7 @@ INSERT INTO checkouthistories (isCheckedOut, lateFees, MediumId, UserId)
 VALUES (true,3.50,3,1), (true,0,6,3), (false,0,5,2), (false,10,1,4), (true,30,2,4);
 
 INSERT INTO reservations (MediumId, UserId)
-values (4,1) ,(5,2), (1,3), (1,4), (2,3), (6,1), (5,2), (1,4);
+values (4,1) ,(5,2), (1,3), (2,4), (2,3), (6,1), (7,2), (1,4);
 
 INSERT INTO favorites (MediumId, UserId)
 VALUES (1,3), (4,1), (4, 3), (6,2);
