@@ -111,14 +111,8 @@ p.book-summary{
 	padding: 7px 9px;
 }
 
-/* .fa-heart-o:hover,
-.nav-tabs .nav-link:hover {
-	color: #fff;
-	background-color: #449d44;
-	border-color: #398439;
-} */
-
-.fav-on .fa-heart-o {
+.fav-on .fa-heart-o,
+.fav-selected .fa-heart-o {
 	color: #fff;
 	background-color: #449d44;
 	border-color: #398439;

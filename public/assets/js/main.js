@@ -45,7 +45,7 @@ $(document).ready(function () {
         populateBook(keyWord);
     });
 
-    $("#actionBtnReserve").on("click", function (event) {
+    $("#actionBtnReserve").on("click", function () {
         // gets the book id
         var id = $(this).data('mediumId');
 
@@ -58,6 +58,47 @@ $(document).ready(function () {
         //     return;
         // }
     });
+
+    $('#actionBtnFav').on('click', function (event) {
+        event.preventDefault();
+        var id = $(this).data('mediumId');
+
+        var favorite = {
+            MediumId: id,
+            UserId: 3 // userId
+        };
+
+        if ($(this).hasClass('fav-selected')) {
+            removeFromFavorites(favorite);
+        } else {
+            addToFavorites(favorite);
+        }
+
+    })
+
+    function addToFavorites(newFavorite) {
+        $.post("/api/favorites/create", newFavorite, result => {
+            console.log("NEW newFavorite MADE:");
+            console.log(newFavorite);
+        })
+            .then(() => {
+                console.log("TO DO: update media table quantities");
+                $('#actionBtnFav').addClass('fav-selected');
+            })
+    }
+
+    function removeFromFavorites(favorite) {
+        // /api/:table /:UserId / delete /:MediumId?
+        $.ajax({
+            url: "/api/favorites/" + favorite.userId + "/delete/" + favorite.mediumId,
+            type: "DELETE",
+            success: result => {
+                console.log("RECORD DELETED");
+                console.log(result);
+                $('#actionBtnFav').removeClass('fav-selected');
+            }
+        });
+    }
 
     function reserveMedia(mediumId, userId) {
         var newReservation = {
