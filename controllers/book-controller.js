@@ -1,5 +1,4 @@
 var db = require("../models");
-let request = require("request");
 
 module.exports = app => {
 	// curl -i -H "Content-Type: application/json" -X GET http://localhost:3000/media/book/9781781100523
