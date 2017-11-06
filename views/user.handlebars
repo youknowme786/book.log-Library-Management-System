@@ -1,0 +1,142 @@
+<main class="container mb-5">
+
+    <div class="row mb-3">
+
+        <div class="col-md-12 text-center mt-5">
+            <h1>{{this.userData.firstName}} {{this.userData.middleName}} {{this.userData.lastName}}</h1>
+            <p>Member since:
+                <span>
+                    1996
+                </span>
+            </p>
+            <p class="alert">This is an Alert! This is an Alert! This is an Alert! This is an Alert!</p>
+            <hr class="mt-3">
+
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4 text-center profile-img">
+            <h3 class="mb-3">My Account</h3>
+            <img src="assets/img/profile-img.jpg" class="img-fluid" alt="I am a profile picture">
+            <div class="row">
+
+                <div class="col-md-12 text-left mt-5">
+                    <p>
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                        <span>LIB-809-00{{this.userData.id}}</span>
+                    </p>
+                    <p>
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        <span>{{this.userData.emailAddress}}</span>
+                    </p>
+                    <p>
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        <span>{{this.userData.phoneNumber}}</span>
+                    </p>
+
+
+                    <span>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        <a href="#"> My Favorite Books</a>
+                    </span>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 border-lv">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">My Books</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Pay Fees</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    {{#each reservations}}
+                    <article class="card mt-3">
+                        <div class="card-body">
+                            <h4 class="card-title">{{this.Medium.title}}</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">by
+                                <span>
+                                    <a href="#">{{this.Medium.author}}</a>
+                                </span>
+                            </h6>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    <span>Checked Out
+                                        <span>Return by December 15, 2017</span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    <span>Reserved
+                                        <span>5</span>
+                                    </span>
+                                </label>
+                            </div>
+                            <span>
+                                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </article>
+                    {{/each}}
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"></div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"></div>
+        </div>
+    </div>
+    <!-- <p>
+                    <b class="text-uppercase">Summary:</b> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                    been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                    type and scrambled it to make a type specimen book. It has survived not only five centuries, but also
+                    the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
+                    with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                    software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p>
+                    <b class="text-uppercase">ISBN:</b>
+                    <span> 978-0071463386</span>
+                </p>
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div>
+                            <span class="on-stock">5</span>
+                            <a href="#">In Stock</a>
+                        </div>
+                        <span>
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <a href="#"> Add to Favorites</a>
+                        </span>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <form action="/" method="POST">
+                            <button id="add-btn" class="btn btn-success text-uppercase" type="submit">Reserve Book
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <form action="/" method="POST">
+                            <button id="add-btn" class="btn btn-success text-uppercase" type="submit">Add to Waitlist
+                            </button>
+                        </form>
+                    </div> -->
+
+    </div>
+    </div>
+    </div>
+</main>

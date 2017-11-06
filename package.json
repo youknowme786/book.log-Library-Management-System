@@ -19,12 +19,16 @@
   "homepage": "https://github.com/youknowme786/Project-2#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "connect-ensure-login": "^0.1.1",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
     "googleapis": "^22.2.0",
     "handlebars": "^4.0.11",
     "method-override": "^2.3.10",
     "mysql2": "^1.4.2",
+    "passport": "^0.4.0",
+    "passport-auth0": "^0.6.0",
     "request": "^2.83.0",
     "sequelize": "^4.20.3"
   }

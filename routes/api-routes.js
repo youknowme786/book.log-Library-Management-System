@@ -52,6 +52,10 @@ module.exports = app => {
 				dbModel = db.User;
 				break;
 
+			case "favorites":
+				dbModel = db.Favorite;
+				break;
+
 			default:
 			//go to error function
 		}
@@ -81,7 +85,7 @@ module.exports = app => {
 					for (let i = 0; i < data.length; i++) {
 						if (data[i].UserId === UserId) {
 							console.log("Found user's position on list");
-							reservationsDeliverable.userPosition = i;
+							reservationsDeliverable.userPosition = i + 1;
 							break;
 						}
 					}
@@ -122,6 +126,7 @@ module.exports = app => {
 			.then(data => {
 				console.log("RESERVATION ADDED");
 				// res.json(data);
+				//call updateMediaTable("reserveMedia", req.body.MediumId)
 			});
 	});
 
