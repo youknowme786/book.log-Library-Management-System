@@ -3,26 +3,32 @@ console.log("Index.js is linked.")
 $(document).ready(function() {
 	$("#PopularCarousel").owlCarousel({
 		loop: true,
-		margin: 10,
-		items: 4,
+		margin: 0,
+		items: 1,
 		responsive: {
-			500: {
+			600: {
+				items: 2
+			},
+			750: {
 				items: 3
 			},
-			1000: {
+			1100: {
 				items: 4
 			}
 		}
 	})
 	$('#NewCarousel').owlCarousel({
 		loop: true,
-		margin: 10,
+		margin: 0,
 		items: 4,
 		responsive: {
-			500: {
+			600: {
+				items: 2
+			},
+			750: {
 				items: 3
 			},
-			1000: {
+			1100: {
 				items: 4
 			}
 		}
@@ -34,7 +40,6 @@ $(document).ready(function() {
 		autoplay: true,
 		autoplayTimeout: 4000,
 		smartSpeed: 750,
-		mouseDrag: false
 	})
 });
 

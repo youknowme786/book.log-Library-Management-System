@@ -1,5 +1,5 @@
 console.log("main.js is linked");
-$(document).ready(function() {
+$(document).ready(function () {
     function populateBook(isbn) {
         var apiKey = "AIzaSyBVaPHihkOt3MSXrw5Hf-HjJB7TrOdawlo";
         var queryURL =
@@ -12,7 +12,7 @@ $(document).ready(function() {
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).done(function(data) {
+        }).done(function (data) {
             console.log(data);
         });
     }
@@ -22,39 +22,35 @@ $(document).ready(function() {
         console.log(stockStatus);
 
         if (stockStatus === 0) {
-            $("#reserveBook").removeClass("visible");
-            $("#reserveBook").addClass("invisible");
-            $("#addToWhishList").removeClass("invisible");
-            $("#addToWhishList").addClass("visible");
+            $("#actionBtnReserve").text("Add to Waitlist");
             $(".on-stock").addClass("stock-alert");
         }
     }
 
     $(".favorite-book").hover(
-        function() {
+        function () {
             $(this).addClass("fav-on");
         },
-        function() {
+        function () {
             $(this).removeClass("fav-on");
         }
     );
 
     isOnShelves();
 
-    $(document).on("click", "a.dropdown-item", function() {
+    $(document).on("click", "a.dropdown-item", function () {
         var keyWord = $("#search-input")
             .val()
             .trim();
         populateBook(keyWord);
     });
 
-    $("#action-btn-reserve").on("click", function(event) {
-        // console.log("reserve button pressed");
-        event.preventDefault();
-        // gets the book id of the ice cream and the cutomer name
-        var id = $("#isbn").html();
+    $("#actionBtnReserve").on("click", function () {
+        // gets the book id
+        var id = $(this).data('mediumId');
+
         console.log(id);
-        reserveMedia(6, 1);
+        reserveMedia(id, 2);
 
         // var customer = $(this).parent().closest('.input-group').children('.form-control').val();
         // if (customer === "") {
@@ -62,6 +58,47 @@ $(document).ready(function() {
         //     return;
         // }
     });
+
+    $('#actionBtnFav').on('click', function (event) {
+        event.preventDefault();
+        var id = $(this).data('mediumId');
+
+        var favorite = {
+            MediumId: id,
+            UserId: 3 // userId
+        };
+
+        if ($(this).hasClass('fav-selected')) {
+            removeFromFavorites(favorite);
+        } else {
+            addToFavorites(favorite);
+        }
+
+    })
+
+    function addToFavorites(newFavorite) {
+        $.post("/api/favorites/create", newFavorite, result => {
+            console.log("NEW newFavorite MADE:");
+            console.log(newFavorite);
+        })
+            .then(() => {
+                console.log("TO DO: update media table quantities");
+                $('#actionBtnFav').addClass('fav-selected');
+            })
+    }
+
+    function removeFromFavorites(favorite) {
+        // /api/:table /:UserId / delete /:MediumId?
+        $.ajax({
+            url: "/api/favorites/" + favorite.userId + "/delete/" + favorite.mediumId,
+            type: "DELETE",
+            success: result => {
+                console.log("RECORD DELETED");
+                console.log(result);
+                $('#actionBtnFav').removeClass('fav-selected');
+            }
+        });
+    }
 
     function reserveMedia(mediumId, userId) {
         var newReservation = {
@@ -127,7 +164,7 @@ $(document).ready(function() {
             //PUT to media table
         });
     }
-    checkInMedia(8, 2);
+    // checkInMedia(8, 2);
     function checkInMedia(mediumId, userId) {
         console.log("Entering fxn checkInMedia");
         var newCheckin = {
