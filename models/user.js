@@ -17,11 +17,6 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false
 			},
 
-			userType: {
-				type: DataTypes.STRING,
-				allowNull: false
-			},
-
 			phoneNumber: {
 				type: DataTypes.STRING,
 				allowNull: false,
@@ -66,6 +61,17 @@ module.exports = (sequelize, DataTypes) => {
 				validate: {
 					isEmail: true
 				}
+			},
+
+			profilePicture: {
+				type: DataTypes.STRING,
+				allowNull: true,
+				defaultValue: "/assets/img/profile-img.jpg"
+			}
+
+			userType: {
+				type: DataTypes.STRING,
+				allowNull: false
 			},
 
 			isEmployee: {
