@@ -17,35 +17,46 @@ module.exports = app => {
 
 		db.Reservation
 			.findAll({
-				where: { UserId: req.params.userId }
+				where: { UserId: req.params.userId },
+				include: [db.Medium]
 			})
 			.then(data => {
-				dataDeliverable.reservations = JSON.parse(
-					JSON.stringify(data[0])
-				);
+				dataDeliverable.reservations = JSON.parse(JSON.stringify(data));
 			});
 
 		db.Favorite
 			.findAll({
-				where: { UserId: req.params.userId }
+				where: { UserId: req.params.userId },
+				include: [db.Medium]
 			})
 			.then(data => {
-				dataDeliverable.favorites = JSON.parse(JSON.stringify(data[0]));
+				dataDeliverable.favorites = JSON.parse(JSON.stringify(data));
 			});
 
 		db.CheckOutHistory
 			.findAll({
-				where: { UserId: req.params.userId }
+				where: { UserId: req.params.userId },
+				include: [db.Medium]
 			})
 			.then(data => {
 				dataDeliverable.checkOutHistories = JSON.parse(
-					JSON.stringify(data[0])
+					JSON.stringify(data)
 				);
 			});
 
+		db.Review
+			.findAll({
+				where: { UserId: req.params.userId },
+				include: [db.Medium]
+			})
+			.then(data => {
+				dataDeliverable.reviews = JSON.parse(JSON.stringify(data));
+			});
+
 		setTimeout(() => {
-			response.json(dataDeliverable);
-		}, 1000);
+			// response.json(dataDeliverable);
+			response.render("user", dataDeliverable);
+		}, 2000);
 
 		// dataDeliverable.waitingList = db.waitingList;
 	});
