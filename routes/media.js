@@ -35,7 +35,8 @@ module.exports = app => {
 			newMedium.industryIdentifier = isbn;
 		}
 
-		var queryURL = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
+		var queryURL =
+			"https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
 
 		request(queryURL, (err, res, body) => {
 			if (!err && res.statusCode === 200) {
@@ -65,12 +66,11 @@ module.exports = app => {
 		});
 	}); // app.post
 
-	// function updateMediaTable(action, mediumId) {
-
-	// // comment out below if using fxn
-	app.get("/testupdate/:action/:mediumId", (req, res) => {
-		action = req.params.action;
-		mediumId = req.params.mediumId;
+	function updateMediaTable(action, mediumId) {
+		// // comment out below if using fxn
+		// app.get("/updateMediaTable/:action/:mediumId", (req, res) => {
+		// 	action = req.params.action;
+		// 	mediumId = req.params.mediumId;
 		// // comment out above if using fxn
 
 		db.Medium
@@ -101,7 +101,10 @@ module.exports = app => {
 
 					case "cancelReservation":
 						if (updateData.numReserved > 0) {
-							if (updateData.numReserved === updateData.reservationListSize) {
+							if (
+								updateData.numReserved ===
+								updateData.reservationListSize
+							) {
 								updateData.numShelved++;
 								updateData.numReserved--;
 							}
@@ -148,7 +151,10 @@ module.exports = app => {
 						break;
 
 					case "addItem":
-						if (updateData.reservationListSize > updateData.numReserved) {
+						if (
+							updateData.reservationListSize >
+							updateData.numReserved
+						) {
 							updateData.numReserved++;
 						} else {
 							updateData.numShelved++;
@@ -168,9 +174,9 @@ module.exports = app => {
 						where: { id: mediumId }
 					})
 					.then(data => {
-						res.json("rows affected: " + data[0]);
+						res.json("rows affected: " + data);
 					});
 			}); // db.medium.findAll().then()
-	}); // app.get() // comment out if using fxn
-	// } // function updateMediaTable(){}
+		// }); // app.get() // comment out if using fxn
+	} // function updateMediaTable(){}
 };
