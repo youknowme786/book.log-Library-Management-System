@@ -30,7 +30,7 @@ module.exports = app => {
 		var newMedium = {};
 		newMedium.mediaType = req.body.mediaType;
 
-		if (newMedium.mediaType === "book") {
+		if (newMedium.mediaType === "Book") {
 			var isbn = req.body.industryIdentifier;
 			newMedium.industryIdentifier = isbn;
 		}
