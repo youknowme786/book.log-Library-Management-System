@@ -67,7 +67,7 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING,
 				allowNull: true,
 				defaultValue: "/assets/img/profile-img.jpg"
-			}
+			},
 
 			userType: {
 				type: DataTypes.STRING,
