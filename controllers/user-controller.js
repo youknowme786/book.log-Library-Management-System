@@ -89,8 +89,8 @@ module.exports = app => {
 
 							counter++;
 							if (counter === target) {
-								res.json(dataDeliverable);
-								// res.render("user", dataDeliverable);
+								// res.json(dataDeliverable);
+								res.render("user", dataDeliverable);
 							}
 						});
 				});

@@ -3,6 +3,10 @@ var db = require("../models");
 // index route for handlebars testing (returns titles and isbns)
 module.exports = function(app) {
 	//curl -i -H "Content-Type: application/json" -X GET http://localhost:3000/popular
+	app.get("/", (req, res) => {
+		res.redirect("/index");
+	});
+
 	app.get("/index", (req, res) => {
 		var dataDeliverable = {};
 
