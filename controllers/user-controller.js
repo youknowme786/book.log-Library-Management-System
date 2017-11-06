@@ -1,12 +1,14 @@
 var db = require("../models");
 
 module.exports = app => {
-	app.get("/users/:userId", (req, response) => {
+	//curl -i -H "Content-Type: application/json" http://localhost:3000/users/2
+	app.get("/users/:userId", (req, res) => {
 		let dataDeliverable = {};
+		let userId = parseInt(req.params.userId);
 
 		db.User
 			.findAll({
-				where: { id: req.params.userId }
+				where: { id: userId }
 			})
 			.then(data => {
 				dataDeliverable.userData = JSON.parse(JSON.stringify(data[0]));
@@ -48,8 +50,60 @@ module.exports = app => {
 			})
 			.then(data => {
 				dataDeliverable.reviews = JSON.parse(JSON.stringify(data));
-				// response.json(dataDeliverable);
-				response.render("user", dataDeliverable);
+				res.render("user", dataDeliverable);
 			});
+		// .then(() => {
+		// 	let counter = 0;
+		// 	var target = 0;
+		// 	console.log(
+		// 		counter,
+		// 		target,
+		// 		"COUNTER, TARGET ******************************************************"
+		// 	);
+
+		// 	dataDeliverable.reservations.forEach(reservation => {
+		// 		let mediumId = reservation.MediumId;
+		// 		// let numReserved = reservation.Medium.numReserved;
+
+		// 		db.Reservation
+		// 			.findAll({ where: { MediumId: mediumId } })
+		// 			.then(data => {
+		// 				target += data.length;
+		// 				console.log(
+		// 					counter,
+		// 					target,
+		// 					"COUNTER, TARGET ******************************************************"
+		// 				);
+
+		// 				let thisData = JSON.parse(JSON.stringify(data));
+
+		// 				thisData.forEach((item, index) => {
+		// 					if (item.UserId === userId) {
+		// 						reservation.position = index + 1;
+		// 					}
+
+		// 					console.log(
+		// 						counter,
+		// 						target,
+		// 						index,
+		// 						"COUNTER, TARGET, INDEX *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+		// 					);
+		// 					counter++;
+		// 					if (counter === target) {
+		// 						console.log(
+		// 							"DELIVERING DATA *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+		// 						);
+		// 						res.json(dataDeliverable);
+		// 						// res.render("user", dataDeliverable);
+		// 					}
+		// 					console.log(
+		// 						counter,
+		// 						index,
+		// 						"COUNTER,TARGET, INDEX *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+		// 					);
+		// 				});
+		// 			});
+		// 	});
+		// });
 	});
 };
