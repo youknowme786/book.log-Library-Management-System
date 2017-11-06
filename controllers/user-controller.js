@@ -3,29 +3,50 @@ let request = require("request");
 
 module.exports = app => {
 	app.get("/users/:userId", (req, response) => {
-		var query = {};
-		query.id = req.params.userId;
-
 		let dataDeliverable = {};
 
-		dataDeliverable.userData = db.User
+		db.User
 			.findAll({
-				where: query
+				where: { id: req.params.userId }
 			})
 			.then(data => {
 				dataDeliverable.userData = JSON.parse(JSON.stringify(data[0]));
-				response.json(dataDeliverable);
+				// response.json(dataDeliverable);
 				// response.render("user", dataDeliverable);
 			});
 
-		// dataDeliverable.userData = db.User
-		// 	.findAll({
-		// 		where: query
-		// 	})
-		// 	.then(data => {
-		// 		dataDeliverable.userData = JSON.parse(JSON.stringify(data[0]));
-		// 		response.json(dataDeliverable);
-		// 		// response.render("user", dataDeliverable);
-		// 	});
+		db.Reservation
+			.findAll({
+				where: { UserId: req.params.userId }
+			})
+			.then(data => {
+				dataDeliverable.reservations = JSON.parse(
+					JSON.stringify(data[0])
+				);
+			});
+
+		db.Favorite
+			.findAll({
+				where: { UserId: req.params.userId }
+			})
+			.then(data => {
+				dataDeliverable.favorites = JSON.parse(JSON.stringify(data[0]));
+			});
+
+		db.CheckOutHistory
+			.findAll({
+				where: { UserId: req.params.userId }
+			})
+			.then(data => {
+				dataDeliverable.checkOutHistories = JSON.parse(
+					JSON.stringify(data[0])
+				);
+			});
+
+		setTimeout(() => {
+			response.json(dataDeliverable);
+		}, 1000);
+
+		// dataDeliverable.waitingList = db.waitingList;
 	});
 };
