@@ -57,7 +57,7 @@
 			{{#each popular}}
 			<div class="item">
 				<div class="card text-center" style="width: 11rem;">
-					<a href="#">
+					<a href="/media/book/{{this.industryIdentifier}}">
 						<img class="bookcover" src="{{this.image}}">
 					</a>
 					<span data-id='{{this.id}}' class="d-inline-block text-truncate book-title" style="max-width: 175px;">
@@ -94,7 +94,7 @@
 			{{#each new}}
 			<div class="item">
 				<div class="card text-center" style="width: 11rem;">
-					<a href="#">
+					<a href="/media/book/{{this.industryIdentifier}}">
 						<img data-toggle="modal" data-target=".bd-example-modal-lg" class="bookcover" src="{{this.image}}">
 					</a>
 					<span data-id='{{this.id}}' class="d-inline-block text-truncate book-title" style="max-width: 175px;">

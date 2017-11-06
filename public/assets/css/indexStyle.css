@@ -180,7 +180,7 @@ p.book-summary{
 	}
 
 	.card span {
-		font-size: 17px;
+		font-size: 14px;
 	}
 
 	.book-title {
@@ -241,5 +241,17 @@ p.book-summary{
 
 	.action-book-row .btn {
 		width: 100%;	
+	}
+}
+
+@media (max-width: 443px) {
+
+	#lefthr {
+		margin-left: 20px;
+		width: 12%;
+	}
+
+	#righthr {
+		width: 12%;
 	}
 }
