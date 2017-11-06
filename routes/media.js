@@ -35,8 +35,7 @@ module.exports = app => {
 			newMedium.industryIdentifier = isbn;
 		}
 
-		var queryURL =
-			"https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
+		var queryURL = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
 
 		request(queryURL, (err, res, body) => {
 			if (!err && res.statusCode === 200) {
@@ -101,10 +100,7 @@ module.exports = app => {
 
 					case "cancelReservation":
 						if (updateData.numReserved > 0) {
-							if (
-								updateData.numReserved ===
-								updateData.reservationListSize
-							) {
+							if (updateData.numReserved === updateData.reservationListSize) {
 								updateData.numShelved++;
 								updateData.numReserved--;
 							}
@@ -151,10 +147,7 @@ module.exports = app => {
 						break;
 
 					case "addItem":
-						if (
-							updateData.reservationListSize >
-							updateData.numReserved
-						) {
+						if (updateData.reservationListSize > updateData.numReserved) {
 							updateData.numReserved++;
 						} else {
 							updateData.numShelved++;
