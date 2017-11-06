@@ -184,4 +184,9 @@ $(document).ready(function () {
 
         //PUT to media table
     }
+    // /users/:userId
+
+    // $.get("/api/users/userId", function (data) {
+    //     console.log("show me object" + data);
+    // });
 });
