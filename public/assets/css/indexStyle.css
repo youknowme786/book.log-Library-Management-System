@@ -133,24 +133,6 @@ p.book-summary{
 	border-left: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.action-book-row {
-	position: relative
-}
-
-#reserveBook,
-#addToWhishList {
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-
-.visible {
-  visibility: visible;
-}
-.invisible {
-  visibility: hidden;
-}
-
 .alert{
 	padding: 0;
 	font-size: 12px;
