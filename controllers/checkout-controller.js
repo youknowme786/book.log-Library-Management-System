@@ -22,14 +22,14 @@ module.exports = app => {
 				},
 				{
 					where: {
-						UserId: req.body.UserId,
-						MediumId: req.body.MediumId
+						UserId: req.body.userId,
+						MediumId: req.body.mediumId
 					}
 				}
 			)
 			.then(data => {
 				//PUT to media table
-				updateMediaTable("checkIn", req.body.MediumId);
+				updateMediaTable("checkIn", req.body.mediumId);
 				res.json(data);
 			});
 	});
@@ -41,14 +41,14 @@ module.exports = app => {
 	app.post("/api/checkouthistories/create/withoutres", (req, res) => {
 		db.CheckOutHistory
 			.create({
-				MediumId: req.body.MediumId,
-				UserId: req.body.UserId
+				MediumId: req.body.mediumId,
+				UserId: req.body.userId
 			})
 			.then(data => {
 				//PUT to media table
 				updateMediaTable(
 					"checkoutWithoutReservation",
-					req.body.MediumId
+					req.body.mediumId
 				);
 				res.json(data);
 			});
@@ -57,24 +57,24 @@ module.exports = app => {
 	//CHECK OUT A BOOK WITH A RESERVATION
 	//POST to checkouthistories table
 	//CURL command:
-	//curl -H "Content-Type: application/json" -X POST -d '{"MediumId": 1, "UserId": 1}' http://localhost:3000/api/favorites/create
+	//curl -H "Content-Type: application/json" -X POST -d '{"MediumId": 1, "UserId": 1}' http://localhost:3000/api/checkouthistories/create/withres
 	app.post("/api/checkouthistories/create/withres", (req, res) => {
 		db.CheckOutHistory
 			.create({
-				MediumId: req.body.MediumId,
-				UserId: req.body.UserId
+				MediumId: req.body.mediumId,
+				UserId: req.body.userId
 			})
 			.then(data => {
 				//DELETE to reservations table
 				deleteRowFromTable(
 					"reservations",
-					req.body.UserId,
-					req.body.MediumId
+					req.body.userId,
+					req.body.mediumId
 				);
 			})
 			.then(data => {
 				//PUT to media table
-				updateMediaTable("checkoutWithReservation", req.body.MediumId);
+				updateMediaTable("checkoutWithReservation", req.body.mediumId);
 			});
 	});
 
@@ -95,34 +95,34 @@ module.exports = app => {
 				},
 				{
 					where: {
-						UserId: req.body.UserId,
-						MediumId: req.body.MediumId
+						UserId: req.body.userId,
+						MediumId: req.body.mediumId
 					}
 				}
 			)
 			.then(data => {
 				//PUT to media table
-				updateMediaTable("checkIn", req.body.MediumId);
+				updateMediaTable("checkIn", req.body.mediumId);
 			})
 			.then(() => {
 				//check out without reservation
 				//POST to checkouthistories table
 				return db.CheckOutHistory.create({
-					MediumId: req.body.MediumId,
-					UserId: req.body.UserId
+					MediumId: req.body.mediumId,
+					UserId: req.body.userId
 				});
 			})
 			.then(data => {
 				//DELETE to reservations table
 				deleteRowFromTable(
 					"reservations",
-					req.body.UserId,
-					req.body.MediumId
+					req.body.userId,
+					req.body.mediumId
 				);
 			})
 			.then(data => {
 				//PUT to media table
-				updateMediaTable("checkoutWithReservation", req.body.MediumId);
+				updateMediaTable("checkoutWithReservation", req.body.mediumId);
 				res.json(data);
 			});
 	});
