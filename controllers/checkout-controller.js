@@ -58,7 +58,7 @@ module.exports = app => {
 	//CHECK OUT A BOOK WITH A RESERVATION
 	//POST to checkouthistories table
 	//CURL command:
-	//curl -H "Content-Type: application/json" -X POST -d '{"MediumId": 1, "UserId": 1}' http://localhost:3000/api/checkouthistories/create/withres
+	//curl -H "Content-Type: application/json" -X POST -d '{"mediumId": 1, "userId": 1}' http://localhost:3000/api/checkouthistories/create/withres
 	app.post("/api/checkouthistories/create/withres", (req, res) => {
 		db.CheckOutHistory
 			.create({
