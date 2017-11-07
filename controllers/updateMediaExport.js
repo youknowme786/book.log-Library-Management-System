@@ -108,7 +108,7 @@ module.exports = {
 			});
 	}, // function updateMediaTable(){}}
 
-	deleteRowFromTable: (table, UserId, MediumId) => {
+	deleteRowFromTable: (table, userId, mediumId) => {
 		//DELETE from any table
 		//provide the table name, user id, and medium id
 		//if deleting from the users or media table/ enter the id in the :UserId parameter
@@ -116,7 +116,7 @@ module.exports = {
 
 		//Adjusts query if querying through users/media table where there are no foreign keys
 		if (table === "users" || table === "media") {
-			var id = UserId;
+			var id = userId;
 			query = {
 				where: {
 					id: id
@@ -124,8 +124,8 @@ module.exports = {
 			};
 		} else {
 			query = {
-				UserId: UserId,
-				MediumId: MediumId
+				UserId: userId,
+				MediumId: mediumId
 			};
 		}
 
