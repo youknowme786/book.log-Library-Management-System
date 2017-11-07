@@ -101,7 +101,7 @@ module.exports = {
 			});
 	}, // function updateMediaTable(){}}
 
-	deleteItemfromTable: (table, UserId, MediumId, res) => {
+	deleteRowFromTable: (table, UserId, MediumId, res) => {
 		//DELETE from any table
 		//provide the table name, user id, and medium id
 		//if deleting from the users or media table/ enter the id in the :UserId parameter
