@@ -46,19 +46,19 @@
             </div>
         </div>
         <div class="col-md-8 border-lv">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" id="myBooks-tab" data-toggle="tab" href="#myBooks" role="tab" aria-controls="myBooks" aria-selected="true">My Books</a>
+                    <a class="nav-link active" data-toggle="tab" href="#myBooks">My Books</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="history-tab" data-toggle="tab" href="#history" role="tab" aria-controls="history" aria-selected="false">Check-Out History</a>
+                    <a class="nav-link" data-toggle="tab" href="#history">Check-Out History</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="favorites-tab" data-toggle="tab" href="#favorites" role="tab" aria-controls="favorites" aria-selected="false">Favorites</a>
+                    <a class="nav-link" data-toggle="tab" href="#favorites">Favorites</a>
                 </li>
             </ul>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="myBooks" role="tabpanel" aria-labelledby="myBooks-tab">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="myBooks">
                     {{#each reservations}}
                     <article class="card mt-3">
                         <div class="card-body row">
@@ -75,14 +75,15 @@
                                         <i> {{this.reservationStatus}}</i>
                                     </span>
                                 </p>
-                                <button id="actionBtnReserve" class="btn btn-success text-uppercase" type="button" data-medium-id="{{this.Medium.id}}" data-user-id="{{../userData.id}}">
+                                <button class="btn btn-success text-uppercase action-btn-cancel-media" type="button" data-medium-id="{{this.Medium.id}}"
+                                    data-user-id="{{../userData.id}}">
                                     Cancel Book
                                 </button>
 
                             </div>
                             <div class="col-md-1">
                                 <span class="favorite-book actionBtnFav" data-medium-id="{{this.Medium.id}}" data-user-id="{{../userData.id}}">
-                                    <i class="fa fa-heart-o " aria-hidden="true "></i>
+                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
                                 </span>
                             </div>
                         </div>
@@ -91,81 +92,68 @@
                     {{/each}}
                 </div>
 
-                <div class="tab-pane fade " id="history " role="tabpanel " aria-labelledby="history-tab ">
+                <div class="tab-pane fade" id="history">
                     {{#each checkOutHistories}}
-                    <article class="card mt-3 ">
-                        <div class="card-body row ">
-                            <div class="col-md-11 ">
-                                <h4 class="card-title ">{{this.Medium.title}}</h4>
-                                <h6 class="card-subtitle mb-2 text-muted ">by
+                    <article class="card mt-3">
+                        <div class="card-body row">
+                            <div class="col-md-11">
+                                <h4 class="card-title">{{this.Medium.title}}</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">by
                                     <span>
-                                        <a href="# ">{{this.Medium.author}}</a>
+                                        <a href="#">{{this.Medium.author}}</a>
                                     </span>
                                 </h6>
                                 {{!--
-                                <div class="checkbox "> --}} {{!--
+                                <div class="checkbox"> --}} {{!--
                                     <label>
-                                        <input type="checkbox " value=" "> --}}
+                                        <input type="checkbox" value=""> --}}
                                         <p>
-                                            <b class="text-uppercase ">Book Status: </b>
+                                            <b class="text-uppercase">Book Status: </b>
                                             <span>Reserved / Waitlist
-                                                <button type="button " class="close " data-dismiss="modal
-                                    " aria-label="Close ">
-                                                    <span aria-hidden="true ">×</span>
+                                                <button type="button" class="close" data-dismiss="modal
+                                   " aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
                                                 </button>
                                             </span>
                                         </p> {{!--
                                         <span>Return by December 15, 2017</span> --}} {{!-- </span>
                                     </label>
                                 </div> --}} {{!--
-                                <div class="checkbox ">
+                                <div class="checkbox">
                                     <label>
-                                        <input type="checkbox " value=" ">
+                                        <input type="checkbox" value="">
                                         <span>Reserved
                                             <span>5</span>
                                         </span>
                                     </label>
                                 </div> --}}
                             </div>
-                            <div class="col-md-1 ">
-                                <span class="favorite-book ">
-                                    <i class="fa fa-heart-o " aria-hidden="true "></i>
+                            <div class="col-md-1">
+                                <span class="favorite-book">
+                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
                                 </span>
                             </div>
                         </div>
                     </article>
                     {{/each}}
                 </div>
-                <div class="tab-pane fade " id="favorites " role="tabpanel " aria-labelledby="favorites-tab ">
+                <div class="tab-pane fade" id="favorites">
                     {{#each favorites}}
-                    <article class="card mt-3 ">
-                        <div class="card-body row ">
-                            <div class="col-md-11 ">
+                    <article class="card mt-3">
+                        <div class="card-body row">
+                            <div class="col-md-11">
                                 <h4 class="card-title">{{this.Medium.title}}</h4>
-                                <h6 class="card-subtitle mb-2 text-muted ">by
+                                <h6 class="card-subtitle mb-2 text-muted">by
                                     <span>
-                                        <a href="# ">{{this.Medium.author}}</a>
+                                        <a href="#">{{this.Medium.author}}</a>
                                     </span>
                                 </h6>
-                                <p>
-                                    <b class="text-uppercase ">Status: </b>
-                                    <span class="alert ">
-                                        <i> {{this.reservationStatus}}</i>
-                                    </span>
-                                </p>
-                                <button id="actionBtnReserve " class="btn btn-success text-uppercase " type="button " data-medium-id="{{this.Medium.id}}"
-                                    data-user-id="{{../userData.id}}">
-                                    Cancel Book
+                                <button class="btn btn-success text-uppercase remove-favorite" type="button" data-medium-id="{{this.Medium.id}}" data-user-id="{{../userData.id}}">
+                                    Remove Favorite
                                 </button>
 
                             </div>
-                            <div class="col-md-1 ">
-                                <span class="favorite-book actionBtnFav " data-medium-id="{{this.Medium.id}}" data-user-id="{{../userData.id}}">
-                                    <i class="fa fa-heart-o " aria-hidden="true "></i>
-                                </span>
-                            </div>
                         </div>
-                        jsdhfgdsjhflds
                         <hr>
                     </article>
                     {{/each}}

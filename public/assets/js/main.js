@@ -77,6 +77,17 @@ $(document).ready(function () {
 
     })
 
+    $('.remove-favorite').on('click', function () {
+        var mediumId = $(this).data('mediumId');
+        var userId = $(this).data('userId');
+        var favorite = {
+            MediumId: mediumId,
+            UserId: userId
+        };
+        removeFromFavorites(favorite);
+        $(this).parents('article').remove();
+    })
+
     function addToFavorites(newFavorite, btn) {
         $.post("/api/favorites/create", newFavorite, result => {
             console.log("NEW newFavorite MADE:");
@@ -96,7 +107,9 @@ $(document).ready(function () {
             success: result => {
                 console.log("RECORD DELETED");
                 console.log(result);
-                btn.removeClass('fav-selected');
+                if (btn) {
+                    btn.removeClass('fav-selected');
+                }
             }
         });
     } // ************ Favorites Section End ************
@@ -131,6 +144,14 @@ $(document).ready(function () {
                 );
             });
     }
+
+    $('.action-btn-cancel-media').on('click', function (event) {
+        event.preventDefault();
+        var mediumId = $(this).data('mediumId');
+        var userId = $(this).data('userId');
+        deleteReservation(mediumId, userId);
+    });
+
 
     //Verified the function works using:
     //deleteReservation(4, 1);
@@ -194,23 +215,23 @@ $(document).ready(function () {
 });
 
 // All this stuff commented out was my hour long attempt to get bootstrap validation to work. It almost worked but in the end I failed :(
-    // (function() {
-    //   'use strict';
+// (function() {
+//   'use strict';
 
-    //   window.addEventListener('load', function() {
-    //     var form = document.getElementById('mediaform');
-    //     form.addEventListener('submit', function(event) {
-    //       if (form.checkValidity() === false) {
-    //         event.preventDefault();
-    //         event.stopPropagation();
-    //       }
-    //       form.classList.add('was-validated');
-    //     }, false);
-    //   }, false);
-    // })();
+//   window.addEventListener('load', function() {
+//     var form = document.getElementById('mediaform');
+//     form.addEventListener('submit', function(event) {
+//       if (form.checkValidity() === false) {
+//         event.preventDefault();
+//         event.stopPropagation();
+//       }
+//       form.classList.add('was-validated');
+//     }, false);
+//   }, false);
+// })();
 
 // Adding a new book to DB: 
-$("#new-submit").on("click", function() {
+$("#new-submit").on("click", function () {
     event.preventDefault();
     var newbook = {
         mediaType: $("#media-type").val().toLowerCase(),
@@ -220,6 +241,6 @@ $("#new-submit").on("click", function() {
 })
 
 // Clear form after modal is dismissed: 
-$("#modalclose").on("click", function() {
+$("#modalclose").on("click", function () {
     $("#industry-identifier").val("");
 })
