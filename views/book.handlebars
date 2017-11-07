@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-md-12 col-lg-6 mb-3">
                     <span>
-                        <a id="actionBtnFav" class="favorite-book" href="#" data-medium-id={{this.id}}>
+                        <a class="favorite-book actionBtnFav" href="#" data-medium-id={{this.id}}>
                             <i class="fa fa-heart-o" aria-hidden="true"></i>Add to Favorites</a>
                     </span>
                 </div>
@@ -68,7 +68,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>Thank you for requestiong the book
+                            <p>Thank you for requesting the book
                                 <b>{{this.title}}
                                 </b> by
                                 <i>{{this.author}}
@@ -79,11 +79,14 @@
                                 this text will change </p> --}}
                         </div>
                         <div class="modal-footer">
-                            <a class="btn btn-success text-uppercase" href="/">Reserve Another Book</a>
+                            <a class="btn btn-success text-uppercase max-with" href="/users/4">Go To My Account</a>
                         </div>
+
+                        <span class="text-center">OR</span>
                         <div class="modal-footer">
-                            <a class="btn btn-success text-uppercase" href="/users/4">My Account</a>
+                            <a class="btn btn-success text-uppercase max-with" href="/">Reserve Another Book</a>
                         </div>
+
                     </div>
                 </div>
             </div>

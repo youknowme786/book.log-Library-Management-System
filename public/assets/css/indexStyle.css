@@ -56,16 +56,17 @@ footer .logo {
 
 /*Featured Carousel Styling: */
 
-	#featuredrow {
-		margin: 0px;
-	}
+#featuredrow {
+	margin: 0px;
+}
 
-	#FeaturedCarousel {
-		border-bottom: solid 1px black
-	}
+#FeaturedCarousel {
+	border-bottom: solid 1px black
+}
 
 /* Book Styling */
-.book img {
+.book img,
+.profile-img img {
 	width: 70%;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -74,11 +75,7 @@ main.container {
 	width: 70%;
 }
 
-.profile-img img {
-	width: 70%
-}
-
-p.book-summary{
+p.book-summary {
 	line-height: 2em;
 }
 
@@ -131,6 +128,10 @@ p.book-summary{
 	padding: 0;
 	font-size: 12px;
 	color: red;
+}
+
+.max-with {
+	width: 100%;
 }
 
 

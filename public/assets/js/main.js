@@ -59,35 +59,36 @@ $(document).ready(function () {
         // }
     });
 
-    $('#actionBtnFav').on('click', function (event) {
+    // ************ Favorites Section ************
+    $('.actionBtnFav').on('click', function (event) {
         event.preventDefault();
-        var id = $(this).data('mediumId');
-
+        var mediumId = $(this).data('mediumId');
+        var userId = $(this).data('userId');
         var favorite = {
-            MediumId: id,
-            UserId: 3 // userId
+            MediumId: mediumId,
+            UserId: userId
         };
 
         if ($(this).hasClass('fav-selected')) {
-            removeFromFavorites(favorite);
+            removeFromFavorites(favorite, $(this));
         } else {
-            addToFavorites(favorite);
+            addToFavorites(favorite, $(this));
         }
 
     })
 
-    function addToFavorites(newFavorite) {
+    function addToFavorites(newFavorite, btn) {
         $.post("/api/favorites/create", newFavorite, result => {
             console.log("NEW newFavorite MADE:");
             console.log(newFavorite);
         })
             .then(() => {
                 console.log("TO DO: update media table quantities");
-                $('#actionBtnFav').addClass('fav-selected');
+                btn.addClass('fav-selected');
             })
     }
 
-    function removeFromFavorites(favorite) {
+    function removeFromFavorites(favorite, btn) {
         // /api/:table /:UserId / delete /:MediumId?
         $.ajax({
             url: "/api/favorites/" + favorite.userId + "/delete/" + favorite.mediumId,
@@ -95,10 +96,11 @@ $(document).ready(function () {
             success: result => {
                 console.log("RECORD DELETED");
                 console.log(result);
-                $('#actionBtnFav').removeClass('fav-selected');
+                btn.removeClass('fav-selected');
             }
         });
-    }
+    } // ************ Favorites Section End ************
+
 
     function reserveMedia(mediumId, userId) {
         var newReservation = {
@@ -186,7 +188,7 @@ $(document).ready(function () {
     }
     // /users/:userId
 
-    // $.get("/api/users/userId", function (data) {
-    //     console.log("show me object" + data);
-    // });
+    $.get("/api/4/favorites", function (data) {
+        console.log("show me object" + data);
+    });
 });
