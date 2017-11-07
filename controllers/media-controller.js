@@ -76,14 +76,13 @@ module.exports = app => {
 
 	//DELETE ALL INSTANCES OF A BOOK - REMOVING ROW FROM MEDIA TABLE
 	// curl -H "Content-Type: application/json" -X DELETE -d '{"mediaType":"book", "industryIdentifier":"9780439708180"}' http://localhost:3000/api/media/delete
-	app.delete("/api/media/delete/", (req, res) => {
-		if (req.body.mediaType === "book") {
-			Promise.resolve(() => {
-				console.log("deleting books");
-				deleteRowFromTable("media", req.body.industryIdentifier);
-			}).then(data => {
-				res.json(data);
-			});
-		}
+	app.delete("/api/media/delete/:industryIdentifier", (req, res) => {
+		// if (req.body.mediaType === "book") {
+		Promise.resolve(() => {
+			deleteRowFromTable("media", req.params.industryIdentifier);
+		}).then(data => {
+			res.json(data);
+		});
+		// }
 	});
 };

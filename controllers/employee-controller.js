@@ -1,9 +1,13 @@
 var db = require("../models");
 
 module.exports = app => {
+	app.get("/manage", (req, res) => {
+		res.render("manage");
+	});
+
 	//GET user info
 	//curl -i -H "Content-Type: application/json" http://localhost:3000/users/2
-	app.get("/users/:userId", (req, res) => {
+	app.get("/manage/users/:userId", (req, res) => {
 		let dataDeliverable = {};
 		let userId = parseInt(req.params.userId);
 
@@ -24,15 +28,6 @@ module.exports = app => {
 				dataDeliverable.reservations = JSON.parse(JSON.stringify(data));
 			})
 			.then(() => {
-				return db.Favorite.findAll({
-					where: { UserId: req.params.userId },
-					include: [db.Medium]
-				});
-			})
-			.then(data => {
-				dataDeliverable.favorites = JSON.parse(JSON.stringify(data));
-			})
-			.then(() => {
 				return db.CheckOutHistory.findAll({
 					where: { UserId: req.params.userId },
 					include: [db.Medium]
@@ -42,16 +37,6 @@ module.exports = app => {
 				dataDeliverable.checkOutHistories = JSON.parse(
 					JSON.stringify(data)
 				);
-			})
-			.then(() => {
-				return db.Review.findAll({
-					where: { UserId: req.params.userId },
-					include: [db.Medium]
-				});
-			})
-			.then(data => {
-				dataDeliverable.reviews = JSON.parse(JSON.stringify(data));
-				// res.render("user", dataDeliverable);
 			})
 			.then(() => {
 				let counter = 0;
@@ -91,8 +76,7 @@ module.exports = app => {
 							counter++;
 							if (counter === target) {
 								// res.json(dataDeliverable);
-								// res.render("employee", dataDeliverable);
-								res.render("user", dataDeliverable);
+								res.render("manage-users", dataDeliverable);
 							}
 						});
 				});
