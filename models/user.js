@@ -33,10 +33,7 @@ module.exports = (sequelize, DataTypes) => {
 
 			city: {
 				type: DataTypes.STRING,
-				allowNull: false,
-				validate: {
-					isAlpha: true
-				}
+				allowNull: false
 			},
 
 			state: {
@@ -69,11 +66,6 @@ module.exports = (sequelize, DataTypes) => {
 				defaultValue: "/assets/img/profile-img.jpg"
 			},
 
-			userType: {
-				type: DataTypes.STRING,
-				allowNull: false
-			},
-
 			isEmployee: {
 				type: DataTypes.BOOLEAN,
 				allowNull: false,
@@ -90,23 +82,9 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			timestamps: false
 		}
-
-		// {
-		// 	timestamps: true,
-		// 	createdAt: "memberSince",
-		// 	updatedAt: false,
-		// 	deletedAt: false
-		// }
 	);
 
 	require("./js/parentAssociation.js")(User);
-
-	// User.associate = models => {
-	// 	User.hasMany(models.CheckOutHistory);
-	// 	User.hasMany(models.Reservation);
-	// 	User.hasMany(models.SavedItem);
-	// 	User.hasMany(models.Review);
-	// };
 
 	return User;
 };
