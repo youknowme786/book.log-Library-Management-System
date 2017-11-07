@@ -98,6 +98,7 @@ module.exports = app => {
 							// if the counter has reached the target, return the deliverable to the front end and render the user page
 							if (counter === target) {
 								// res.json(dataDeliverable);
+								// res.render("employee", dataDeliverable);
 								res.render("user", dataDeliverable);
 							}
 						});

@@ -115,7 +115,8 @@ p.book-summary {
 	border-color: #398439;
 }
 
-.btn-success {
+.btn-success,
+.btn-danger {
 	border-radius: 0;
 }
 
@@ -136,11 +137,6 @@ p.book-summary {
 
 
 /*Popular and New Carousel Styling: */
-
-	#Popular-Container,
-	#New-Container {
-		/*width: 100%;*/
-	}
 
 	#Popular-Container {
 		margin-top: 35px;
