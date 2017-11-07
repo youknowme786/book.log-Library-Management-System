@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     function populateBook(isbn) {
         var apiKey = "AIzaSyBVaPHihkOt3MSXrw5Hf-HjJB7TrOdawlo";
         var queryURL =
@@ -11,14 +11,14 @@ $(document).ready(function() {
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).done(function(data) {
+        }).done(function (data) {
             console.log(data);
         });
     }
 
     function isOnShelves() {
         var stockStatus = parseInt($(".on-stock").html());
-        console.log(stockStatus);
+        // console.log(stockStatus);
 
         if (stockStatus === 0) {
             $("#actionBtnReserve").text("Add to Waitlist");
@@ -27,24 +27,24 @@ $(document).ready(function() {
     }
 
     $(".favorite-book").hover(
-        function() {
+        function () {
             $(this).addClass("fav-on");
         },
-        function() {
+        function () {
             $(this).removeClass("fav-on");
         }
     );
 
     isOnShelves();
 
-    $(document).on("click", "a.dropdown-item", function() {
+    $(document).on("click", "a.dropdown-item", function () {
         var keyWord = $("#search-input")
             .val()
             .trim();
         populateBook(keyWord);
     });
 
-    $("#actionBtnReserve").on("click", function() {
+    $("#actionBtnReserve").on("click", function () {
         // gets the book id
         var id = $(this).data("mediumId");
 
@@ -59,7 +59,7 @@ $(document).ready(function() {
     });
 
     // ************ Favorites Section ************
-    $(".actionBtnFav").on("click", function(event) {
+    $(".actionBtnFav").on("click", function (event) {
         event.preventDefault();
         var mediumId = $(this).data("mediumId");
         var userId = $(this).data("userId");
@@ -75,7 +75,7 @@ $(document).ready(function() {
         }
     });
 
-    $(".remove-favorite").on("click", function() {
+    $(".remove-favorite").on("click", function () {
         var mediumId = $(this).data("mediumId");
         var userId = $(this).data("userId");
         var favorite = {
@@ -102,10 +102,10 @@ $(document).ready(function() {
         // /api/:table /:UserId / delete /:MediumId?
         $.ajax({
             url:
-                "/api/favorites/" +
-                favorite.userId +
-                "/delete/" +
-                favorite.mediumId,
+            "/api/favorites/" +
+            favorite.userId +
+            "/delete/" +
+            favorite.mediumId,
             type: "DELETE",
             success: result => {
                 console.log("RECORD DELETED");
@@ -147,7 +147,9 @@ $(document).ready(function() {
             });
     }
 
-    $(".action-btn-cancel-media").on("click", function(event) {
+    // ************ Cancel Reservation Section ************
+
+    $(".action-btn-cancel-media").on("click", function (event) {
         event.preventDefault();
         var mediumId = $(this).data('mediumId');
         var userId = $(this).data('userId');
@@ -168,65 +170,69 @@ $(document).ready(function() {
                 console.log(result);
             }
         });
+    }
+
+    // ************ Cancel Reservation Section End ************
+    $('.action-btn-check-out-media').on('click', function () {
+        event.preventDefault();
+        var mediumId = $(this).data('mediumId');
+        var userId = $(this).data('userId');
+        $(this).parents('article').remove();
+        checkOutMedia(mediumId, userId);
+    })
+    function checkOutMedia(mediumId, userId) {
+        var newCheckout = {
+            MediumId: mediumId,
+            UserId: userId
+        };
+
+        //POST to checkouthistories table
+        $.post("/api/checkouthistories/create/withres", newCheckout, result => {
+            console.log("NEW CHECKOUT MADE:");
+            console.log(newCheckout);
+        }).then(() => {
+            console.log("CheckOutMedia");
+        });
+    }
+
+
+    // checkInMedia(mediumId, userId);
+    function checkInMedia(mediumId, userId) {
+        console.log("Entering fxn checkInMedia");
+        var newCheckin = {
+            MediumId: mediumId,
+            UserId: userId
+        };
+
+        //PUT to checkouthistories table
+        $.ajax({
+            url: "/api/checkouthistories/checkin",
+            type: "PUT",
+            success: result => {
+                console.log("RECORD UPDATED");
+                console.log(result);
+            }
+        });
 
         //PUT to media table
     }
 
-    //Verified the function works using:
-    //checkOutMedia(8, 2);
-    // function checkOutMedia(mediumId, userId) {
-    //     var newCheckout = {
-    //         MediumId: mediumId,
-    //         UserId: userId
-    //     };
-
-    //     //POST to checkouthistories table
-    //     $.post("/api/checkouthistories/create", newCheckout, result => {
-    //         console.log("NEW CHECKOUT MADE:");
-    //         console.log(newCheckout);
-    //     }).then(() => {
-    //         console.log("TO DO: update media table quantities");
-    //         //PUT to media table
-    //     });
-    // }
-    // checkInMedia(8, 2);
-    // function checkInMedia(mediumId, userId) {
-    //     console.log("Entering fxn checkInMedia");
-    //     var newCheckin = {
-    //         MediumId: mediumId,
-    //         UserId: userId
-    //     };
-
-    //     //PUT to checkouthistories table
-    //     $.ajax({
-    //         url: "/api/checkouthistories/checkin",
-    //         type: "PUT",
-    //         success: result => {
-    //             console.log("RECORD UPDATED");
-    //             console.log(result);
-    //         }
-    //     });
-
-    //     //PUT to media table
-    // }
-    // /users/:userId
-
-    $.get("/api/4/favorites", function(data) {
-        console.log("show me object" + data);
-    });
+    // $.get("/api/4/favorites", function (data) {
+    //     console.log("show me object" + data);
+    // });
 });
 
 // Validation + function that adds book to DB:
-(function() {
+(function () {
     "use strict";
 
     window.addEventListener(
         "load",
-        function() {
+        function () {
             var form = document.getElementById("mediaform");
             form.addEventListener(
                 "submit",
-                function(event) {
+                function (event) {
                     if (form.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();
@@ -292,7 +298,7 @@ $(document).ready(function() {
 //     );
 // })();
 
-$("#delete-submit").on("click", function() {
+$("#delete-submit").on("click", function () {
     event.preventDefault();
     var newbook = {
         mediaType: $("#delete-media-type").val().toLowerCase(),
@@ -303,7 +309,7 @@ $("#delete-submit").on("click", function() {
         type: "DELETE",
         url: "/api/media/delete",
         data: newbook
-    }).then(function(res) {
+    }).then(function (res) {
         console.log(res)
-    }) 
+    })
 })

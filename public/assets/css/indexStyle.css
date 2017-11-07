@@ -115,7 +115,8 @@ p.book-summary {
 	border-color: #398439;
 }
 
-.btn-success {
+.btn-success,
+.btn-danger {
 	border-radius: 0;
 }
 

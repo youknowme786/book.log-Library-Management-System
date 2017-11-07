@@ -1,0 +1,154 @@
+<main class="container mb-5">
+
+    <div class="row mb-3">
+
+        <div class="col-md-12 text-center mt-5">
+            <h1>Manage Account</h1>
+            <hr class="mt-3">
+
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4 text-center profile-img">
+            <h3>{{this.userData.firstName}} {{this.userData.middleName}} {{this.userData.lastName}}</h3>
+            <p>Member since:
+                <span>
+                    1996
+                </span>
+            </p>
+            <img src="{{this.userData.profilePicture}}" class="img-fluid" alt="I am a profile picture">
+            <div class="row">
+
+                <div class="col-md-12 text-left mt-5">
+
+                    <p>
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                        <span>LIB-730-00{{this.userData.id}}</span>
+                    </p>
+                    <p>
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        <span>{{this.userData.emailAddress}}</span>
+                    </p>
+                    <p>
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        <span>{{this.userData.phoneNumber}}</span>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 border-lv">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#myBooks">My Reservations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#history">Check-Out History</a>
+                </li>
+                {{!--
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#favorites">Favorites</a>
+                </li> --}}
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="myBooks">
+                    {{#each reservations}}
+                    <article class="card mt-3">
+                        <div class="card-body row">
+                            <div class="col-md-11">
+                                <h4 class="card-title">{{this.Medium.title}}</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">by
+                                    <span>
+                                        <a href="#">{{this.Medium.author}}</a>
+                                    </span>
+                                </h6>
+                                <p>
+                                    <b class="text-uppercase">Status: </b>
+                                    <span class="alert">
+                                        <i> {{this.reservationStatus}}</i>
+                                    </span>
+                                </p>
+                                <button class="btn btn-success text-uppercase action-btn-check-out-media" type="button" data-medium-id="{{this.Medium.id}}"
+                                    data-user-id="{{../userData.id}}">
+                                    Check-Out
+                                </button>
+                                <button class="btn btn-danger text-uppercase action-btn-cancel-media" type="button" data-medium-id="{{this.Medium.id}}" data-user-id="{{../userData.id}}">
+                                    Cancel
+                                </button>
+
+
+                            </div>
+                            {{!--
+                            <div class="col-md-1">
+                                <span class="favorite-book actionBtnFav" data-medium-id="{{this.Medium.id}}" data-user-id="{{../userData.id}}">
+                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                </span>
+                            </div> --}}
+                        </div>
+                        <hr>
+                    </article>
+                    {{/each}}
+                </div>
+
+                <div class="tab-pane fade" id="history">
+                    {{#each checkOutHistories}}
+                    <article class="card mt-3">
+                        <div class="card-body row">
+                            <div class="col-md-11">
+                                <h4 class="card-title">{{this.Medium.title}}</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">by
+                                    <span>
+                                        <a href="#">{{this.Medium.author}}</a>
+                                    </span>
+                                </h6>
+                                <p>
+                                    <b class="text-uppercase">Status: </b>
+                                    <span class="alert">
+                                        <i> return by December 8, 2017</i>
+                                    </span>
+                                </p>
+                                <button class="btn btn-success text-uppercase action-btn-cancel-media" type="button" data-medium-id="{{this.Medium.id}}"
+                                    data-user-id="{{../userData.id}}">
+                                    Check-In
+                                </button>
+
+                            </div>
+                            {{!--
+                            <div class="col-md-1">
+                                <span class="favorite-book actionBtnFav" data-medium-id="{{this.Medium.id}}" data-user-id="{{../userData.id}}">
+                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                </span>
+                            </div> --}}
+                        </div>
+                        <hr>
+                    </article>
+                    {{/each}}
+                </div>
+                {{!--
+                <div class="tab-pane fade" id="favorites">
+                    {{#each favorites}}
+                    <article class="card mt-3">
+                        <div class="card-body row">
+                            <div class="col-md-11">
+                                <h4 class="card-title">{{this.Medium.title}}</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">by
+                                    <span>
+                                        <a href="#">{{this.Medium.author}}</a>
+                                    </span>
+                                </h6>
+                                <button class="btn btn-success text-uppercase remove-favorite" type="button" data-medium-id="{{this.Medium.id}}" data-user-id="{{../userData.id}}">
+                                    Remove Favorite
+                                </button>
+
+                            </div>
+                        </div>
+                        <hr>
+                    </article>
+                    {{/each}}
+                </div> --}}
+            </div>
+        </div>
+    </div>
+</main>
