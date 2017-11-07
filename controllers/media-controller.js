@@ -26,6 +26,51 @@ module.exports = app => {
 			});
 	});
 
+	// GET route for SEARCH page
+	// curl -i -H "Content-Type: application/json" -X GET http://localhost:3000/search/title/harry%20potter
+	app.get("/search/:searchBy/:searchQuery", (req, res) => {
+		searchBy = req.params.searchBy.toLowerCase();
+		searchQuery = req.params.searchQuery;
+
+		switch (searchBy) {
+			case "title":
+				var query = {
+					title: searchQuery
+				};
+				break;
+
+			case "author":
+				var query = {
+					author: searchQuery
+				};
+				break;
+
+			case "isbn":
+				var query = {
+					industryIdentifier: searchQuery
+				};
+				break;
+
+			default:
+				console.log("error");
+				break;
+		}
+
+		console.log("CONSOLE LOGGING QUERY");
+		console.log(query);
+
+		db.Medium
+			.findAll({
+				where: query
+			})
+			.then(data => {
+				var dataDeliverable = JSON.parse(JSON.stringify(data[0]));
+
+				console.log(dataDeliverable);
+				res.render("book", dataDeliverable);
+			});
+	});
+
 	// POST route for adding a new BOOK to the database
 	// curl -H "Content-Type: application/json" -X POST -d '{"mediaType": "book", "industryIdentifier":"9780606323499"}' http://localhost:3000/api/media/new
 	app.post("/api/media/new", (req, res) => {

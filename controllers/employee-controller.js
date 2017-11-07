@@ -67,44 +67,48 @@ module.exports = app => {
 				let counter = 0;
 				var target = dataDeliverable.reservations.length;
 
-				// for each reservation the user has made
-				dataDeliverable.reservations.forEach(reservation => {
-					let mediumId = reservation.MediumId;
+				if (dataDeliverable.reservations.length > 0) {
+					// for each reservation the user has made
+					dataDeliverable.reservations.forEach(reservation => {
+						let mediumId = reservation.MediumId;
 
-					// find all reservations made for that item
-					db.Reservation
-						.findAll({ where: { MediumId: mediumId } })
-						.then(data => {
-							// then for each reservation find the user's position in line and add it to the deliverable
-							data.forEach((item, index) => {
-								if (item.UserId === userId) {
-									reservation.position = index + 1;
+						// find all reservations made for that item
+						db.Reservation
+							.findAll({ where: { MediumId: mediumId } })
+							.then(data => {
+								// then for each reservation find the user's position in line and add it to the deliverable
+								data.forEach((item, index) => {
+									if (item.UserId === userId) {
+										reservation.position = index + 1;
+									}
+								});
+
+								// add information to the deliverable about the user's reservation status for each item
+								if (
+									reservation.position >
+									reservation.Medium.numReserved
+								) {
+									reservation.reservationStatus =
+										"Position " +
+										reservation.position +
+										" on Waitlist";
+								} else {
+									reservation.reservationStatus =
+										"Ready to Pick Up";
+								}
+
+								// increment the counter
+								counter++;
+								// if the counter has reached the target, return the deliverable to the front end and render the user page
+								if (counter === target) {
+									// res.json(dataDeliverable);
+									res.render("manage-users", dataDeliverable);
 								}
 							});
-
-							// add information to the deliverable about the user's reservation status for each item
-							if (
-								reservation.position >
-								reservation.Medium.numReserved
-							) {
-								reservation.reservationStatus =
-									"Position " +
-									reservation.position +
-									" on Waitlist";
-							} else {
-								reservation.reservationStatus =
-									"Ready to Pick Up";
-							}
-
-							// increment the counter
-							counter++;
-							// if the counter has reached the target, return the deliverable to the front end and render the user page
-							if (counter === target) {
-								// res.json(dataDeliverable);
-								res.render("manage-users", dataDeliverable);
-							}
-						});
-				});
+					});
+				} else {
+					res.render("user", dataDeliverable);
+				}
 			});
 	});
 };
