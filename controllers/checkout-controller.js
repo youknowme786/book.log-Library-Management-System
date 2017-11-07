@@ -34,29 +34,37 @@ module.exports = app => {
 			});
 	});
 
-	//CHECK OUT A BOOK WITH OR WITHOUT A RESERVATION
+	//CHECK OUT A BOOK WITHOUT RESERVATION
 	//POST to checkouthistories table
 	//CURL command:
-	//curl -H "Content-Type: application/json" -X POST -d '{"MediumId": 1, "UserId": 1}' http://localhost:3000/api/checkouthistories/create
-	app.post("/api/checkouthistories/create", (req, res) => {
-		var hasReservation;
-
+	//curl -H "Content-Type: application/json" -X POST -d '{"MediumId": 8, "UserId": 1}' http://localhost:3000/api/checkouthistories/create/withoutres
+	app.post("/api/checkouthistories/create/withoutres", (req, res) => {
 		db.CheckOutHistory
 			.create({
 				MediumId: req.body.mediumId,
 				UserId: req.body.userId
 			})
 			.then(data => {
-				//GET to reservations table
-				//where UserId and MediumId
-				//
-				//if the user has a reservation for that book
-				//hasReservation = true
-				//else
-				//hasReservation = false
+				//PUT to media table
+				updateMediaTable(
+					"checkoutWithoutReservation",
+					req.body.mediumId
+				);
+				res.json(data);
+			});
+	});
+
+	//CHECK OUT A BOOK WITH A RESERVATION
+	//POST to checkouthistories table
+	//CURL command:
+	//curl -H "Content-Type: application/json" -X POST -d '{"MediumId": 1, "UserId": 1}' http://localhost:3000/api/checkouthistories/create/withres
+	app.post("/api/checkouthistories/create/withres", (req, res) => {
+		db.CheckOutHistory
+			.create({
+				MediumId: req.body.mediumId,
+				UserId: req.body.userId
 			})
 			.then(data => {
-				//if hasReservation, run this code
 				//DELETE to reservations table
 				deleteRowFromTable(
 					"reservations",
@@ -65,11 +73,8 @@ module.exports = app => {
 				);
 			})
 			.then(data => {
-				//if has reservation, run "checkoutWithReservation"
 				//PUT to media table
 				updateMediaTable("checkoutWithReservation", req.body.mediumId);
-
-				//else, run "checkoutWithoutReservation"
 			});
 	});
 
