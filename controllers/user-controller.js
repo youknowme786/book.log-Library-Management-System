@@ -149,6 +149,7 @@ module.exports = app => {
 		db.User
 			.create({
 				//Double check these fields are all correct per the database
+				id: req.body.id,
 				firstName: req.body.firstName.trim(),
 				middleName: middleNameInput,
 				lastName: req.body.lastName.trim(),

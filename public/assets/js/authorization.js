@@ -1,6 +1,8 @@
 $(document).ready(function() {
 	console.log("authorization.js is linked");
 
+	var user;
+
 	//Used for Auth0
 	// $("#sign-in").on("click", event => {
 	// 	console.log("Sign in button clicked");
@@ -21,7 +23,9 @@ $(document).ready(function() {
 
 	firebase.initializeApp(fbConfig);
 
-	//Sign up a new user
+	//USER SIGN UP
+	//create the user in firebase
+	//create the user in mysql, using the firebase UID as the primary key
 	$("#sign-up-button").on("click", event => {
 		var email = $("#email-input").val();
 		var password = $("#password-input").val();
@@ -36,31 +40,29 @@ $(document).ready(function() {
 				//when a user is created, how to set the firebase UID as the primary key in the users table?
 				//might want to change isAlpha test of city/state because some do have spaces
 				var newUser = {
+					id: user.uid,
 					firstName: "user test",
-					middleName: "",
-					lastName: "userTLastNAme",
+					middleName: "solo",
+					lastName: "LastNAme",
 					userType: "Patron",
 					phoneNumber: "1231231245",
-					streetAddress: "st add",
+					streetAddress: "St ad",
 					city: "testcity",
 					state: "statetest",
 					zipCode: "0001",
-					emailAddress: user.email,
-					isEmployee: false
-					// firebaseId: user.uid
+					emailAddress: user.email
 				};
 
 				$.post("api/users/create", newUser, result => {
 					console.log(result);
+					console.log(result.id);
 				});
 			})
 			.catch(err => {
 				// Handle Errors here.
-				var errorCode = error.code;
-				var errorMessage = error.message;
 				console.log("FIREBASE USER CREATION ERROR");
-				console.log(errorCode);
-				console.log(errorMessage);
+				console.log(err.code);
+				console.log(err.message);
 			});
 	});
 
@@ -71,13 +73,6 @@ $(document).ready(function() {
 		firebase
 			.auth()
 			.signInWithEmailAndPassword(email, password)
-			.then(() => {
-				console.log("USER SIGNED IN");
-				$.get("/api/test", result => {
-					//figure out how to consistently return the user once the user is signed in
-					console.log(result);
-				});
-			})
 			.catch(function(error) {
 				// Handle Errors here.
 				var errorCode = error.code;
@@ -104,5 +99,23 @@ $(document).ready(function() {
 			});
 	});
 
-	//Log in an existing user
+	var user = null;
+	//Gets the currently signed in user
+	firebase.auth().onAuthStateChanged(signedInUser => {
+		if (signedInUser) {
+			user = signedInUser;
+			console.log("Currently signed in user:");
+			console.log(user);
+			console.log(user.uid);
+		} else {
+			console.log("No user is signed in");
+			user = null;
+		}
+	});
+
+	$("#test-button").on("click", event => {
+		console.log("Current user:");
+		console.log(user);
+		console.log(user.uid);
+	});
 });

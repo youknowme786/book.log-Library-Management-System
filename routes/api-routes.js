@@ -229,8 +229,8 @@ module.exports = app => {
 						MediumId: req.body.MediumId
 					}
 				}
-			)
-			.then(data => {
+				
+		.then(data => {
 				res.json(data);
 			});
 	});
