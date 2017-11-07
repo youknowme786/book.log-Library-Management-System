@@ -60,9 +60,13 @@
 					</div>
 				</form>
 				<div class="log-in">
-					<span>Already have an account? </span>
-					<button type="button" class="btn btn-link" data-toggle="modal" data-target="#sign-in-modal">
-						<i class="fa fa-sign-in" aria-hidden="true"></i> Log In</button>
+					<span id="unauthenticated-banner">Already have an account? </span>
+					
+					<button type="button" class="btn btn-link"><a class="my-profile-button">
+						<i class="fa fa-sign-in" aria-hidden="true"></i> My Profile </a></button>
+
+					<button type="button" id="authenticate-button" class="btn btn-link" data-toggle="modal" data-target="#sign-in-modal">
+						<i class="fa fa-sign-in" aria-hidden="true"></i> Log In / Sign Up </button>
 
 					<button type="button" id="log-out-button" class="btn btn-link">
 						<i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out </button>

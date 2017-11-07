@@ -5,8 +5,10 @@ module.exports = app => {
 	//curl -i -H "Content-Type: application/json" http://localhost:3000/users/2
 	app.get("/users/:userId", (req, res) => {
 		// this object is given to the front end
+		console.log("============USER ID===========");
+		console.log(req.params.userId);
 		let dataDeliverable = {};
-		let userId = parseInt(req.params.userId);
+		let userId = req.params.userId;
 
 		db.User
 			// find all info for the and add it to the deliverable
@@ -61,48 +63,58 @@ module.exports = app => {
 			})
 			.then(() => {
 				// set a counter for the loop
+				console.log("Entering counter loop ==================");
 				let counter = 0;
 				var target = dataDeliverable.reservations.length;
 
-				// for each reservation the user has made
-				dataDeliverable.reservations.forEach(reservation => {
-					let mediumId = reservation.MediumId;
+				//only runs if the user has reservations
+				if (dataDeliverable.reservations.length > 0) {
+					// for each reservation the user has made
+					dataDeliverable.reservations.forEach(reservation => {
+						let mediumId = reservation.MediumId;
+						console.log("Reservation==============");
+						console.log(reservation);
+						// find all reservations made for that item
+						db.Reservation
+							.findAll({ where: { MediumId: mediumId } })
+							.then(data => {
+								// then for each reservation find the user's position in line and add it to the deliverable
+								data.forEach((item, index) => {
+									if (item.UserId === userId) {
+										reservation.position = index + 1;
+									}
+								});
 
-					// find all reservations made for that item
-					db.Reservation
-						.findAll({ where: { MediumId: mediumId } })
-						.then(data => {
-							// then for each reservation find the user's position in line and add it to the deliverable
-							data.forEach((item, index) => {
-								if (item.UserId === userId) {
-									reservation.position = index + 1;
+								// add information to the deliverable about the user's reservation status for each item
+								if (
+									reservation.position >
+									reservation.Medium.numReserved
+								) {
+									reservation.reservationStatus =
+										"Position " +
+										reservation.position +
+										" on Waitlist";
+								} else {
+									reservation.reservationStatus =
+										"Ready to Pick Up";
+								}
+
+								// increment the counter
+								console.log("counter, ", counter);
+								console.log("target, ", target);
+								counter++;
+								// if the counter has reached the target, return the deliverable to the front end and render the user page
+								if (counter === target) {
+									console.log("counter === targer");
+									// res.json(dataDeliverable);
+									// res.render("employee", dataDeliverable);
+									res.render("user", dataDeliverable);
 								}
 							});
-
-							// add information to the deliverable about the user's reservation status for each item
-							if (
-								reservation.position >
-								reservation.Medium.numReserved
-							) {
-								reservation.reservationStatus =
-									"Position " +
-									reservation.position +
-									" on Waitlist";
-							} else {
-								reservation.reservationStatus =
-									"Ready to Pick Up";
-							}
-
-							// increment the counter
-							counter++;
-							// if the counter has reached the target, return the deliverable to the front end and render the user page
-							if (counter === target) {
-								// res.json(dataDeliverable);
-								// res.render("employee", dataDeliverable);
-								res.render("user", dataDeliverable);
-							}
-						});
-				});
+					});
+				} else {
+					res.render("user", dataDeliverable);
+				}
 			});
 	});
 
@@ -157,6 +169,7 @@ module.exports = app => {
 		db.User
 			.create({
 				//Double check these fields are all correct per the database
+				id: req.body.id,
 				firstName: req.body.firstName.trim(),
 				middleName: middleNameInput,
 				lastName: req.body.lastName.trim(),

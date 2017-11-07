@@ -20,11 +20,11 @@ VALUES ("Harry Potter and the Sorcerer's Stone", "book","9780439708180",10,3,1,6
 -- ("testHarry Potter and the Half-Blood Prince", "book","10-7475-8108-8",4),
 -- ("testHarry Potter and the Deathly Hallows", "book","10-545-01022-5",4);
 -- 
-INSERT INTO users (firstName, middleName, lastName, phoneNumber, streetAddress, city, state, zipCode, emailAddress, isEmployee)
-VALUES ("Ali", "Boosted", "Arfeen", "555-555-5555", "123 poop road", "chicago", "il", "60000", "aliarfeen@gmail.com", false),
-("Eva", "", "Simon", "234-555-5555", "321 pooper street", "whoville", "il", "12345", "evasimon@gmail.com", true),
-("Imran", "Booster", "Kazmi", "234-234-1111", "213 hello avenue", "boost", "me", "31337", "imrankazmi@gmail.com", false),
-("JC", "Frenchman", "Scalabre","000-000-0001", "18 chemin des moutons", "le rouret", "fr", "06650", "danimals@gmail.com", false);
+INSERT INTO users (id, firstName, middleName, lastName, phoneNumber, streetAddress, city, state, zipCode, emailAddress, isEmployee)
+VALUES ("1","Ali", "Boosted", "Arfeen", "555-555-5555", "123 poop road", "chicago", "il", "60000", "aliarfeen@gmail.com", false),
+("2","Eva", "", "Simon", "234-555-5555", "321 pooper street", "whoville", "il", "12345", "evasimon@gmail.com", true),
+("3","Imran", "Booster", "Kazmi", "234-234-1111", "213 hello avenue", "boost", "me", "31337", "imrankazmi@gmail.com", false),
+("4","JC", "Frenchman", "Scalabre","000-000-0001", "18 chemin des moutons", "le rouret", "fr", "06650", "danimals@gmail.com", false);
 
 INSERT INTO checkouthistories (isCheckedOut, lateFees, MediumId, UserId)
 VALUES (true,3.50,3,1), (true,0,6,3), (false,0,5,2), (false,10,1,4), (true,30,2,4);
