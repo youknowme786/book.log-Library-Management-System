@@ -23,7 +23,7 @@
                     <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="profile" aria-selected="false">Add New Media</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Delete Media</a>
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Delete Media</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -59,12 +59,46 @@
                 </div>
 
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    Add new book form goes here
+                    DELETE SECTION GOES HERE
                 </div>
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                    delete a book goes here
+                    <form id="mediaform" novalidate>
+                        {{!-- Media Select Form  --}}
+                        <div class="form-group">
+                            <label>Media Type</label>
+                            <select class="form-control" id="media-type">
+                                <option>Book</option>
+                                <option>CD</option>
+                                <option>Whatever</option>
+                            </select>
+                        </div>
+                        {{!-- Industry ID form --}}
+                        <div class="form-group">
+                            <label>Industry Identifier</label>
+                            <input type="text" class="form-control" id="industry-identifier" required></input>
+                            <div class="invalid-feedback">
+                                Please provide a valid Industry ID.
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success" id="new-submit" data-toggle="modal" data-target="#new-book-modal">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </main>
+
+<div class="modal fade" id="new-book-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                Media successfully added to database.
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success" data-dismiss="modal" id="modalclose">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
