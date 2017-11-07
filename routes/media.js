@@ -1,5 +1,4 @@
 var db = require("../models");
-let request = require("request");
 
 // make sure date format matches createdAt field
 
@@ -39,7 +38,10 @@ module.exports = app => {
 
 					case "cancelReservation":
 						if (updateData.numReserved > 0) {
-							if (updateData.numReserved === updateData.reservationListSize) {
+							if (
+								updateData.numReserved ===
+								updateData.reservationListSize
+							) {
 								updateData.numShelved++;
 								updateData.numReserved--;
 							}
@@ -86,7 +88,10 @@ module.exports = app => {
 						break;
 
 					case "addItem":
-						if (updateData.reservationListSize > updateData.numReserved) {
+						if (
+							updateData.reservationListSize >
+							updateData.numReserved
+						) {
 							updateData.numReserved++;
 						} else {
 							updateData.numShelved++;

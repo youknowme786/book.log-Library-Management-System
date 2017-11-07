@@ -24,8 +24,6 @@ module.exports = app => {
 	// POST route for adding a new BOOK to the database
 	// curl -H "Content-Type: application/json" -X POST -d '{"mediaType": "book", "industryIdentifier":"9780606323499"}' http://localhost:3000/api/media/new
 	app.post("/api/media/new", (req, res) => {
-		// console.log(req.body);
-
 		var newMedium = {};
 		newMedium.mediaType = req.body.mediaType;
 
@@ -43,8 +41,7 @@ module.exports = app => {
 		})
 			.then(response => {
 				if (response.status === 200) {
-					var parsedBody = response.data;
-					volumeInfo = parsedBody.items[0].volumeInfo;
+					var volumeInfo = response.data.items[0].volumeInfo;
 					console.log(volumeInfo);
 
 					newMedium.title = volumeInfo.title;
