@@ -6,6 +6,42 @@ var deleteRowFromTable = require("./updateMediaExport.js").deleteRowFromTable;
 //this has the mediaupdate and the media delete functions
 
 module.exports = app => {
+	// //CHECKOUT HISTORY ROUTES
+	// //GET
+	// //MAKE THIS A FUNCTION WHERE YOU PASS IN "MediumId" or "UserId"
+	// //CURL command:
+	// //curl -i http://localhost:3000/api/checkouthistories/media/3
+	// app.get("/api/checkouthistories/media/:MediumId", (req, res) => {
+	// 	db.CheckOutHistory
+	// 		.findAll({
+	// 			//will display as...
+	// 			// where: { MediumId: req.body.MediumId } OR { UserId: req.body.UserId }
+	// 			where: { MediumId: req.params.MediumId }
+	// 		})
+	// 		// console.log("THIS IS REQ.BODY");
+	// 		// console.log(req.body);
+	// 		.then(data => {
+	// 			res.json(data);
+	// 			// res.render(/*some file*/, data);
+	// 		});
+	// });
+
+	// //GET - using userId
+	// //CURL command:
+	// //curl -i http://localhost:3000/api/checkouthistories/user/6
+	// app.get("/api/checkouthistories/user/:UserId", (req, res) => {
+	// 	db.CheckOutHistory
+	// 		.findAll({
+	// 			//will display as...
+	// 			// where: { MediumId: req.body.MediumId } OR { UserId: req.body.UserId }
+	// 			where: { UserId: req.params.UserId }
+	// 		})
+	// 		.then(data => {
+	// 			res.json(data);
+	// 			// resrender(/*some file*/, data);
+	// 		});
+	// });
+
 	//CHECK IN A BOOK
 	//PUT to checkouthistories table
 	//CURL command:

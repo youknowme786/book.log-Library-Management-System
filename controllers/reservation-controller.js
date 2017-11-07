@@ -6,6 +6,54 @@ var deleteRowFromTable = require("./updateMediaExport.js").deleteRowFromTable;
 //this has the mediaupdate and the media delete functions
 
 module.exports = app => {
+	// //RESERVATION ROUTES
+
+	// //GET - using mediaId
+	// app.get("/api/reservations/media/:MediumId/:UserId?", (req, res) => {
+	// 	db.Reservation
+	// 		.findAll({
+	// 			where: { MediumId: req.params.MediumId }
+	// 		})
+	// 		.then(data => {
+	// 			var reservationsDeliverable = {};
+	// 			reservationsDeliverable.mediumReservations = data;
+
+	// 			//This block determines the User's position in the reservation list for a specific product if a UserId to search for is specified
+	// 			if (req.params.UserId !== undefined) {
+	// 				var UserId = parseInt(req.params.UserId);
+	// 				console.log("UserId: ", UserId);
+	// 				for (let i = 0; i < data.length; i++) {
+	// 					if (data[i].UserId === UserId) {
+	// 						console.log("Found user's position on list");
+	// 						reservationsDeliverable.userPosition = i + 1;
+	// 						break;
+	// 					}
+	// 				}
+	// 			}
+
+	// 			console.log(reservationsDeliverable);
+	// 			//implement this line once we have the user.handlebars file
+	// 			// res.render(/*some file*/, reservationsDeliverable);
+	// 			res.json(reservationsDeliverable);
+	// 		});
+	// });
+
+	// //GET - using userId
+	// //CURL command:
+	// //curl -i http://localhost:3000/api/reservations/user/2
+	// app.get("/api/reservations/user/:UserId", (req, res) => {
+	// 	db.Reservation
+	// 		.findAll({
+	// 			//will display as...
+	// 			// where: { MediumId: req.body.MediumId } OR { UserId: req.body.UserId }
+	// 			where: { UserId: req.params.UserId }
+	// 		})
+	// 		.then(data => {
+	// 			res.json(data);
+	// 			// res.render(/*some file*/, data);
+	// 		});
+	// });
+
 	//POST route for reserving an item
 	//CURL command:
 	//curl -H "Content-Type: application/json" -X POST -d '{"mediumId": 10, "userId": 4}' http://localhost:3000/api/reservations/create
