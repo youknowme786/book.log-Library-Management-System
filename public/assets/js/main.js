@@ -228,94 +228,32 @@ $(document).ready(function () {
     // ************ Check In Section ************
 });
 
-// Validation + function that adds book to DB:
-(function () {
-    "use strict";
-
-    window.addEventListener(
-        "load",
-        function () {
-            var form = document.getElementById("mediaform");
-            form.addEventListener(
-                "submit",
-                function (event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add("was-validated");
-                    event.preventDefault();
-                    if (form.checkValidity() === true) {
-                        $("#new-book-modal").modal("show");
-                        var newbook = {
-                            mediaType: $("#media-type")
-                                .val()
-                                .toLowerCase(),
-                            industryIdentifier: $("#industry-identifier").val()
-                        };
-                        $.post("/api/media/new", newbook);
-                    }
-                },
-                false
-            );
-        },
-        false
-    );
-})();
-
-// Validation + function that deletes books from DB:
-// (function() {
-//     "use strict";
-
-//     window.addEventListener(
-//         "load",
-//         function() {
-//             var form = document.getElementById("deleteform");
-//             form.addEventListener(
-//                 "submit",
-//                 function(event) {
-//                     if (form.checkValidity() === false) {
-//                         event.preventDefault();
-//                         event.stopPropagation();
-//                     }
-//                     form.classList.add("was-validated");
-//                     event.preventDefault();
-//                     if (form.checkValidity() === true) {
-//                         // $("#delete-book-modal").modal("show");
-//                         var newbook = {
-//                             mediaType: $("#delete-media-type")
-//                                 .val()
-//                                 .toLowerCase(),
-//                             industryIdentifier: $("#delete-industry-identifier").val()
-//                         };
-//                         $.ajax({
-//                             method: "DELETE",
-//                             url: "/api/media/delete",
-//                             data: newbook
-//                         })
-//                         // ("/api/media/delete", newbook);
-//                         console.log(newbook)
-//                     }
-//                 },
-//                 false
-//             );
-//         },
-//         false
-//     );
-// })();
-
-$("#delete-submit").on("click", function () {
+console.log("Test")
+// Manage user submit button: 
+$("#user-submit").on("click", function() {
     event.preventDefault();
+    window.location.href = "/manage/users/" + $("#user-id").val()
+})
+
+// When manager adds a new media:
+$("#new-submit").on("click", function() {
+    event.preventDefault();
+    $("#new-book-modal").modal("show");
     var newbook = {
-        mediaType: $("#delete-media-type").val().toLowerCase(),
-        industryIdentifier: $("#delete-industry-identifier").val()
+        mediaType: $("#media-type").val().toLowerCase(),
+        industryIdentifier: $("#industry-identifier").val()
     };
-    console.log(newbook)
+    $.post("/api/media/new", newbook);
+})
+
+// When manager deletes a media:
+$("#delete-submit").on("click", function() {
+    event.preventDefault();
+    var id = $("#delete-industry-identifier").val()
     $.ajax({
-        type: "DELETE",
-        url: "/api/media/delete",
-        data: newbook
-    }).then(function (res) {
+        method: "DELETE",
+        url: "/api/media/delete/" + id
+    }).then(function(res) {
         console.log(res)
-    })
+    }) 
 })
