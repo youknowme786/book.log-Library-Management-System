@@ -55,7 +55,7 @@ module.exports = {
 				}
 				break;
 
-			case "deleteItem":
+			case "deleteOneItem":
 				if (updateData.totalStock > 0) {
 					if (updateData.numShelved > 0) {
 						updateData.numShelved--;
@@ -65,7 +65,7 @@ module.exports = {
 				}
 				break;
 
-			case "addItem":
+			case "addOneItem":
 				if (updateData.reservationListSize > updateData.numReserved) {
 					updateData.numReserved++;
 				} else {
