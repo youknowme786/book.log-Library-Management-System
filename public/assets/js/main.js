@@ -1,9 +1,128 @@
-$(document).ready(function () {
-    $(".nav a").on("click", function () {
-        $(".nav").find(".active").removeClass("active");
-        $(this).parent().addClass("active");
+$(document).ready(function() {
+    $(".nav a").on("click", function() {
+        $(".nav")
+            .find(".active")
+            .removeClass("active");
+        $(this)
+            .parent()
+            .addClass("active");
     });
-    
+
+    // ************ Firebase Authentication Section ************
+    var fbConfig = {
+        apiKey: "AIzaSyCtU9CvYWigVKqx1-SpTJa7r4cPwh8x8VQ",
+        authDomain: "booklog-library-mgt-system.firebaseapp.com",
+        databaseURL: "https://booklog-library-mgt-system.firebaseio.com",
+        projectId: "booklog-library-mgt-system",
+        storageBucket: "booklog-library-mgt-system.appspot.com",
+        messagingSenderId: "728679115344"
+    };
+
+    firebase.initializeApp(fbConfig);
+
+    //USER SIGN UP
+    //create the user in firebase
+    //create the user in mysql, using the firebase UID as the primary key
+    $("#sign-up-button").on("click", event => {
+        var email = $("#email-input").val();
+        var password = $("#password-input").val();
+
+        firebase
+            .auth()
+            .createUserWithEmailAndPassword(email, password)
+            .then(user => {
+                console.log("USER CREATED");
+                console.log(user);
+                //create mysql user
+                //when a user is created, how to set the firebase UID as the primary key in the users table?
+                //might want to change isAlpha test of city/state because some do have spaces
+                var newUser = {
+                    id: user.uid,
+                    firstName: "user test",
+                    middleName: "solo",
+                    lastName: "LastNAme",
+                    userType: "Patron",
+                    phoneNumber: "1231231245",
+                    streetAddress: "St ad",
+                    city: "testcity",
+                    state: "statetest",
+                    zipCode: "0001",
+                    emailAddress: user.email
+                };
+
+                $.post("api/users/create", newUser, result => {
+                    console.log(result);
+                    console.log(result.id);
+                });
+            })
+            .catch(err => {
+                // Handle Errors here.
+                console.log("FIREBASE USER CREATION ERROR");
+                console.log(err.code);
+                console.log(err.message);
+            });
+    });
+
+    $("#log-in-button").on("click", event => {
+        var email = $("#email-input").val();
+        var password = $("#password-input").val();
+
+        firebase
+            .auth()
+            .signInWithEmailAndPassword(email, password)
+            .catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log("FIREBASE USER LOGIN ERROR");
+                console.log(errorCode);
+                console.log(errorMessage);
+            });
+
+        //show the myprofile button
+    });
+
+    $("#log-out-button").on("click", event => {
+        firebase
+            .auth()
+            .signOut()
+            .then(user => {
+                // Sign-out successful.
+                console.log("User signed out");
+                console.log(user);
+            })
+            .catch(function(error) {
+                // An error happened.
+                console.log("SIGN OUT ERROR");
+                console.log(error);
+            });
+    });
+
+    var user = null;
+    //Gets the currently signed in user
+    firebase.auth().onAuthStateChanged(signedInUser => {
+        if (signedInUser) {
+            user = signedInUser;
+            console.log("Currently signed in user:");
+            console.log(user);
+            console.log(user.uid);
+            $(".my-profile-button").show(0);
+            $(".my-profile-button").attr("href", "/users/" + user.uid);
+            $("#log-out-button").show(0);
+            $("#authenticate-button").hide(0);
+            $("#unauthenticated-banner").hide(0);
+        } else {
+            console.log("No user is signed in");
+            user = null;
+            $("#authenticate-button").show(0);
+            $("#unauthenticated-banner").show(0);
+            $(".my-profile-button").hide(0);
+            $("#log-out-button").hide(0);
+        }
+    });
+
+    // ************ End Firebase Authentication Section ***********
+
     function populateBook(isbn) {
         var apiKey = "AIzaSyBVaPHihkOt3MSXrw5Hf-HjJB7TrOdawlo";
         var queryURL =
@@ -16,7 +135,7 @@ $(document).ready(function () {
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).done(function (data) {
+        }).done(function(data) {
             console.log(data);
         });
     }
@@ -32,29 +151,31 @@ $(document).ready(function () {
     }
 
     $(".favorite-book").hover(
-        function () {
+        function() {
             $(this).addClass("fav-on");
         },
-        function () {
+        function() {
             $(this).removeClass("fav-on");
         }
     );
 
     isOnShelves();
 
-    $(document).on("click", "a.dropdown-item", function () {
+    $(document).on("click", "a.dropdown-item", function() {
         var keyWord = $("#search-input")
             .val()
             .trim();
         populateBook(keyWord);
     });
 
-    $("#actionBtnReserve").on("click", function () {
+    $("#actionBtnReserve").on("click", function() {
         // gets the book id
         var id = $(this).data("mediumId");
 
         console.log(id);
-        reserveMedia(id, 2);
+        reserveMedia(id, user.uid);
+
+        //add href to users/user.id on the class go-to-my-profile
 
         // var customer = $(this).parent().closest('.input-group').children('.form-control').val();
         // if (customer === "") {
@@ -64,7 +185,7 @@ $(document).ready(function () {
     });
 
     // ************ Favorites Section ************
-    $(".actionBtnFav").on("click", function (event) {
+    $(".actionBtnFav").on("click", function(event) {
         event.preventDefault();
         var mediumId = $(this).data("mediumId");
         var userId = $(this).data("userId");
@@ -80,7 +201,7 @@ $(document).ready(function () {
         }
     });
 
-    $(".remove-favorite").on("click", function () {
+    $(".remove-favorite").on("click", function() {
         var mediumId = $(this).data("mediumId");
         var userId = $(this).data("userId");
         var favorite = {
@@ -107,10 +228,10 @@ $(document).ready(function () {
         // /api/:table /:UserId / delete /:MediumId?
         $.ajax({
             url:
-            "/api/favorites/" +
-            favorite.userId +
-            "/delete/" +
-            favorite.mediumId,
+                "/api/favorites/" +
+                favorite.userId +
+                "/delete/" +
+                favorite.mediumId,
             type: "DELETE",
             success: result => {
                 console.log("RECORD DELETED");
@@ -127,7 +248,7 @@ $(document).ready(function () {
             mediumId: mediumId,
             userId: userId
         };
-        console.log(userId)
+        console.log(userId);
         //POST to reservations table
         $.post("/api/reservations/create", newReservation, result => {
             console.log("NEW RESERVATION MADE:");
@@ -154,11 +275,13 @@ $(document).ready(function () {
 
     // ************ Cancel Reservation Section ************
 
-    $(".action-btn-cancel-media").on("click", function (event) {
+    $(".action-btn-cancel-media").on("click", function(event) {
         event.preventDefault();
-        var mediumId = $(this).data('mediumId');
-        var userId = $(this).data('userId');
-        $(this).parents('article').remove();
+        var mediumId = $(this).data("mediumId");
+        var userId = $(this).data("userId");
+        $(this)
+            .parents("article")
+            .remove();
         deleteReservation(mediumId, userId);
     });
 
@@ -179,13 +302,15 @@ $(document).ready(function () {
     // ************ Cancel Reservation Section End ************
 
     // ************ Check Out Section ************
-    $('.action-btn-check-out-media').on('click', function () {
+    $(".action-btn-check-out-media").on("click", function() {
         event.preventDefault();
-        var mediumId = $(this).data('mediumId');
-        var userId = $(this).data('userId');
-        $(this).parents('article').remove();
+        var mediumId = $(this).data("mediumId");
+        var userId = $(this).data("userId");
+        $(this)
+            .parents("article")
+            .remove();
         checkOutMedia(mediumId, userId);
-    })
+    });
 
     function checkOutMedia(mediumId, userId) {
         var newCheckout = {
@@ -204,15 +329,15 @@ $(document).ready(function () {
     // ************ Check Out Section End ************
 
     // ************ Check In Section ************
-    $('.action-btn-check-in-media').on('click', function () {
+    $(".action-btn-check-in-media").on("click", function() {
         event.preventDefault();
-        var mediumId = $(this).data('mediumId');
-        var userId = $(this).data('userId');
+        var mediumId = $(this).data("mediumId");
+        var userId = $(this).data("userId");
         checkInMedia(mediumId, userId);
 
         $(this).remove();
-        $('#returnBy').addClass('hide');
-        $('#returnOn').removeClass('hide');
+        $("#returnBy").addClass("hide");
+        $("#returnOn").removeClass("hide");
     });
 
     function checkInMedia(mediumId, userId) {
@@ -235,32 +360,34 @@ $(document).ready(function () {
     // ************ Check In Section ************
 });
 
-console.log("Test")
-// Manage user submit button: 
-$("#user-submit").on("click", function () {
+console.log("Test");
+// Manage user submit button:
+$("#user-submit").on("click", function() {
     event.preventDefault();
-    window.location.href = "/manage/users/" + $("#user-id").val()
-})
+    window.location.href = "/manage/users/" + $("#user-id").val();
+});
 
 // When manager adds a new media:
-$("#new-submit").on("click", function () {
+$("#new-submit").on("click", function() {
     event.preventDefault();
     $("#new-book-modal").modal("show");
     var newbook = {
-        mediaType: $("#media-type").val().toLowerCase(),
+        mediaType: $("#media-type")
+            .val()
+            .toLowerCase(),
         industryIdentifier: $("#industry-identifier").val()
     };
     $.post("/api/media/new", newbook);
-})
+});
 
 // When manager deletes a media:
-$("#delete-submit").on("click", function () {
+$("#delete-submit").on("click", function() {
     event.preventDefault();
-    var id = $("#delete-industry-identifier").val()
+    var id = $("#delete-industry-identifier").val();
     $.ajax({
         method: "DELETE",
         url: "/api/media/delete/" + id
-    }).then(function (res) {
-        console.log(res)
-    })
-})
+    }).then(function(res) {
+        console.log(res);
+    });
+});
