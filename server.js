@@ -28,7 +28,7 @@ require("./controllers/index-controller.js")(app);
 require("./controllers/media-controller.js")(app);
 require("./controllers/reservation-controller.js")(app);
 require("./controllers/user-controller.js")(app);
-require("./controllers/authorization-controller.js")(app);
+// require("./controllers/authorization-controller.js")(app);
 
 var port = process.env.PORT || 3000;
 // connect to database, sync with database, then listen on port 3000
