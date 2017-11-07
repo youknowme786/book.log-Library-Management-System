@@ -3,7 +3,7 @@ var db = require("../models");
 // make sure date format matches createdAt field
 
 module.exports = {
-	updateMediaTable: (action, mediumId, res) => {
+	updateMediaTable: (action, mediumId) => {
 		var updateData = {};
 		switch (action) {
 			case "reserveMedia":
@@ -55,7 +55,7 @@ module.exports = {
 				}
 				break;
 
-			case "deleteItem":
+			case "deleteOneItem":
 				if (updateData.totalStock > 0) {
 					if (updateData.numShelved > 0) {
 						updateData.numShelved--;
@@ -65,7 +65,7 @@ module.exports = {
 				}
 				break;
 
-			case "addItem":
+			case "addOneItem":
 				if (updateData.reservationListSize > updateData.numReserved) {
 					updateData.numReserved++;
 				} else {
@@ -97,11 +97,11 @@ module.exports = {
 			})
 			.then(data => {
 				console.log("rows affected: " + data);
-				res.json(data);
+				return data;
 			});
 	}, // function updateMediaTable(){}}
 
-	deleteItemfromTable: (table, UserId, MediumId, res) => {
+	deleteRowFromTable: (table, UserId, MediumId) => {
 		//DELETE from any table
 		//provide the table name, user id, and medium id
 		//if deleting from the users or media table/ enter the id in the :UserId parameter
@@ -142,10 +142,6 @@ module.exports = {
 				dbModel = db.Review;
 				break;
 
-			case "saveditems":
-				dbModel = db.SavedItem;
-				break;
-
 			case "users":
 				dbModel = db.User;
 				break;
@@ -162,7 +158,7 @@ module.exports = {
 
 		dbModel.destroy({ where: query }).then(data => {
 			console.log("RECORD DELETED");
-			res.json(data);
+			return data;
 		});
 	} // function deleteItemfromTable(){}
 };

@@ -1,4 +1,5 @@
 var db = require("../models");
+//axios - promise based ajax node module. on server side only
 var axios = require("axios");
 
 module.exports = app => {
@@ -54,8 +55,8 @@ module.exports = app => {
 						newMedium.image = "/assets/img/placeholder.gif";
 					}
 
-					newMedium.totalStock = 10;
-					newMedium.numShelved = 10;
+					newMedium.totalStock = req.body.totalStock;
+					newMedium.numShelved = req.body.totalStock;
 				}
 			})
 			.then(() => {
@@ -65,4 +66,10 @@ module.exports = app => {
 				res.json(data);
 			});
 	}); // app.post
+
+	//UPDATE AN EXISTING BOOK -- CHANGE EXISTING BOOK AMOUNT
+	//PUT to media table - add one item OR delete one item
+
+	//DELETE ALL INSTANCES OF A BOOK - REMOVING ROW FROM MEDIA TABLE
+	//calls deleteRowFromTable
 };
