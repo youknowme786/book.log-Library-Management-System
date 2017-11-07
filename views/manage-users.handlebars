@@ -95,8 +95,11 @@
                                 </h6>
                                 <p>
                                     <b class="text-uppercase">Status: </b>
-                                    <span class="alert return">
-                                        <i> return by December 8, 2017</i>
+                                    <span id="returnBy" class="alert">
+                                        <i> Return by December 8, 2017</i>
+                                    </span>
+                                    <span id="returnOn" class="alert hide">
+                                        <i> Returned on {{this.updatedAt}}</i>
                                     </span>
                                 </p>
                                 <button class="btn btn-success text-uppercase action-btn-check-in-media" type="button" data-medium-id="{{this.Medium.id}}"

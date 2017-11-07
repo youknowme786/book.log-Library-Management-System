@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    $(".nav a").on("click", function () {
+        $(".nav").find(".active").removeClass("active");
+        $(this).parent().addClass("active");
+    });
+    
     function populateBook(isbn) {
         var apiKey = "AIzaSyBVaPHihkOt3MSXrw5Hf-HjJB7TrOdawlo";
         var queryURL =
@@ -203,9 +208,11 @@ $(document).ready(function () {
         event.preventDefault();
         var mediumId = $(this).data('mediumId');
         var userId = $(this).data('userId');
-        $(this).remove();
         checkInMedia(mediumId, userId);
-        $('.return').text('Returned on ');
+
+        $(this).remove();
+        $('#returnBy').addClass('hide');
+        $('#returnOn').removeClass('hide');
     });
 
     function checkInMedia(mediumId, userId) {
@@ -230,13 +237,13 @@ $(document).ready(function () {
 
 console.log("Test")
 // Manage user submit button: 
-$("#user-submit").on("click", function() {
+$("#user-submit").on("click", function () {
     event.preventDefault();
     window.location.href = "/manage/users/" + $("#user-id").val()
 })
 
 // When manager adds a new media:
-$("#new-submit").on("click", function() {
+$("#new-submit").on("click", function () {
     event.preventDefault();
     $("#new-book-modal").modal("show");
     var newbook = {
@@ -247,13 +254,13 @@ $("#new-submit").on("click", function() {
 })
 
 // When manager deletes a media:
-$("#delete-submit").on("click", function() {
+$("#delete-submit").on("click", function () {
     event.preventDefault();
     var id = $("#delete-industry-identifier").val()
     $.ajax({
         method: "DELETE",
         url: "/api/media/delete/" + id
-    }).then(function(res) {
+    }).then(function (res) {
         console.log(res)
-    }) 
+    })
 })

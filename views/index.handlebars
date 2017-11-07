@@ -52,10 +52,10 @@
 
 		<img id="Popular-LArrow" class="col-1.5" src="assets/img/indexImages/LArrow.png">
 
-		<div id="PopularCarousel" class="col-9 owl-carousel owl-theme">
+		<div id="PopularCarousel" class="col-11 col-md-9 owl-carousel owl-theme">
 
 			{{#each popular}}
-			<div class="item">
+			<div id="popularitems" class="item">
 				<div class="card text-center" style="width: 11rem;">
 					<a href="/media/book/{{this.industryIdentifier}}">
 						<img class="bookcover" src="{{this.image}}">
@@ -89,10 +89,10 @@
 
 		<img id="New-LArrow" class="col-1.5" src="assets/img/indexImages/LArrow.png">
 
-		<div id="NewCarousel" class="col-9 owl-carousel owl-theme">
+		<div id="NewCarousel" class="col-11 col-md-9 owl-carousel owl-theme">
 
 			{{#each new}}
-			<div class="item">
+			<div id="newitems" class="item">
 				<div class="card text-center" style="width: 11rem;">
 					<a href="/media/book/{{this.industryIdentifier}}">
 						<img data-toggle="modal" data-target=".bd-example-modal-lg" class="bookcover" src="{{this.image}}">
