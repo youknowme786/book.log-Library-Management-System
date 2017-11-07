@@ -29,7 +29,7 @@ module.exports = app => {
 			)
 			.then(data => {
 				//PUT to media table
-				updateMediaTable(res, "checkIn", req.body.MediumId);
+				updateMediaTable("checkIn", req.body.MediumId);
 			});
 	});
 
@@ -66,7 +66,6 @@ module.exports = app => {
 			.then(data => {
 				//DELETE to reservations table
 				deleteRowFromTable(
-					res,
 					"reservations",
 					req.body.UserId,
 					req.body.MediumId
@@ -74,11 +73,7 @@ module.exports = app => {
 			})
 			.then(data => {
 				//PUT to media table
-				updateMediaTable(
-					res,
-					"checkoutWithReservation",
-					req.body.MediumId
-				);
+				updateMediaTable("checkoutWithReservation", req.body.MediumId);
 			});
 	});
 
@@ -119,7 +114,6 @@ module.exports = app => {
 			.then(data => {
 				//DELETE to reservations table
 				deleteRowFromTable(
-					res,
 					"reservations",
 					req.body.UserId,
 					req.body.MediumId
@@ -127,11 +121,7 @@ module.exports = app => {
 			})
 			.then(data => {
 				//PUT to media table
-				updateMediaTable(
-					res,
-					"checkoutWithReservation",
-					req.body.MediumId
-				);
+				updateMediaTable("checkoutWithReservation", req.body.MediumId);
 			});
 	});
 };
