@@ -192,3 +192,34 @@ $(document).ready(function () {
         console.log("show me object" + data);
     });
 });
+
+// All this stuff commented out was my hour long attempt to get bootstrap validation to work. It almost worked but in the end I failed :(
+    // (function() {
+    //   'use strict';
+
+    //   window.addEventListener('load', function() {
+    //     var form = document.getElementById('mediaform');
+    //     form.addEventListener('submit', function(event) {
+    //       if (form.checkValidity() === false) {
+    //         event.preventDefault();
+    //         event.stopPropagation();
+    //       }
+    //       form.classList.add('was-validated');
+    //     }, false);
+    //   }, false);
+    // })();
+
+// Adding a new book to DB: 
+$("#new-submit").on("click", function() {
+    event.preventDefault();
+    var newbook = {
+        mediaType: $("#media-type").val().toLowerCase(),
+        industryIdentifier: $("#industry-identifier").val()
+    }
+    $.post("/api/media/new", newbook)
+})
+
+// Clear form after modal is dismissed: 
+$("#modalclose").on("click", function() {
+    $("#industry-identifier").val("");
+})
