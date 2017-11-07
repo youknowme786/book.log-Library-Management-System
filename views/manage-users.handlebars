@@ -47,10 +47,6 @@
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#history">Check-Out History</a>
                 </li>
-                {{!--
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#favorites">Favorites</a>
-                </li> --}}
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="myBooks">
@@ -80,12 +76,6 @@
 
 
                             </div>
-                            {{!--
-                            <div class="col-md-1">
-                                <span class="favorite-book actionBtnFav" data-medium-id="{{this.Medium.id}}" data-user-id="{{../userData.id}}">
-                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                </span>
-                            </div> --}}
                         </div>
                         <hr>
                     </article>
@@ -105,49 +95,25 @@
                                 </h6>
                                 <p>
                                     <b class="text-uppercase">Status: </b>
-                                    <span class="alert">
-                                        <i> return by December 8, 2017</i>
+                                    <span id="returnBy" class="alert">
+                                        <i> Return by December 8, 2017</i>
+                                    </span>
+                                    <span id="returnOn" class="alert hide">
+                                        <i> Returned on {{this.updatedAt}}</i>
                                     </span>
                                 </p>
-                                <button class="btn btn-success text-uppercase action-btn-cancel-media" type="button" data-medium-id="{{this.Medium.id}}"
+                                <button class="btn btn-success text-uppercase action-btn-check-in-media" type="button" data-medium-id="{{this.Medium.id}}"
                                     data-user-id="{{../userData.id}}">
                                     Check-In
                                 </button>
 
                             </div>
-                            {{!--
-                            <div class="col-md-1">
-                                <span class="favorite-book actionBtnFav" data-medium-id="{{this.Medium.id}}" data-user-id="{{../userData.id}}">
-                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                </span>
-                            </div> --}}
+
                         </div>
                         <hr>
                     </article>
                     {{/each}}
                 </div>
-                {{!--
-                <div class="tab-pane fade" id="favorites">
-                    {{#each favorites}}
-                    <article class="card mt-3">
-                        <div class="card-body row">
-                            <div class="col-md-11">
-                                <h4 class="card-title">{{this.Medium.title}}</h4>
-                                <h6 class="card-subtitle mb-2 text-muted">by
-                                    <span>
-                                        <a href="#">{{this.Medium.author}}</a>
-                                    </span>
-                                </h6>
-                                <button class="btn btn-success text-uppercase remove-favorite" type="button" data-medium-id="{{this.Medium.id}}" data-user-id="{{../userData.id}}">
-                                    Remove Favorite
-                                </button>
-
-                            </div>
-                        </div>
-                        <hr>
-                    </article>
-                    {{/each}}
-                </div> --}}
             </div>
         </div>
     </div>

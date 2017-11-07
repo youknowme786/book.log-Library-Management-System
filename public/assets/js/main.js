@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    $(".nav a").on("click", function () {
+        $(".nav").find(".active").removeClass("active");
+        $(this).parent().addClass("active");
+    });
+    
     function populateBook(isbn) {
         var apiKey = "AIzaSyBVaPHihkOt3MSXrw5Hf-HjJB7TrOdawlo";
         var queryURL =
@@ -171,8 +176,9 @@ $(document).ready(function () {
             }
         });
     }
-
     // ************ Cancel Reservation Section End ************
+
+    // ************ Check Out Section ************
     $('.action-btn-check-out-media').on('click', function () {
         event.preventDefault();
         var mediumId = $(this).data('mediumId');
@@ -180,10 +186,11 @@ $(document).ready(function () {
         $(this).parents('article').remove();
         checkOutMedia(mediumId, userId);
     })
+
     function checkOutMedia(mediumId, userId) {
         var newCheckout = {
-            MediumId: mediumId,
-            UserId: userId
+            mediumId: mediumId,
+            userId: userId
         };
 
         //POST to checkouthistories table
@@ -194,43 +201,49 @@ $(document).ready(function () {
             console.log("CheckOutMedia");
         });
     }
+    // ************ Check Out Section End ************
 
+    // ************ Check In Section ************
+    $('.action-btn-check-in-media').on('click', function () {
+        event.preventDefault();
+        var mediumId = $(this).data('mediumId');
+        var userId = $(this).data('userId');
+        checkInMedia(mediumId, userId);
 
-    // checkInMedia(mediumId, userId);
+        $(this).remove();
+        $('#returnBy').addClass('hide');
+        $('#returnOn').removeClass('hide');
+    });
+
     function checkInMedia(mediumId, userId) {
-        console.log("Entering fxn checkInMedia");
         var newCheckin = {
-            MediumId: mediumId,
-            UserId: userId
+            mediumId: mediumId,
+            userId: userId
         };
 
         //PUT to checkouthistories table
         $.ajax({
-            url: "/api/checkouthistories/checkin",
+            url: "/api/checkouthistories/update/checkin",
+            data: newCheckin,
             type: "PUT",
             success: result => {
                 console.log("RECORD UPDATED");
                 console.log(result);
             }
         });
-
-        //PUT to media table
     }
-
-    // $.get("/api/4/favorites", function (data) {
-    //     console.log("show me object" + data);
-    // });
+    // ************ Check In Section ************
 });
 
 console.log("Test")
 // Manage user submit button: 
-$("#user-submit").on("click", function() {
+$("#user-submit").on("click", function () {
     event.preventDefault();
     window.location.href = "/manage/users/" + $("#user-id").val()
 })
 
 // When manager adds a new media:
-$("#new-submit").on("click", function() {
+$("#new-submit").on("click", function () {
     event.preventDefault();
     $("#new-book-modal").modal("show");
     var newbook = {
@@ -241,13 +254,13 @@ $("#new-submit").on("click", function() {
 })
 
 // When manager deletes a media:
-$("#delete-submit").on("click", function() {
+$("#delete-submit").on("click", function () {
     event.preventDefault();
     var id = $("#delete-industry-identifier").val()
     $.ajax({
         method: "DELETE",
         url: "/api/media/delete/" + id
-    }).then(function(res) {
+    }).then(function (res) {
         console.log(res)
-    }) 
+    })
 })

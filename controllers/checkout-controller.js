@@ -9,7 +9,7 @@ module.exports = app => {
 	//CHECK IN A BOOK
 	//PUT to checkouthistories table
 	//CURL command:
-	//curl -X PUT -H "Content-Type: application/json" -d '{"UserId": 1, "MediumId": 3}' http://localhost:3000/api/checkouthistories/checkin
+	//curl -X PUT -H "Content-Type: application/json" -d '{"userId": 1, "mediumId": 3}' http://localhost:3000/api/checkouthistories/checkin
 	app.put("/api/checkouthistories/update/checkin", (req, res) => {
 		let dataDeliverable = {};
 
@@ -29,6 +29,7 @@ module.exports = app => {
 			)
 			.then(data => {
 				//PUT to media table
+				console.log(req.body.mediumId);
 				updateMediaTable("checkIn", req.body.mediumId);
 				res.json(data);
 			});
