@@ -1,0 +1,70 @@
+<main class="container mb-5">
+    <div class="row mb-3">
+
+        <div class="col-md-12 text-center mt-5">
+            <h1>My Account</h1>
+            <h3>{{this.userData.firstName}} {{this.userData.middleName}} {{this.userData.lastName}}</h3>
+            <p>Employee since:
+                <span>
+                    2005
+                </span>
+            </p>
+            <hr class="mt-3">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Reservations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="profile" aria-selected="false">Add New Media</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Delete Media</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    {{#each reservations}}
+                    <article class="card mt-3">
+                        <div class="card-body row">
+                            <div class="col-md-11">
+                                <h4 class="card-title">{{this.Medium.title}}</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">by
+                                    <span>
+                                        <a href="#">{{this.Medium.author}}</a>
+                                    </span>
+                                </h6>
+                                <p>
+                                    <span id="isbn">{{this.industryIdentifier}}</span>
+                                </p>
+
+                                <p>
+                                    <b class="text-uppercase">User Id: </b>
+                                    LIB-730-00{{this.userData.id}}</p>
+
+                                <p>
+                                    <b class="text-uppercase"></b>
+                                    <span>Change Status to Checked
+
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                    {{/each}}
+                </div>
+
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    Add new book form goes here
+                </div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                    delete a book goes here
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
