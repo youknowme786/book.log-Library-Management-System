@@ -1,5 +1,5 @@
 console.log("main.js is linked");
-$(document).ready(function () {
+$(document).ready(function() {
     function populateBook(isbn) {
         var apiKey = "AIzaSyBVaPHihkOt3MSXrw5Hf-HjJB7TrOdawlo";
         var queryURL =
@@ -12,7 +12,7 @@ $(document).ready(function () {
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).done(function (data) {
+        }).done(function(data) {
             console.log(data);
         });
     }
@@ -28,26 +28,26 @@ $(document).ready(function () {
     }
 
     $(".favorite-book").hover(
-        function () {
+        function() {
             $(this).addClass("fav-on");
         },
-        function () {
+        function() {
             $(this).removeClass("fav-on");
         }
     );
 
     isOnShelves();
 
-    $(document).on("click", "a.dropdown-item", function () {
+    $(document).on("click", "a.dropdown-item", function() {
         var keyWord = $("#search-input")
             .val()
             .trim();
         populateBook(keyWord);
     });
 
-    $("#actionBtnReserve").on("click", function () {
+    $("#actionBtnReserve").on("click", function() {
         // gets the book id
-        var id = $(this).data('mediumId');
+        var id = $(this).data("mediumId");
 
         console.log(id);
         reserveMedia(id, 2);
@@ -60,60 +60,63 @@ $(document).ready(function () {
     });
 
     // ************ Favorites Section ************
-    $('.actionBtnFav').on('click', function (event) {
+    $(".actionBtnFav").on("click", function(event) {
         event.preventDefault();
-        var mediumId = $(this).data('mediumId');
-        var userId = $(this).data('userId');
+        var mediumId = $(this).data("mediumId");
+        var userId = $(this).data("userId");
         var favorite = {
             MediumId: mediumId,
             UserId: userId
         };
 
-        if ($(this).hasClass('fav-selected')) {
+        if ($(this).hasClass("fav-selected")) {
             removeFromFavorites(favorite, $(this));
         } else {
             addToFavorites(favorite, $(this));
         }
+    });
 
-    })
-
-    $('.remove-favorite').on('click', function () {
-        var mediumId = $(this).data('mediumId');
-        var userId = $(this).data('userId');
+    $(".remove-favorite").on("click", function() {
+        var mediumId = $(this).data("mediumId");
+        var userId = $(this).data("userId");
         var favorite = {
             MediumId: mediumId,
             UserId: userId
         };
         removeFromFavorites(favorite);
-        $(this).parents('article').remove();
-    })
+        $(this)
+            .parents("article")
+            .remove();
+    });
 
     function addToFavorites(newFavorite, btn) {
         $.post("/api/favorites/create", newFavorite, result => {
             console.log("NEW newFavorite MADE:");
             console.log(newFavorite);
-        })
-            .then(() => {
-                console.log("TO DO: update media table quantities");
-                btn.addClass('fav-selected');
-            })
+        }).then(() => {
+            console.log("TO DO: update media table quantities");
+            btn.addClass("fav-selected");
+        });
     }
 
     function removeFromFavorites(favorite, btn) {
         // /api/:table /:UserId / delete /:MediumId?
         $.ajax({
-            url: "/api/favorites/" + favorite.userId + "/delete/" + favorite.mediumId,
+            url:
+                "/api/favorites/" +
+                favorite.userId +
+                "/delete/" +
+                favorite.mediumId,
             type: "DELETE",
             success: result => {
                 console.log("RECORD DELETED");
                 console.log(result);
                 if (btn) {
-                    btn.removeClass('fav-selected');
+                    btn.removeClass("fav-selected");
                 }
             }
         });
     } // ************ Favorites Section End ************
-
 
     function reserveMedia(mediumId, userId) {
         var newReservation = {
@@ -145,13 +148,12 @@ $(document).ready(function () {
             });
     }
 
-    $('.action-btn-cancel-media').on('click', function (event) {
+    $(".action-btn-cancel-media").on("click", function(event) {
         event.preventDefault();
-        var mediumId = $(this).data('mediumId');
-        var userId = $(this).data('userId');
+        var mediumId = $(this).data("mediumId");
+        var userId = $(this).data("userId");
         deleteReservation(mediumId, userId);
     });
-
 
     //Verified the function works using:
     //deleteReservation(4, 1);
@@ -209,38 +211,86 @@ $(document).ready(function () {
     }
     // /users/:userId
 
-    $.get("/api/4/favorites", function (data) {
+    $.get("/api/4/favorites", function(data) {
         console.log("show me object" + data);
     });
 });
 
-// All this stuff commented out was my hour long attempt to get bootstrap validation to work. It almost worked but in the end I failed :(
-// (function() {
-//   'use strict';
+// Validation + function that adds book to DB:
+(function() {
+    "use strict";
 
-//   window.addEventListener('load', function() {
-//     var form = document.getElementById('mediaform');
-//     form.addEventListener('submit', function(event) {
-//       if (form.checkValidity() === false) {
-//         event.preventDefault();
-//         event.stopPropagation();
-//       }
-//       form.classList.add('was-validated');
-//     }, false);
-//   }, false);
-// })();
+    window.addEventListener(
+        "load",
+        function() {
+            var form = document.getElementById("mediaform");
+            form.addEventListener(
+                "submit",
+                function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add("was-validated");
+                    event.preventDefault();
+                    if (form.checkValidity() === true) {
+                        $("#new-book-modal").modal("show");
+                        var newbook = {
+                            mediaType: $("#media-type")
+                                .val()
+                                .toLowerCase(),
+                            industryIdentifier: $("#industry-identifier").val()
+                        };
+                        $.post("/api/media/new", newbook);
+                    }
+                },
+                false
+            );
+        },
+        false
+    );
+})();
 
-// Adding a new book to DB: 
-$("#new-submit").on("click", function () {
-    event.preventDefault();
-    var newbook = {
-        mediaType: $("#media-type").val().toLowerCase(),
-        industryIdentifier: $("#industry-identifier").val()
-    }
-    $.post("/api/media/new", newbook)
-})
+// Validation + function that deletes books from DB:
+(function() {
+    "use strict";
 
-// Clear form after modal is dismissed: 
-$("#modalclose").on("click", function () {
-    $("#industry-identifier").val("");
-})
+    window.addEventListener(
+        "load",
+        function() {
+            var form = document.getElementById("deleteform");
+            form.addEventListener(
+                "submit",
+                function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add("was-validated");
+                    event.preventDefault();
+                    if (form.checkValidity() === true) {
+                        // $("#delete-book-modal").modal("show");
+                        var newbook = {
+                            mediaType: $("#delete-media-type")
+                                .val()
+                                .toLowerCase(),
+                            industryIdentifier: $("#delete-industry-identifier").val()
+                        };
+                        $.ajax({
+                            method: "DELETE",
+                            url: "/api/media/delete",
+                            data: {
+                                mediaType: $("#delete-media-type").val().toLowerCase(),
+                                industryIdentifier: $("#delete-industry-identifier")
+                            }
+                        })
+                        // ("/api/media/delete", newbook);
+                        console.log(newbook)
+                    }
+                },
+                false
+            );
+        },
+        false
+    );
+})();
