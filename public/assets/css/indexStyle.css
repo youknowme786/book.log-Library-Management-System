@@ -116,7 +116,8 @@ p.book-summary {
 }
 
 .btn-success,
-.btn-danger {
+.btn-danger,
+.btn-secondary {
 	border-radius: 0;
 }
 
@@ -136,7 +137,7 @@ p.book-summary {
 }
 
 .hide {
-	display: none
+	display: none;
 }
 
 
