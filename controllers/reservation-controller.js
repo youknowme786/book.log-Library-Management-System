@@ -79,12 +79,12 @@ module.exports = app => {
 
 	//DELETE route for canceling a reservation
 	//curl -H "Content-Type: application/json" -X DELETE -d '{"mediumId": 10, "userId": 4}' http://localhost:3000/api/reservations/delete
-	app.delete("/api/reservations/delete", (req, res) => {
+	app.delete("/api/reservations/:userId/delete/:mediumId", (req, res) => {
 		Promise.resolve(() => {
 			return deleteRowFromTable(
 				"reservations",
-				req.body.userId,
-				req.body.mediumId
+				req.params.userId,
+				req.params.mediumId
 			);
 		})
 			.then(() => {
