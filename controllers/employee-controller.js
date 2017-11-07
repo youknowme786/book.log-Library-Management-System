@@ -2,8 +2,8 @@ var db = require("../models");
 
 module.exports = app => {
 	app.get("/manage", (req, res) => {
-		res.render("manage")
-	}
+		res.render("manage");
+	});
 
 	//GET user info
 	//curl -i -H "Content-Type: application/json" http://localhost:3000/users/2
