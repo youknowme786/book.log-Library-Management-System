@@ -96,8 +96,8 @@ module.exports = app => {
 							counter++;
 							// if the counter has reached the target, return the deliverable to the front end and render the user page
 							if (counter === target) {
-								res.json(dataDeliverable);
-								// res.render("manage-users", dataDeliverable);
+								// res.json(dataDeliverable);
+								res.render("manage-users", dataDeliverable);
 							}
 						});
 				});
