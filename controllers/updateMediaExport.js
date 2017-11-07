@@ -142,10 +142,6 @@ module.exports = {
 				dbModel = db.Review;
 				break;
 
-			case "saveditems":
-				dbModel = db.SavedItem;
-				break;
-
 			case "users":
 				dbModel = db.User;
 				break;
