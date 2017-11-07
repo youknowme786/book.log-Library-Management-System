@@ -52,7 +52,7 @@ module.exports = {
 						if (updateData.numReserved > 0) {
 							updateData.numReserved--;
 							updateData.reservationListSize--;
-							updata.numCheckedOut++;
+							updateData.numCheckedOut++;
 							updateData.totalNumCheckouts++;
 						}
 						break;
