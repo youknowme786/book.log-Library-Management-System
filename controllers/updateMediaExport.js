@@ -108,7 +108,6 @@ module.exports = {
 			});
 	}, // function updateMediaTable(){}}
 
-<<<<<<< HEAD
 	deleteRowFromTable: (table, userId, mediumId) => {{
 
 		//DELETE from any table
