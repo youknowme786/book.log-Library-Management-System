@@ -65,8 +65,8 @@ $(document).ready(function () {
         var mediumId = $(this).data('mediumId');
         var userId = $(this).data('userId');
         var favorite = {
-            MediumId: mediumId,
-            UserId: userId
+            mediumId: mediumId,
+            userId: userId
         };
 
         if ($(this).hasClass('fav-selected')) {
@@ -81,11 +81,12 @@ $(document).ready(function () {
         var mediumId = $(this).data('mediumId');
         var userId = $(this).data('userId');
         var favorite = {
-            MediumId: mediumId,
-            UserId: userId
+            mediumId: mediumId,
+            userId: userId
         };
         removeFromFavorites(favorite);
         $(this).parents('article').remove();
+
     })
 
     function addToFavorites(newFavorite, btn) {
@@ -117,10 +118,10 @@ $(document).ready(function () {
 
     function reserveMedia(mediumId, userId) {
         var newReservation = {
-            MediumId: mediumId,
-            UserId: userId
+            mediumId: mediumId,
+            userId: userId
         };
-
+        console.log(userId)
         //POST to reservations table
         $.post("/api/reservations/create", newReservation, result => {
             console.log("NEW RESERVATION MADE:");
@@ -149,6 +150,7 @@ $(document).ready(function () {
         event.preventDefault();
         var mediumId = $(this).data('mediumId');
         var userId = $(this).data('userId');
+        $(this).parents('article').remove();
         deleteReservation(mediumId, userId);
     });
 
@@ -172,41 +174,41 @@ $(document).ready(function () {
 
     //Verified the function works using:
     //checkOutMedia(8, 2);
-    function checkOutMedia(mediumId, userId) {
-        var newCheckout = {
-            MediumId: mediumId,
-            UserId: userId
-        };
+    // function checkOutMedia(mediumId, userId) {
+    //     var newCheckout = {
+    //         MediumId: mediumId,
+    //         UserId: userId
+    //     };
 
-        //POST to checkouthistories table
-        $.post("/api/checkouthistories/create", newCheckout, result => {
-            console.log("NEW CHECKOUT MADE:");
-            console.log(newCheckout);
-        }).then(() => {
-            console.log("TO DO: update media table quantities");
-            //PUT to media table
-        });
-    }
+    //     //POST to checkouthistories table
+    //     $.post("/api/checkouthistories/create", newCheckout, result => {
+    //         console.log("NEW CHECKOUT MADE:");
+    //         console.log(newCheckout);
+    //     }).then(() => {
+    //         console.log("TO DO: update media table quantities");
+    //         //PUT to media table
+    //     });
+    // }
     // checkInMedia(8, 2);
-    function checkInMedia(mediumId, userId) {
-        console.log("Entering fxn checkInMedia");
-        var newCheckin = {
-            MediumId: mediumId,
-            UserId: userId
-        };
+    // function checkInMedia(mediumId, userId) {
+    //     console.log("Entering fxn checkInMedia");
+    //     var newCheckin = {
+    //         MediumId: mediumId,
+    //         UserId: userId
+    //     };
 
-        //PUT to checkouthistories table
-        $.ajax({
-            url: "/api/checkouthistories/checkin",
-            type: "PUT",
-            success: result => {
-                console.log("RECORD UPDATED");
-                console.log(result);
-            }
-        });
+    //     //PUT to checkouthistories table
+    //     $.ajax({
+    //         url: "/api/checkouthistories/checkin",
+    //         type: "PUT",
+    //         success: result => {
+    //             console.log("RECORD UPDATED");
+    //             console.log(result);
+    //         }
+    //     });
 
-        //PUT to media table
-    }
+    //     //PUT to media table
+    // }
     // /users/:userId
 
     $.get("/api/4/favorites", function (data) {

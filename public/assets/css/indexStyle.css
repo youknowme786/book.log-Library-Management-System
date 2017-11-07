@@ -137,11 +137,6 @@ p.book-summary {
 
 /*Popular and New Carousel Styling: */
 
-	#Popular-Container,
-	#New-Container {
-		/*width: 100%;*/
-	}
-
 	#Popular-Container {
 		margin-top: 35px;
 	}
