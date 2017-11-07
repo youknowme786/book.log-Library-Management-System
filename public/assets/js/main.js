@@ -1,4 +1,3 @@
-console.log("main.js is linked");
 $(document).ready(function() {
     function populateBook(isbn) {
         var apiKey = "AIzaSyBVaPHihkOt3MSXrw5Hf-HjJB7TrOdawlo";
@@ -252,45 +251,58 @@ $(document).ready(function() {
 })();
 
 // Validation + function that deletes books from DB:
-(function() {
-    "use strict";
+// (function() {
+//     "use strict";
 
-    window.addEventListener(
-        "load",
-        function() {
-            var form = document.getElementById("deleteform");
-            form.addEventListener(
-                "submit",
-                function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add("was-validated");
-                    event.preventDefault();
-                    if (form.checkValidity() === true) {
-                        // $("#delete-book-modal").modal("show");
-                        var newbook = {
-                            mediaType: $("#delete-media-type")
-                                .val()
-                                .toLowerCase(),
-                            industryIdentifier: $("#delete-industry-identifier").val()
-                        };
-                        $.ajax({
-                            method: "DELETE",
-                            url: "/api/media/delete",
-                            data: {
-                                mediaType: $("#delete-media-type").val().toLowerCase(),
-                                industryIdentifier: $("#delete-industry-identifier")
-                            }
-                        })
-                        // ("/api/media/delete", newbook);
-                        console.log(newbook)
-                    }
-                },
-                false
-            );
-        },
-        false
-    );
-})();
+//     window.addEventListener(
+//         "load",
+//         function() {
+//             var form = document.getElementById("deleteform");
+//             form.addEventListener(
+//                 "submit",
+//                 function(event) {
+//                     if (form.checkValidity() === false) {
+//                         event.preventDefault();
+//                         event.stopPropagation();
+//                     }
+//                     form.classList.add("was-validated");
+//                     event.preventDefault();
+//                     if (form.checkValidity() === true) {
+//                         // $("#delete-book-modal").modal("show");
+//                         var newbook = {
+//                             mediaType: $("#delete-media-type")
+//                                 .val()
+//                                 .toLowerCase(),
+//                             industryIdentifier: $("#delete-industry-identifier").val()
+//                         };
+//                         $.ajax({
+//                             method: "DELETE",
+//                             url: "/api/media/delete",
+//                             data: newbook
+//                         })
+//                         // ("/api/media/delete", newbook);
+//                         console.log(newbook)
+//                     }
+//                 },
+//                 false
+//             );
+//         },
+//         false
+//     );
+// })();
+
+$("#delete-submit").on("click", function() {
+    event.preventDefault();
+    var newbook = {
+        mediaType: $("#delete-media-type").val().toLowerCase(),
+        industryIdentifier: $("#delete-industry-identifier").val()
+    };
+    console.log(newbook)
+    $.ajax({
+        type: "DELETE",
+        url: "/api/media/delete",
+        data: newbook
+    }).then(function(res) {
+        console.log(res)
+    }) 
+})

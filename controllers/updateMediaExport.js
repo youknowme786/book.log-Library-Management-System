@@ -109,10 +109,6 @@ module.exports = {
 	}, // function updateMediaTable(){}}
 
 	deleteRowFromTable: (table, UserId, MediumId) => {
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 		//DELETE from any table
 		//provide the table name, user id, and medium id
 		//if deleting from the users or media table/ enter the id in the :UserId parameter

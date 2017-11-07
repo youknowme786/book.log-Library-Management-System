@@ -91,11 +91,8 @@ module.exports = app => {
 							counter++;
 							if (counter === target) {
 								// res.json(dataDeliverable);
-<<<<<<< Updated upstream
-								res.render("user", dataDeliverable);
-=======
+								// res.render("user", dataDeliverable);
 								res.render("employee", dataDeliverable);
->>>>>>> Stashed changes
 							}
 						});
 				});
