@@ -117,7 +117,9 @@ p.book-summary {
 
 .btn-success,
 .btn-danger,
-.btn-secondary {
+.btn-secondary,
+#search-input,
+.btn-outline-success {
 	border-radius: 0;
 }
 
