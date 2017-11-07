@@ -1,6 +1,10 @@
 var db = require("../models");
 //axios - promise based ajax node module. on server side only
 var axios = require("axios");
+//require mediaUpdateExport
+var updateMediaTable = require("./updateMediaExport.js").updateMediaTable;
+var deleteRowFromTable = require("./updateMediaExport.js").deleteRowFromTable;
+//this has the mediaupdate and the media delete functions
 
 module.exports = app => {
 	// GET route for BOOK page
@@ -71,5 +75,15 @@ module.exports = app => {
 	//PUT to media table - add one item OR delete one item
 
 	//DELETE ALL INSTANCES OF A BOOK - REMOVING ROW FROM MEDIA TABLE
-	//calls deleteRowFromTable
+	// curl -H "Content-Type: application/json" -X DELETE -d '{"mediaType":"book", "industryIdentifier":"9780439708180"}' http://localhost:3000/api/media/delete
+	app.delete("/api/media/delete/", (req, res) => {
+		if (req.body.mediaType === "book") {
+			// Promise.resolve(() => {
+			console.log("deleting books");
+			deleteRowFromTable("media", req.body.industryIdentifier);
+			// }).then(data => {
+			// 	res.json(data);
+			// });
+		}
+	});
 };

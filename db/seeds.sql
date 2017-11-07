@@ -24,7 +24,7 @@ INSERT INTO users (firstName, middleName, lastName, phoneNumber, streetAddress, 
 VALUES ("Ali", "Boosted", "Arfeen", "555-555-5555", "123 poop road", "chicago", "il", "60000", "aliarfeen@gmail.com", false),
 ("Eva", "", "Simon", "234-555-5555", "321 pooper street", "whoville", "il", "12345", "evasimon@gmail.com", true),
 ("Imran", "Booster", "Kazmi", "234-234-1111", "213 hello avenue", "boost", "me", "31337", "imrankazmi@gmail.com", false),
-("JC", "Frenchman", "Scalabre","000-000-0001", "18 chemin des moutons", "le rouret", "fr", "06650", "boostedestanimal@gmail.com", false);
+("JC", "Frenchman", "Scalabre","000-000-0001", "18 chemin des moutons", "le rouret", "fr", "06650", "danimals@gmail.com", false);
 
 INSERT INTO checkouthistories (isCheckedOut, lateFees, MediumId, UserId)
 VALUES (true,3.50,3,1), (true,0,6,3), (false,0,5,2), (false,10,1,4), (true,30,2,4);
