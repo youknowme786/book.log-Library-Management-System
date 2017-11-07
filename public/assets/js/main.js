@@ -171,8 +171,9 @@ $(document).ready(function () {
             }
         });
     }
-
     // ************ Cancel Reservation Section End ************
+
+    // ************ Check Out Section ************
     $('.action-btn-check-out-media').on('click', function () {
         event.preventDefault();
         var mediumId = $(this).data('mediumId');
@@ -180,10 +181,11 @@ $(document).ready(function () {
         $(this).parents('article').remove();
         checkOutMedia(mediumId, userId);
     })
+
     function checkOutMedia(mediumId, userId) {
         var newCheckout = {
-            MediumId: mediumId,
-            UserId: userId
+            mediumId: mediumId,
+            userId: userId
         };
 
         //POST to checkouthistories table
@@ -194,32 +196,36 @@ $(document).ready(function () {
             console.log("CheckOutMedia");
         });
     }
+    // ************ Check Out Section End ************
 
+    // ************ Check In Section ************
+    $('.action-btn-check-in-media').on('click', function () {
+        event.preventDefault();
+        var mediumId = $(this).data('mediumId');
+        var userId = $(this).data('userId');
+        $(this).remove();
+        checkInMedia(mediumId, userId);
+        $('.return').text('Returned on ');
+    });
 
-    // checkInMedia(mediumId, userId);
     function checkInMedia(mediumId, userId) {
-        console.log("Entering fxn checkInMedia");
         var newCheckin = {
-            MediumId: mediumId,
-            UserId: userId
+            mediumId: mediumId,
+            userId: userId
         };
 
         //PUT to checkouthistories table
         $.ajax({
-            url: "/api/checkouthistories/checkin",
+            url: "/api/checkouthistories/update/checkin",
+            data: newCheckin,
             type: "PUT",
             success: result => {
                 console.log("RECORD UPDATED");
                 console.log(result);
             }
         });
-
-        //PUT to media table
     }
-
-    // $.get("/api/4/favorites", function (data) {
-    //     console.log("show me object" + data);
-    // });
+    // ************ Check In Section ************
 });
 
 // Validation + function that adds book to DB:
