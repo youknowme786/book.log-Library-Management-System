@@ -135,6 +135,10 @@ p.book-summary {
 	width: 100%;
 }
 
+.hide {
+	display: none
+}
+
 
 /*Popular and New Carousel Styling: */
 
