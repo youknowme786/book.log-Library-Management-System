@@ -24,6 +24,7 @@ app.set("view engine", "handlebars");
 // establish routes for database access
 require("./controllers/checkout-controller.js")(app);
 require("./controllers/employee-controller.js")(app);
+require("./controllers/favorite-controller.js")(app);
 require("./controllers/index-controller.js")(app);
 require("./controllers/media-controller.js")(app);
 require("./controllers/reservation-controller.js")(app);
