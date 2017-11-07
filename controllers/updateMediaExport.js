@@ -52,14 +52,17 @@ module.exports = {
 						if (updateData.numReserved > 0) {
 							updateData.numReserved--;
 							updateData.reservationListSize--;
-							updata.numCheckedOut++;
+							updateData.numCheckedOut++;
 							updateData.totalNumCheckouts++;
 						}
 						break;
 
 					case "checkIn":
 						if (updateData.numCheckedOut > 0) {
-							if (updateData.numReserved < reservationListSize) {
+							if (
+								updateData.numReserved <
+								updateData.reservationListSize
+							) {
 								updateData.numReserved++;
 							} else {
 								updateData.numShelved++;
@@ -105,28 +108,28 @@ module.exports = {
 			});
 	}, // function updateMediaTable(){}}
 
-<<<<<<< HEAD
-	deleteRowFromTable: (table, UserId, MediumId, res) => {
-=======
-	deleteRowFromTable: (table, UserId, MediumId) => {
->>>>>>> 68acd77800c13dc0d755ffc49aa86f418a07c7f2
+	deleteRowFromTable: (table, userId, mediumId) => {
 		//DELETE from any table
 		//provide the table name, user id, and medium id
 		//if deleting from the users or media table/ enter the id in the :UserId parameter
 		var query = {};
 
 		//Adjusts query if querying through users/media table where there are no foreign keys
-		if (table === "users" || table === "media") {
+
+		if (table === "users") {
 			var id = UserId;
 			query = {
-				where: {
-					id: id
-				}
+				id: id
+			};
+		} else if (table === "media") {
+			var industryIdentifier = UserId;
+			query = {
+				industryIdentifier: industryIdentifier
 			};
 		} else {
 			query = {
-				UserId: UserId,
-				MediumId: MediumId
+				UserId: userId,
+				MediumId: mediumId
 			};
 		}
 

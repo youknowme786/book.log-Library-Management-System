@@ -47,6 +47,7 @@ $(document).ready(function() {
 					zipCode: "0001",
 					emailAddress: user.email,
 					isEmployee: false
+					// firebaseId: user.uid
 				};
 
 				$.post("api/users/create", newUser, result => {
