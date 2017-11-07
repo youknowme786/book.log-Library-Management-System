@@ -15,8 +15,6 @@ module.exports = app => {
 				where: { id: mediumId }
 			})
 			.then(data => {
-				console.log(action + " medium:" + mediumId);
-
 				var updateData = {};
 				updateData.totalStock = data[0].totalStock;
 				updateData.numShelved = data[0].numShelved;
@@ -24,8 +22,6 @@ module.exports = app => {
 				updateData.reservationListSize = data[0].reservationListSize;
 				updateData.numCheckedOut = data[0].numCheckedOut;
 				updateData.totalNumCheckouts = data[0].totalNumCheckouts;
-
-				console.log(updateData);
 
 				switch (action) {
 					case "reserveMedia":
@@ -99,21 +95,19 @@ module.exports = app => {
 						break;
 
 					default:
-						console.log(action);
-
 						res.json("feature not yet implemented");
 						break;
 				}
-				console.log(updateData);
-
-				db.Medium
-					.update(updateData, {
-						where: { id: mediumId }
-					})
-					.then(data => {
-						res.json("rows affected: " + data);
-					});
-			}); // db.medium.findAll().then()
+				return updateData;
+			}) // db.medium.findAll().then()
+			.then(updateData => {
+				return db.Medium.update(updateData, {
+					where: { id: mediumId }
+				});
+			})
+			.then(data => {
+				res.json("rows affected: " + data);
+			});
 		// }); // app.get() // comment out if using fxn
 	} // function updateMediaTable(){}
 };
