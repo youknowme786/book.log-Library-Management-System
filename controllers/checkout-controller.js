@@ -29,6 +29,7 @@ module.exports = app => {
 			)
 			.then(data => {
 				//PUT to media table
+				console.log(req.body.mediumId);
 				updateMediaTable("checkIn", req.body.mediumId);
 				res.json(data);
 			});
