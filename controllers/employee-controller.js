@@ -1,6 +1,10 @@
 var db = require("../models");
 
 module.exports = app => {
+	app.get("/manage", (req, res) => {
+		res.render("manage");
+	});
+
 	//GET user info
 	//curl -i -H "Content-Type: application/json" http://localhost:3000/users/2
 	app.get("/manage/users/:userId", (req, res) => {
@@ -96,8 +100,8 @@ module.exports = app => {
 							counter++;
 							// if the counter has reached the target, return the deliverable to the front end and render the user page
 							if (counter === target) {
-								res.json(dataDeliverable);
-								// res.render("manage-users", dataDeliverable);
+								// res.json(dataDeliverable);
+								res.render("manage-users", dataDeliverable);
 							}
 						});
 				});
