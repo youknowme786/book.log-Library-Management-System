@@ -5,31 +5,47 @@ $(document).ready(function() {
 		loop: true,
 		margin: 0,
 		items: 1,
+		stagePadding: 70,
+		center: true,
 		responsive: {
 			600: {
-				items: 2
+				items: 2,
+				stagePadding: 0,
+				center: false
 			},
 			750: {
-				items: 3
+				items: 3,
+				stagePadding: 0,
+				center: false
 			},
 			1100: {
-				items: 4
+				items: 4,
+				stagePadding: 0,
+				center: false
 			}
 		}
 	})
 	$('#NewCarousel').owlCarousel({
 		loop: true,
 		margin: 0,
-		items: 4,
+		items: 1,
+		stagePadding: 70,
+		center: true,
 		responsive: {
 			600: {
-				items: 2
+				items: 2,
+				stagePadding: 0,
+				center: false
 			},
 			750: {
-				items: 3
+				items: 3,
+				stagePadding: 0,
+				center: false
 			},
 			1100: {
-				items: 4
+				items: 4,
+				stagePadding: 0,
+				center: false
 			}
 		}
 	})

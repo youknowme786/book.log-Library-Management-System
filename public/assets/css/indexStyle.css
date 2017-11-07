@@ -137,7 +137,10 @@ p.book-summary {
 
 
 /*Popular and New Carousel Styling: */
-
+	#popularitems, #newitems {
+		/*background-color: red;*/
+		padding-left: 14px;
+	}
 	#Popular-Container {
 		margin-top: 35px;
 	}
@@ -177,7 +180,7 @@ p.book-summary {
 	}
 
 	.card span {
-		font-size: 14px;
+		font-size: 15px;
 	}
 
 	.book-title {
@@ -241,7 +244,7 @@ p.book-summary {
 	}
 }
 
-@media (max-width: 443px) {
+@media (max-width: 414px) {
 
 	#lefthr {
 		margin-left: 20px;
@@ -250,5 +253,25 @@ p.book-summary {
 
 	#righthr {
 		width: 12%;
+	}
+	body {
+		/*background-color: red*/
+	}
+
+	#Popular-Container, #New-Container {
+		margin-top: 0px;
+	}
+
+	#Popular-LArrow, #Popular-RArrow, #New-LArrow, #New-RArrow {
+		display: none
+	}
+
+	#PopularCarousel, #NewCarousel {
+		margin: 0 auto;
+	}
+
+	#popularitems, #newitems {
+		/*background-color: red;*/
+		/*padding-left: 60px;*/
 	}
 }
