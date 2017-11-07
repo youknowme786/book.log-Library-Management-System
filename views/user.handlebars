@@ -39,9 +39,8 @@
                         <span>{{this.userData.phoneNumber}}</span>
                     </p>
                     <p>
-                        <a class="btn btn-success text-uppercase max-with" href="/">Reserve a Book</a>
+                        <a class="btn btn-success text-uppercase" href="/">Reserve a Book</a>
                     </p>
-
                 </div>
             </div>
         </div>
@@ -103,37 +102,24 @@
                                         <a href="#">{{this.Medium.author}}</a>
                                     </span>
                                 </h6>
-                                {{!--
-                                <div class="checkbox"> --}} {{!--
-                                    <label>
-                                        <input type="checkbox" value=""> --}}
-                                        <p>
-                                            <b class="text-uppercase">Book Status: </b>
-                                            <span>Reserved / Waitlist
-                                                <button type="button" class="close" data-dismiss="modal
-                                   " aria-label="Close">
-                                                    <span aria-hidden="true">×</span>
-                                                </button>
-                                            </span>
-                                        </p> {{!--
-                                        <span>Return by December 15, 2017</span> --}} {{!-- </span>
-                                    </label>
-                                </div> --}} {{!--
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="">
-                                        <span>Reserved
-                                            <span>5</span>
-                                        </span>
-                                    </label>
-                                </div> --}}
+                                <p>
+                                    <b class="text-uppercase">Status: </b>
+                                    <span id="returnBy" class="alert">
+                                        <i> Return by December 8, 2017</i>
+                                    </span>
+                                    <span id="returnOn" class="alert hide">
+                                        <i> Returned on {{this.updatedAt}}</i>
+                                    </span>
+                                </p>
+                                <button class="btn btn-success text-uppercase action-btn-check-in-media" type="button" data-medium-id="{{this.Medium.id}}"
+                                    data-user-id="{{../userData.id}}">
+                                    Check-In
+                                </button>
+
                             </div>
-                            <div class="col-md-1">
-                                <span class="favorite-book">
-                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                </span>
-                            </div>
+
                         </div>
+                        <hr>
                     </article>
                     {{/each}}
                 </div>

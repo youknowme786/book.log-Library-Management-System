@@ -70,45 +70,45 @@
 			</div>
 		</nav>
 	</header>
-	{{{ body }}}
-
-	{{!-- Sign in Modal --}}
+	{{{ body }}} {{!-- Sign in Modal --}}
 	<div id="sign-in-modal" class="modal fade">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-        <div><a href="index.html"><img class="logo-box" src="assets/images/placeholder.png"></a></div>
-          <h5 class="modal-title">Please Log In!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header text-center">
+					<div class="logo">
+						<span>book</span>.log</span>
+					</div>
+					<h5 class="modal-title mt-2 ml-5">
+						Please Log In!
+					</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
 
-          <div class="form-group">
-            <label for="email">Email address:</label>
-            <input id="email-input" type="email" class="form-control">
-          </div>
+					<div class="form-group">
+						<label for="email">Email address:</label>
+						<input id="email-input" type="email" class="form-control">
+					</div>
 
-          <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input id="password-input" type="password" class="form-control">
-          </div>
+					<div class="form-group">
+						<label for="pwd">Password:</label>
+						<input id="password-input" type="password" class="form-control">
+					</div>
 
-          <div class="row justify-content-around">
-            <button type="button" id="log-in-button" class="btn btn-primary col-4">Log In</button>
-            <button type="button" id="sign-up-button" class="btn btn-secondary col-4">Sign-up</button>
-          </div>
+					<div class="row justify-content-around">
+						<button type="button" id="log-in-button" class="btn btn-success col-4">Log In</button>
+						<button type="button" id="sign-up-button" class="btn btn-secondary col-4">Sign-up</button>
+					</div>
 
-          <div id="log-in-error" class="alert alert-danger" role="alert"></div>
+					{{!--
+					<div id="log-in-error" class="alert alert-danger" role="alert"></div> --}}
 
-          <div class="text-center">OR</div>
-          <div id="firebaseui-auth-container"></div>
-
-        </div>
-      </div>
-    </div>
-  </div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<footer class="footer">
 		<div class="container text-center pt-5">
@@ -127,8 +127,7 @@
 	 crossorigin="anonymous"></script>
 	<script type="text/javascript" src="/assets/js/main.js"></script>
 	<script type="text/javascript" src="/assets/js/indexJS.js"></script>
-	<script type="text/javascript" src="/assets/js/owl.carousel.min.js"></script>
-	{{!-- Firebase authentication links --}}
+	<script type="text/javascript" src="/assets/js/owl.carousel.min.js"></script> {{!-- Firebase authentication links --}}
 	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-auth.js"></script>
