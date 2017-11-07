@@ -259,9 +259,6 @@ p.book-summary {
 	#righthr {
 		width: 12%;
 	}
-	body {
-		/*background-color: red*/
-	}
 
 	#Popular-Container, #New-Container {
 		margin-top: 0px;
@@ -275,8 +272,8 @@ p.book-summary {
 		margin: 0 auto;
 	}
 
-	#popularitems, #newitems {
+	/* #popularitems, #newitems {
 		/*background-color: red;*/
-		/*padding-left: 60px;*/
-	}
+		/*padding-left: 60px;
+	} */
 }
