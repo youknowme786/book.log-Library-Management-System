@@ -57,11 +57,10 @@
                     </article>
                     {{/each}}
                 </div>
-
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    DELETE SECTION GOES HERE
-                </div>
+                
+                {{!-- New Media Tab --}}
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                    
                     <form id="mediaform" novalidate>
                         {{!-- Media Select Form  --}}
                         <div class="form-group">
@@ -80,7 +79,32 @@
                                 Please provide a valid Industry ID.
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success" id="new-submit" data-toggle="modal" data-target="#new-book-modal">Submit</button>
+                        <button type="submit" class="btn btn-success" id="new-submit">Submit</button>
+                    </form>
+
+                </div>
+
+                {{!-- Delete Tab --}}
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <form id="deleteform" novalidate>
+                        {{!-- Media Select Form  --}}
+                        <div class="form-group">
+                            <label>Media Type</label>
+                            <select class="form-control" id="delete-media-type">
+                                <option>Book</option>
+                                <option>CD</option>
+                                <option>Whatever</option>
+                            </select>
+                        </div>
+                        {{!-- Industry ID form --}}
+                        <div class="form-group">
+                            <label>Industry Identifier</label>
+                            <input type="text" class="form-control" id="delete-industry-identifier" required></input>
+                            <div class="invalid-feedback">
+                                Please provide a valid Industry ID.
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-danger" id="delete-submit">Delete</button>
                     </form>
                 </div>
             </div>
@@ -88,6 +112,7 @@
     </div>
 </main>
 
+{{!-- Book successfully added to db modal: --}}
 <div class="modal fade" id="new-book-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -100,5 +125,4 @@
         </div>
     </div>
 </div>
-
 
