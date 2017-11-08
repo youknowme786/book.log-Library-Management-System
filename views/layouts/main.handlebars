@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="/assets/css/styles.css">
 	<link rel="stylesheet" href="/assets/css/indexStyle.css">
 	<link rel="stylesheet" href="/assets/css/manageStyle.css">
+	<link rel="stylesheet" href="/assets/css/searchStyle.css">
 	<link rel="icon" href="/assets/img/favicon.png">
 
 </head>
@@ -45,15 +46,15 @@
 				<form class="form-inline my-2 my-lg-0">
 					<div class="input-group">
 						<input type="text" id="search-input" class="form-control" aria-label="Text input with dropdown button" placeholder="Search">
-						<div class="input-group-btn">
+						<div id="searchdropdown" class="input-group-btn">
 							<div class="dropdown-menu dropdown-menu-left">
-								<a class="dropdown-item" href="#">All</a>
+								<a class="dropdownsearch dropdown-item" href="#">All</a>
 								<div role="separator" class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Title</a>
-								<a class="dropdown-item" href="#">Author</a>
-								<a class="dropdown-item" href="#">ISBN</a>
+								<a class="dropdownsearch dropdown-item" href="#">Title</a>
+								<a class="dropdownsearch dropdown-item" href="#">Author</a>
+								<a class="dropdownsearch dropdown-item" href="#">ISBN</a>
 								<div role="separator" class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Events</a>
+								<a class="dropdown-item" href="#">Events0</a>
 							</div>
 							<button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All
 							</button>
@@ -117,7 +118,7 @@
 		</div>
 	</div>
 
-	<footer class="footer">
+	<footer class="footer sticky-bottom">
 		<div class="container text-center pt-5">
 			<span class="text-muted">@ All Rights Reserved to
 				<span class="logo">

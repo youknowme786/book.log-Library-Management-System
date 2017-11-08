@@ -2,6 +2,10 @@
 	box-sizing: border-box;
 }
 
+html, body {
+	height: 100%;
+}
+
 body {
 	background-size: 100%;
 	font-family: 'Muli', sans-serif;
@@ -17,6 +21,9 @@ h3,
 footer {
 	height: 100px;
 	background-color: #040404;
+	position: inherit;
+	bottom: 0;
+	width: 100%;
 }
 
 footer .logo {
