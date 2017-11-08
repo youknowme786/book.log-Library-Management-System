@@ -382,41 +382,50 @@ $(document).ready(function() {
         });
     }
     // ************ Check In Section ************
-});
 
-$(".dropdownsearch").on("click", function() {
-    console.log("You are searching for");
-    console.log($("#searchdropdown").val());
-});
+    $(".dropdownsearch").on("click", function() {
+        console.log("You are searching for");
+        console.log($("#searchdropdown").val());
+    });
 
-// Manage user submit button:
-$("#user-submit").on("click", function() {
-    event.preventDefault();
-    window.location.href = "/manage/users/" + $("#user-id").val();
-});
+    // Manage user submit button:
+    $("#user-submit").on("click", function() {
+        event.preventDefault();
+        console.log(
+            $("#user-id")
+                .val()
+                .trim()
+        );
+        window.location.href =
+            "/manage/users/" +
+            $("#user-id")
+                .val()
+                .trim();
+    });
 
-// When manager adds a new media:
-$("#new-submit").on("click", function() {
-    event.preventDefault();
-    $("#new-book-modal").modal("show");
-    var newbook = {
-        mediaType: $("#media-type")
-            .val()
-            .toLowerCase(),
-        industryIdentifier: $("#industry-identifier").val(),
-        totalStock: $("#new-quantity").val()
-    };
-    $.post("/api/media/new", newbook);
-});
+    // When manager adds a new media:
+    $("#new-submit").on("click", function() {
+        event.preventDefault();
+        $("#new-book-modal").modal("show");
+        var newbook = {
+            mediaType: $("#media-type")
+                .val()
+                .toLowerCase(),
+            industryIdentifier: $("#industry-identifier").val(),
+            totalStock: $("#new-quantity").val()
+        };
+        $.post("/api/media/new", newbook);
+    });
 
-// When manager deletes a media:
-$("#delete-submit").on("click", function() {
-    event.preventDefault();
-    var id = $("#delete-industry-identifier").val();
-    $.ajax({
-        method: "DELETE",
-        url: "/api/media/delete/" + id
-    }).then(function(res) {
-        console.log(res);
+    // When manager deletes a media:
+    $("#delete-submit").on("click", function() {
+        event.preventDefault();
+        var id = $("#delete-industry-identifier").val();
+        $.ajax({
+            method: "DELETE",
+            url: "/api/media/delete/" + id
+        }).then(function(res) {
+            console.log(res);
+        });
     });
 });

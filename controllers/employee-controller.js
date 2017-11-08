@@ -10,7 +10,7 @@ module.exports = app => {
 	app.get("/manage/users/:userId", (req, res) => {
 		// this object is given to the front end
 		let dataDeliverable = {};
-		let userId = parseInt(req.params.userId);
+		let userId = req.params.userId;
 
 		db.User
 			// find all info for the and add it to the deliverable
@@ -101,13 +101,16 @@ module.exports = app => {
 								counter++;
 								// if the counter has reached the target, return the deliverable to the front end and render the user page
 								if (counter === target) {
+									console.log("counter ==== target");
+									// console.log(dataDeliverable);
+									// res.end();
 									// res.json(dataDeliverable);
 									res.render("manage-users", dataDeliverable);
 								}
 							});
 					});
 				} else {
-					res.render("user", dataDeliverable);
+					res.render("manage-users", dataDeliverable);
 				}
 			});
 	});
