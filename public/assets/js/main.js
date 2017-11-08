@@ -375,7 +375,8 @@ $("#new-submit").on("click", function() {
         mediaType: $("#media-type")
             .val()
             .toLowerCase(),
-        industryIdentifier: $("#industry-identifier").val()
+        industryIdentifier: $("#industry-identifier").val(),
+        totalStock: $("#new-quantity").val()
     };
     $.post("/api/media/new", newbook);
 });
