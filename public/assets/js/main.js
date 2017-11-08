@@ -1,5 +1,5 @@
-$(document).ready(function () {
-    $(".nav a").on("click", function () {
+$(document).ready(function() {
+    $(".nav a").on("click", function() {
         $(".nav")
             .find(".active")
             .removeClass("active");
@@ -70,7 +70,7 @@ $(document).ready(function () {
         firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
-            .catch(function (error) {
+            .catch(function(error) {
                 // Handle Errors here.
                 var errorCode = error.code;
                 var errorMessage = error.message;
@@ -91,7 +91,7 @@ $(document).ready(function () {
                 console.log("User signed out");
                 console.log(user);
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 // An error happened.
                 console.log("SIGN OUT ERROR");
                 console.log(error);
@@ -135,7 +135,7 @@ $(document).ready(function () {
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).done(function (data) {
+        }).done(function(data) {
             console.log(data);
         });
     }
@@ -151,29 +151,29 @@ $(document).ready(function () {
     }
 
     $(".favorite-book").hover(
-        function () {
+        function() {
             $(this).addClass("fav-on");
         },
-        function () {
+        function() {
             $(this).removeClass("fav-on");
         }
     );
 
     isOnShelves();
 
-    $(document).on("click", "a.dropdown-item", function () {
+    $(document).on("click", "a.dropdown-item", function() {
         var keyWord = $("#search-input")
             .val()
             .trim();
         populateBook(keyWord);
     });
 
-    $("#actionBtnReserve").on("click", function () {
+    $("#actionBtnReserve").on("click", function() {
         // gets the book id
-        var id = $(this).data("mediumId");
+        var mediumId = $(this).data("mediumId");
 
-        console.log(id);
-        reserveMedia(id, 4);
+        console.log(mediumId);
+        reserveMedia(mediumId, user.uid);
 
         //add href to users/user.id on the class go-to-my-profile
 
@@ -185,7 +185,7 @@ $(document).ready(function () {
     });
 
     // ************ Favorites Section ************
-    $(".actionBtnFav").on("click", function (event) {
+    $(".actionBtnFav").on("click", function(event) {
         event.preventDefault();
         var mediumId = $(this).data("mediumId");
         var userId = $(this).data("userId");
@@ -201,7 +201,7 @@ $(document).ready(function () {
         }
     });
 
-    $(".remove-favorite").on("click", function () {
+    $(".remove-favorite").on("click", function() {
         var mediumId = $(this).data("mediumId");
         var userId = $(this).data("userId");
         var favorite = {
@@ -279,10 +279,11 @@ $(document).ready(function () {
 
     // ************ Cancel Reservation Section ************
 
-    $(".action-btn-cancel-media").on("click", function (event) {
+    $(".action-btn-cancel-media").on("click", function(event) {
         event.preventDefault();
         var mediumId = $(this).data("mediumId");
-        var userId = $(this).data("userId");
+        // var userId = $(this).data("userId");
+        var userId = user.uid;
         $(this)
             .parents("article")
             .remove();
@@ -306,7 +307,7 @@ $(document).ready(function () {
     // ************ Cancel Reservation Section End ************
 
     // ************ Check Out Section ************
-    $(".action-btn-check-out-media").on("click", function () {
+    $(".action-btn-check-out-media").on("click", function() {
         event.preventDefault();
         var mediumId = $(this).data("mediumId");
         var userId = $(this).data("userId");
@@ -333,14 +334,20 @@ $(document).ready(function () {
     // ************ Check Out Section End ************
 
     // ************ Check In Section ************
-    $(".action-btn-check-in-media").on("click", function () {
+    $(".action-btn-check-in-media").on("click", function() {
         event.preventDefault();
         var mediumId = $(this).data("mediumId");
         var userId = $(this).data("userId");
         checkInMedia(mediumId, userId);
 
-        $(this).prev().find('.returnBy').addClass("hide");
-        $(this).prev().find('.returnOn').removeClass("hide");
+        $(this)
+            .prev()
+            .find(".returnBy")
+            .addClass("hide");
+        $(this)
+            .prev()
+            .find(".returnOn")
+            .removeClass("hide");
         $(this).remove();
     });
 
@@ -364,21 +371,19 @@ $(document).ready(function () {
     // ************ Check In Section ************
 });
 
-
 $(".dropdownsearch").on("click", function() {
-    console.log("You are searching for")
-    console.log($("#searchdropdown").val())
-
-})
+    console.log("You are searching for");
+    console.log($("#searchdropdown").val());
+});
 
 // Manage user submit button:
-$("#user-submit").on("click", function () {
+$("#user-submit").on("click", function() {
     event.preventDefault();
     window.location.href = "/manage/users/" + $("#user-id").val();
 });
 
 // When manager adds a new media:
-$("#new-submit").on("click", function () {
+$("#new-submit").on("click", function() {
     event.preventDefault();
     $("#new-book-modal").modal("show");
     var newbook = {
@@ -392,13 +397,13 @@ $("#new-submit").on("click", function () {
 });
 
 // When manager deletes a media:
-$("#delete-submit").on("click", function () {
+$("#delete-submit").on("click", function() {
     event.preventDefault();
     var id = $("#delete-industry-identifier").val();
     $.ajax({
         method: "DELETE",
         url: "/api/media/delete/" + id
-    }).then(function (res) {
+    }).then(function(res) {
         console.log(res);
     });
 });
