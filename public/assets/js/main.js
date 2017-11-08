@@ -112,6 +112,9 @@ $(document).ready(function() {
             $("#authenticate-button").hide(0);
             $("#unauthenticated-banner").hide(0);
             $("#actionBtnReserve").attr("data-target", ".bd-example-modal-sm");
+            $(".actionBtnFav")
+                .attr("data-target", "")
+                .attr("data-toggle", "");
             //if user is logged in, change book modal target to book modal
         } else {
             console.log("No user is signed in");
@@ -121,6 +124,9 @@ $(document).ready(function() {
             $(".my-profile-button").hide(0);
             $("#log-out-button").hide(0);
             $("#actionBtnReserve").attr("data-target", "#sign-in-modal");
+            $(".actionBtnFav")
+                .attr("data-target", "#sign-in-modal")
+                .attr("data-toggle", "modal");
             //if user is NOT logged in, change book modal target to login modal
         }
     });
@@ -191,23 +197,26 @@ $(document).ready(function() {
     // ************ Favorites Section ************
     $(".actionBtnFav").on("click", function(event) {
         event.preventDefault();
-        var mediumId = $(this).data("mediumId");
-        var userId = $(this).data("userId");
-        var favorite = {
-            mediumId: mediumId,
-            userId: userId
-        };
 
-        if ($(this).hasClass("fav-selected")) {
-            removeFromFavorites(favorite, $(this));
-        } else {
-            addToFavorites(favorite, $(this));
+        if (user) {
+            var mediumId = $(this).data("mediumId");
+            var userId = user.uid;
+            var favorite = {
+                mediumId: mediumId,
+                userId: userId
+            };
+
+            if ($(this).hasClass("fav-selected")) {
+                removeFromFavorites(favorite, $(this));
+            } else {
+                addToFavorites(favorite, $(this));
+            }
         }
     });
 
     $(".remove-favorite").on("click", function() {
         var mediumId = $(this).data("mediumId");
-        var userId = $(this).data("userId");
+        var userId = user.uid;
         var favorite = {
             mediumId: mediumId,
             userId: userId
@@ -234,21 +243,21 @@ $(document).ready(function() {
         }
 
         // /api/:table /:UserId / delete /:MediumId?
-        // $.ajax({
-        //     url:
-        //     "/api/favorites/" +
-        //     favorite.userId +
-        //     "/delete/" +
-        //     favorite.mediumId,
-        //     type: "DELETE",
-        //     success: result => {
-        //         console.log("RECORD DELETED");
-        //         console.log(result);
-        //         if (btn) {
-        //             btn.removeClass("fav-selected");
-        //         }
-        //     }
-        // });
+        $.ajax({
+            url:
+                "/api/favorites/" +
+                favorite.userId +
+                "/delete/" +
+                favorite.mediumId,
+            type: "DELETE",
+            success: result => {
+                console.log("RECORD DELETED");
+                console.log(result);
+                if (btn) {
+                    btn.removeClass("fav-selected");
+                }
+            }
+        });
     } // ************ Favorites Section End ************
 
     function reserveMedia(mediumId, userId) {
@@ -286,7 +295,7 @@ $(document).ready(function() {
     $(".action-btn-cancel-media").on("click", function(event) {
         event.preventDefault();
         var mediumId = $(this).data("mediumId");
-        // var userId = $(this).data("userId");
+        // var userId = user.uid;
         var userId = user.uid;
         $(this)
             .parents("article")
@@ -314,7 +323,7 @@ $(document).ready(function() {
     $(".action-btn-check-out-media").on("click", function() {
         event.preventDefault();
         var mediumId = $(this).data("mediumId");
-        var userId = $(this).data("userId");
+        var userId = user.uid;
         $(this)
             .parents("article")
             .remove();
@@ -341,7 +350,7 @@ $(document).ready(function() {
     $(".action-btn-check-in-media").on("click", function() {
         event.preventDefault();
         var mediumId = $(this).data("mediumId");
-        var userId = $(this).data("userId");
+        var userId = user.uid;
         checkInMedia(mediumId, userId);
 
         $(this)
