@@ -364,7 +364,13 @@ $(document).ready(function () {
     // ************ Check In Section ************
 });
 
-console.log("Test");
+
+$(".dropdownsearch").on("click", function() {
+    console.log("You are searching for")
+    console.log($("#searchdropdown").val())
+
+})
+
 // Manage user submit button:
 $("#user-submit").on("click", function () {
     event.preventDefault();
