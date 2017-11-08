@@ -88,7 +88,7 @@ module.exports = app => {
 				if (data.length > 0) {
 					dataDeliverable.results = JSON.parse(JSON.stringify(data));
 				} else {
-					dataDeliverable = {
+					dataDeliverable.error = {
 						error: "Item not available in database."
 					};
 				}

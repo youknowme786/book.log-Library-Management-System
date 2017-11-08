@@ -5,7 +5,11 @@
 		<div class="col-md-12 text-center mt-5">
 			<h1>Search Results</h1>
 			<p>
+				{{#if this.results}}
 				<i>Showing results for {{this.searchBy}} '{{this.searchQuery}}'</i>
+				{{else}}
+				<i>No search results for {{this.searchBy}} '{{this.searchQuery}}'</i>
+				{{/if}}
 			</p>
 			<hr class="mt-3">
 
