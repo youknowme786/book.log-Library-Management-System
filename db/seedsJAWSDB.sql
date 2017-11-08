@@ -17,8 +17,8 @@ VALUES ("mWBr0MoeuiWRtDMYegeWi3vSeaj1","Ali", "Boosted", "Arfeen", "555-555-5555
 ("rM5Xu5kckJdetkpmNqo5XsPZ1hU2","Imran", "Booster", "Kazmi", "234-234-1111", "213 hello avenue", "boost", "me", "31337", "imrankazmi@gmail.com", false),
 ("1S3GDIC3eDYlvpdV9rO7Lm3zwsw2","JC", "Frenchman", "Scalabre","000-000-0001", "18 chemin des moutons", "le rouret", "fr", "06650", "patrontest@booklog.com", false);
 
-INSERT INTO CheckOutHistories (isCheckedOut, lateFees, MediumId, UserId)
-VALUES (true,3.50,3,1), (true,0,6,3), (false,0,5,2), (false,10,1,4), (true,30,2,4);
+INSERT INTO CheckOutHistories (isCheckedOut, MediumId, UserId)
+VALUES (true,3,1), (true,6,3), (false,5,2), (false,1,4), (true,2,4);
 
 INSERT INTO Reservations (MediumId, UserId)
 values (4,1) ,(5,2), (1,3), (2,4), (2,3), (6,1), (7,2), (1,4);
