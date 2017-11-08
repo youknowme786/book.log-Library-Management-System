@@ -88,7 +88,10 @@ module.exports = app => {
 			);
 		})
 			.then(() => {
-				return updateMediaTable("cancelReservation", req.body.mediumId);
+				return updateMediaTable(
+					"cancelReservation",
+					req.params.mediumId
+				);
 			})
 			.then(data => {
 				res.json(data);
