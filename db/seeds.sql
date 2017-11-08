@@ -21,22 +21,22 @@ VALUES ("Harry Potter and the Sorcerer's Stone", "book","9780439708180",10,3,1,6
 -- ("testHarry Potter and the Deathly Hallows", "book","10-545-01022-5",4);
 -- 
 INSERT INTO users (id, firstName, middleName, lastName, phoneNumber, streetAddress, city, state, zipCode, emailAddress, isEmployee)
-VALUES ("1","Ali", "Boosted", "Arfeen", "555-555-5555", "123 poop road", "chicago", "il", "60000", "aliarfeen@gmail.com", false),
-("2","Eva", "", "Simon", "234-555-5555", "321 pooper street", "whoville", "il", "12345", "evasimon@gmail.com", true),
-("3","Imran", "Booster", "Kazmi", "234-234-1111", "213 hello avenue", "boost", "me", "31337", "imrankazmi@gmail.com", false),
-("4","JC", "Frenchman", "Scalabre","000-000-0001", "18 chemin des moutons", "le rouret", "fr", "06650", "danimals@gmail.com", false);
+VALUES ("mWBr0MoeuiWRtDMYegeWi3vSeaj1","Ali", "Boosted", "Arfeen", "555-555-5555", "123 poop road", "chicago", "il", "60000", "aliarfeen911@gmail.com", false),
+("sApzCO2ldrNdZCrqtY507HgbNS63","Eva", "", "Simon", "234-555-5555", "321 pooper street", "whoville", "il", "12345", "employeetest@booklog.com", true),
+("rM5Xu5kckJdetkpmNqo5XsPZ1hU2","Imran", "Booster", "Kazmi", "234-234-1111", "213 hello avenue", "boost", "me", "31337", "imrankazmi@gmail.com", false),
+("1S3GDIC3eDYlvpdV9rO7Lm3zwsw2","JC", "Frenchman", "Scalabre","000-000-0001", "18 chemin des moutons", "le rouret", "fr", "06650", "patrontest@booklog.com", false);
 
 INSERT INTO checkouthistories (isCheckedOut, lateFees, MediumId, UserId)
-VALUES (true,3.50,3,1), (true,0,6,3), (false,0,5,2), (false,10,1,4), (true,30,2,4);
+VALUES (true,3.50,3,"mWBr0MoeuiWRtDMYegeWi3vSeaj1"), (true,0,6,"rM5Xu5kckJdetkpmNqo5XsPZ1hU2"), (false,0,5,"sApzCO2ldrNdZCrqtY507HgbNS63"), (false,10,1,"1S3GDIC3eDYlvpdV9rO7Lm3zwsw2"), (true,30,2,"1S3GDIC3eDYlvpdV9rO7Lm3zwsw2");
 
 INSERT INTO reservations (MediumId, UserId)
-values (4,1) ,(5,2), (1,3), (2,4), (2,3), (6,1), (7,2), (1,4);
+values (4,"mWBr0MoeuiWRtDMYegeWi3vSeaj1") ,(5,"sApzCO2ldrNdZCrqtY507HgbNS63"), (1,"rM5Xu5kckJdetkpmNqo5XsPZ1hU2"), (2,"1S3GDIC3eDYlvpdV9rO7Lm3zwsw2"), (2,"rM5Xu5kckJdetkpmNqo5XsPZ1hU2"), (6,"mWBr0MoeuiWRtDMYegeWi3vSeaj1"), (7,"sApzCO2ldrNdZCrqtY507HgbNS63"), (1,"1S3GDIC3eDYlvpdV9rO7Lm3zwsw2");
 
 INSERT INTO favorites (MediumId, UserId)
-VALUES (1,3), (4,1), (4, 3), (6,2);
+VALUES (1,"rM5Xu5kckJdetkpmNqo5XsPZ1hU2"), (4,"mWBr0MoeuiWRtDMYegeWi3vSeaj1"), (4, "rM5Xu5kckJdetkpmNqo5XsPZ1hU2"), (6,"sApzCO2ldrNdZCrqtY507HgbNS63");
 
 INSERT INTO reviews (rating, review, MediumId, UserId)
-VALUES (5,"so good",1,3), (3,"i've seen better",4,1), (1, "how to read??", 4, 3), (4, "wow", 6,2);
+VALUES (5,"so good",1,"rM5Xu5kckJdetkpmNqo5XsPZ1hU2"), (3,"i've seen better",4,"mWBr0MoeuiWRtDMYegeWi3vSeaj1"), (1, "how to read??", 4, "rM5Xu5kckJdetkpmNqo5XsPZ1hU2"), (4, "wow", 6,"sApzCO2ldrNdZCrqtY507HgbNS63");
 
 SELECT * FROM media;
 SELECT * FROM users;

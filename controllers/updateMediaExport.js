@@ -103,7 +103,7 @@ module.exports = {
 				});
 			})
 			.then(data => {
-				console.log("rows affected: " + data);
+				console.log("Media rows affected: " + data);
 				return data;
 			});
 	}, // function updateMediaTable(){}}
@@ -168,7 +168,7 @@ module.exports = {
 		}
 
 		dbModel.destroy({ where: query }).then(data => {
-			console.log("RECORD DELETED");
+			console.log("Delete rows affected " + data);
 			return data;
 		});
 	} // function deleteItemfromTable(){}

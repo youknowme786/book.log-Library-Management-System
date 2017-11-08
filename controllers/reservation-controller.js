@@ -68,7 +68,7 @@ module.exports = app => {
 				// res.json(data);
 			})
 			.then(() => {
-				return updateMediaTable("reserveMedia", req.body.mediumId);
+				updateMediaTable("reserveMedia", req.body.mediumId);
 			})
 			.then(data => {
 				res.json(data);
@@ -80,15 +80,21 @@ module.exports = app => {
 	//DELETE route for canceling a reservation
 	//curl -H "Content-Type: application/json" -X DELETE -d '{"mediumId": 10, "userId": 4}' http://localhost:3000/api/reservations/delete
 	app.delete("/api/reservations/:userId/delete/:mediumId", (req, res) => {
-		Promise.resolve(() => {
-			return deleteRowFromTable(
+		console.log(
+			"==============res controller delete ",
+			req.params.userId,
+			req.params.mediumId
+		);
+		Promise.resolve(
+			deleteRowFromTable(
 				"reservations",
 				req.params.userId,
 				req.params.mediumId
-			);
-		})
+			)
+		)
 			.then(() => {
-				return updateMediaTable("cancelReservation", req.body.mediumId);
+				console.log("about to update media table");
+				updateMediaTable("cancelReservation", req.params.mediumId);
 			})
 			.then(data => {
 				res.json(data);
