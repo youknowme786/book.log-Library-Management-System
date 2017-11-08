@@ -33,9 +33,6 @@ $(document).ready(function() {
             .then(user => {
                 console.log("USER CREATED");
                 console.log(user);
-                //create mysql user
-                //when a user is created, how to set the firebase UID as the primary key in the users table?
-                //might want to change isAlpha test of city/state because some do have spaces
                 var newUser = {
                     id: user.uid,
                     firstName: "user test",
@@ -55,11 +52,16 @@ $(document).ready(function() {
                     console.log(result.id);
                 });
             })
-            .catch(err => {
+            .catch(error => {
                 // Handle Errors here.
-                console.log("FIREBASE USER CREATION ERROR");
-                console.log(err.code);
-                console.log(err.message);
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log("FIREBASE USER SIGN UP ERROR");
+                console.log(errorCode);
+                console.log(errorMessage);
+                $("#authentication-error")
+                    .text(errorMessage)
+                    .show();
             });
     });
 
@@ -77,6 +79,9 @@ $(document).ready(function() {
                 console.log("FIREBASE USER LOGIN ERROR");
                 console.log(errorCode);
                 console.log(errorMessage);
+                $("#authentication-error")
+                    .text(errorMessage)
+                    .show();
             });
 
         //show the myprofile button
@@ -111,11 +116,13 @@ $(document).ready(function() {
             $("#log-out-button").show(0);
             $("#authenticate-button").hide(0);
             $("#unauthenticated-banner").hide(0);
+            $("#sign-in-modal").modal("hide");
             $("#actionBtnReserve").attr("data-target", ".bd-example-modal-sm");
             $(".actionBtnFav")
                 .attr("data-target", "")
                 .attr("data-toggle", "");
-            //if user is logged in, change book modal target to book modal
+
+            $("#manage-page-button").show(0);
         } else {
             console.log("No user is signed in");
             user = null;
@@ -123,11 +130,11 @@ $(document).ready(function() {
             $("#unauthenticated-banner").show(0);
             $(".my-profile-button").hide(0);
             $("#log-out-button").hide(0);
+            $("#manage-page-button").hide(0);
             $("#actionBtnReserve").attr("data-target", "#sign-in-modal");
             $(".actionBtnFav")
                 .attr("data-target", "#sign-in-modal")
                 .attr("data-toggle", "modal");
-            //if user is NOT logged in, change book modal target to login modal
         }
     });
 

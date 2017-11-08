@@ -1,6 +1,18 @@
 var db = require("../models");
 
 module.exports = app => {
+	//TEST ROUTE
+	app.get("/user/:userId", (req, res) => {
+		db.User
+			// find all info for the and add it to the deliverable
+			.findAll({
+				where: { id: userId }
+			})
+			.then(data => {
+				res.json(data);
+			});
+	});
+
 	//GET user info
 	//curl -i -H "Content-Type: application/json" http://localhost:3000/users/2
 	app.get("/users/:userId", (req, res) => {
