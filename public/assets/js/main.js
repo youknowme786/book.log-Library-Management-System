@@ -59,7 +59,9 @@ $(document).ready(function() {
                 console.log("FIREBASE USER SIGN UP ERROR");
                 console.log(errorCode);
                 console.log(errorMessage);
-                $("#authentication-error").text(errorMessage);
+                $("#authentication-error")
+                    .text(errorMessage)
+                    .show();
             });
     });
 
@@ -77,7 +79,9 @@ $(document).ready(function() {
                 console.log("FIREBASE USER LOGIN ERROR");
                 console.log(errorCode);
                 console.log(errorMessage);
-                $("#authentication-error").text(errorMessage);
+                $("#authentication-error")
+                    .text(errorMessage)
+                    .show();
             });
 
         //show the myprofile button
