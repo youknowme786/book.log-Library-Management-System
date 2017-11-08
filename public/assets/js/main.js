@@ -173,14 +173,7 @@ $(document).ready(function () {
         var id = $(this).data("mediumId");
 
         console.log(id);
-        if (user.uid) {
-            reserveMedia(id, user.uid);
-
-        } else {
-            reserveMedia(id, 4);
-
-        }
-
+        reserveMedia(id, 4);
 
         //add href to users/user.id on the class go-to-my-profile
 
@@ -232,22 +225,26 @@ $(document).ready(function () {
     }
 
     function removeFromFavorites(favorite, btn) {
+        if (btn) {
+            btn.removeClass("fav-selected");
+        }
+
         // /api/:table /:UserId / delete /:MediumId?
-        $.ajax({
-            url:
-            "/api/favorites/" +
-            favorite.userId +
-            "/delete/" +
-            favorite.mediumId,
-            type: "DELETE",
-            success: result => {
-                console.log("RECORD DELETED");
-                console.log(result);
-                if (btn) {
-                    btn.removeClass("fav-selected");
-                }
-            }
-        });
+        // $.ajax({
+        //     url:
+        //     "/api/favorites/" +
+        //     favorite.userId +
+        //     "/delete/" +
+        //     favorite.mediumId,
+        //     type: "DELETE",
+        //     success: result => {
+        //         console.log("RECORD DELETED");
+        //         console.log(result);
+        //         if (btn) {
+        //             btn.removeClass("fav-selected");
+        //         }
+        //     }
+        // });
     } // ************ Favorites Section End ************
 
     function reserveMedia(mediumId, userId) {
@@ -342,9 +339,9 @@ $(document).ready(function () {
         var userId = $(this).data("userId");
         checkInMedia(mediumId, userId);
 
+        $(this).prev().find('.returnBy').addClass("hide");
+        $(this).prev().find('.returnOn').removeClass("hide");
         $(this).remove();
-        $("#returnBy").addClass("hide");
-        $("#returnOn").removeClass("hide");
     });
 
     function checkInMedia(mediumId, userId) {
