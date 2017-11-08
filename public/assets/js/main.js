@@ -119,7 +119,10 @@ $(document).ready(function() {
             $("#authenticate-button").hide(0);
             $("#unauthenticated-banner").hide(0);
             $("#sign-in-modal").modal("hide");
-            $("#actionBtnReserve").attr("data-target", ".bd-example-modal-sm");
+            $(".action-btn-reserve-media").attr(
+                "data-target",
+                ".bd-example-modal-sm"
+            );
             $(".actionBtnFav")
                 .attr("data-target", "")
                 .attr("data-toggle", "");
@@ -133,7 +136,10 @@ $(document).ready(function() {
             $(".my-profile-button").hide(0);
             $("#log-out-button").hide(0);
             $("#manage-page-button").hide(0);
-            $("#actionBtnReserve").attr("data-target", "#sign-in-modal");
+            $(".action-btn-reserve-media").attr(
+                "data-target",
+                "#sign-in-modal"
+            );
             $(".actionBtnFav")
                 .attr("data-target", "#sign-in-modal")
                 .attr("data-toggle", "modal");
@@ -147,7 +153,7 @@ $(document).ready(function() {
         // console.log(stockStatus);
 
         if (stockStatus === 0) {
-            $("#actionBtnReserve").text("Add to Waitlist");
+            $(".action-btn-reserve-media").text("Add to Waitlist");
             $(".on-stock").addClass("stock-alert");
         }
     }
@@ -163,14 +169,13 @@ $(document).ready(function() {
 
     isOnShelves();
 
-    $("#actionBtnReserve").on("click", function() {
+    $(".action-btn-reserve-media").on("click", function() {
         // gets the book id
         var mediumId = $(this).data("mediumId");
+        var userId = user.uid;
 
         console.log(mediumId);
-        reserveMedia(mediumId, user.uid);
-
-        //add href to users/user.id on the class go-to-my-profile
+        reserveMedia(mediumId, userId);
 
         // var customer = $(this).parent().closest('.input-group').children('.form-control').val();
         // if (customer === "") {
