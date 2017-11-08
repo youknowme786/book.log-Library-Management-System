@@ -9,7 +9,7 @@ module.exports = app => {
 	// app.get("/api/:UserId/favorites", (req, res) => {
 	// 	db.Favorite
 	// 		.findAll({
-	// 			where: { UserId: req.params.UserId }
+	// 			where: { UserId: req.params.userId }
 	// 		})
 	// 		.then(data => {
 	// 			res.json(data);
@@ -23,8 +23,8 @@ module.exports = app => {
 	app.post("/api/favorites/create", (req, res) => {
 		db.Favorite
 			.create({
-				MediumId: req.body.MediumId,
-				UserId: req.body.UserId
+				MediumId: req.body.mediumId,
+				UserId: req.body.userId
 			})
 			.then(data => {
 				console.log("FAVORITE ADDED");
@@ -35,7 +35,7 @@ module.exports = app => {
 	//DELETE - favorite item - see generic delete route
 	app.delete("/api/favorites/:userId/delete/:mediumId", (req, res) => {
 		Promise.resolve(() => {
-			deleteRowFromTable(
+			return deleteRowFromTable(
 				"favorites",
 				req.params.userId,
 				req.params.mediumId

@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-md-12 col-lg-6 mb-3">
                     <span>
-                        <a class="favorite-book actionBtnFav" href="#" data-medium-id={{this.id}}>
+                        <a class="favorite-book actionBtnFav" href="#" data-medium-id="{{this.id}}">
                             <i class="fa fa-heart-o" aria-hidden="true"></i>Add to Favorites</a>
                     </span>
                 </div>
@@ -48,7 +48,8 @@
             {{!-- data-user-id={{this.userId}} --}}
             <div class="row action-book-row">
                 <div class="col-md-12">
-                    <button id="actionBtnReserve" class="btn btn-success text-uppercase" type="button" data-toggle="modal" data-target=".bd-example-modal-sm">Reserve Book
+                    <button id="actionBtnReserve" class="btn btn-success text-uppercase" type="button" data-toggle="modal" data-target=".bd-example-modal-sm"
+                        data-medium-id="{{this.id}}">Reserve Book
                     </button>
                 </div>
             </div>
@@ -78,7 +79,7 @@
                                 this text will change </p> --}}
                         </div>
                         <div class="modal-footer">
-                            <a class="btn btn-success text-uppercase max-with my-profile-button">Go To My Account</a>
+                            <a class="btn btn-success text-uppercase max-with" href="/users/4">Go To My Account</a>
                         </div>
 
                         <span class="text-center">OR</span>
