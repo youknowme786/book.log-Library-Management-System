@@ -111,6 +111,8 @@ $(document).ready(function() {
             $("#log-out-button").show(0);
             $("#authenticate-button").hide(0);
             $("#unauthenticated-banner").hide(0);
+            $("#actionBtnReserve").attr("data-target", ".bd-example-modal-sm");
+            //if user is logged in, change book modal target to book modal
         } else {
             console.log("No user is signed in");
             user = null;
@@ -118,6 +120,8 @@ $(document).ready(function() {
             $("#unauthenticated-banner").show(0);
             $(".my-profile-button").hide(0);
             $("#log-out-button").hide(0);
+            $("#actionBtnReserve").attr("data-target", "#sign-in-modal");
+            //if user is NOT logged in, change book modal target to login modal
         }
     });
 
