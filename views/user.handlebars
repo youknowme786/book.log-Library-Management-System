@@ -104,20 +104,14 @@
                                 </h6>
                                 <p>
                                     <b class="text-uppercase">Status: </b>
-                                    <span id="returnBy" class="alert">
+                                    <span class="alert returnBy {{#unless this.isCheckedOut}} hide {{/unless}}">
                                         <i> Return by December 8, 2017</i>
                                     </span>
-                                    <span id="returnOn" class="alert hide">
-                                        <i> Returned on {{this.updatedAt}}</i>
+                                    <span class="alert returnOn {{#if this.isCheckedOut}} hide {{/if}}">
+                                        <i> Returned</i>
                                     </span>
                                 </p>
-                                <button class="btn btn-success text-uppercase action-btn-check-in-media" type="button" data-medium-id="{{this.Medium.id}}"
-                                    data-user-id="{{../userData.id}}">
-                                    Check-In
-                                </button>
-
                             </div>
-
                         </div>
                         <hr>
                     </article>
