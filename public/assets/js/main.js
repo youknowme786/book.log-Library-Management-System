@@ -133,23 +133,6 @@ $(document).ready(function() {
 
     // ************ End Firebase Authentication Section ***********
 
-    function populateBook(isbn) {
-        var apiKey = "AIzaSyBVaPHihkOt3MSXrw5Hf-HjJB7TrOdawlo";
-        var queryURL =
-            "https://www.googleapis.com/books/v1/volumes?q=isbn:" +
-            isbn +
-            "&key=" +
-            apiKey;
-        // Performing GET requests to the Google Books API
-        // Searches by ISBN
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).done(function(data) {
-            console.log(data);
-        });
-    }
-
     function isOnShelves() {
         var stockStatus = parseInt($(".on-stock").html());
         // console.log(stockStatus);
@@ -374,20 +357,25 @@ $(document).ready(function() {
             }
         });
     }
-    // ************ Check In Section ************
+    // *******************SEARCH********************
+    $("#searchButton").on("click", event => {
+        event.preventDefault();
 
-    $(document).on("click", "a.dropdown-item", function() {
-        var query = $("#search-input")
+        var searchQuery = $("#searchQuery")
             .val()
             .trim();
-    });
+        var searchBy = $("#searchBy option:selected")
+            .text()
+            .toLowerCase();
 
-    $(".dropdownsearch").on("click", function() {
         console.log("You are searching for");
-        console.log($("#searchdropdown").val());
-        console.log($("#dropdownsearch").text());
+        console.log(searchQuery);
+        console.log(searchBy);
+
+        window.location.href = "/search/" + searchBy + "/" + searchQuery;
     });
 
+    // ************ Check In Section ************
     // Manage user submit button:
     $("#user-submit").on("click", function() {
         event.preventDefault();
