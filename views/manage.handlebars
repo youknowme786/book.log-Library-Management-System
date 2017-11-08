@@ -25,11 +25,11 @@
                 <br>
                     <form id="userform"> 
 
-                        <div class="form-group">
+                        <div class="form-group col-md-4">
                             <label>User ID</label>
                             <input type="text" class="form-control" id="user-id">
                         </div>
-                            <button class="btn btn-success text-uppercase" id="user-submit">Submit </button>
+                            <button class="btn btn-success text-uppercase" id="user-submit">Submit</button>
                     </form>
                 </div>
                 
@@ -38,20 +38,27 @@
                 <br>
                     <form id="mediaform" novalidate>
                         {{!-- Media Select Form  --}}
-                        <div class="form-group">
+                        <div class="form-group col-md-4">
                             <label>Media Type</label>
                             <select class="form-control" id="media-type">
                                 <option>Book</option>
                                 <option>CD</option>
-                                <option>Whatever</option>
+                                <option>Other</option>
                             </select>
                         </div>
                         {{!-- Industry ID form --}}
-                        <div class="form-group">
+                        <div class="form-group col-md-4">
                             <label>Industry Identifier</label>
                             <input type="text" class="form-control" id="industry-identifier" required></input>
                             <div class="invalid-feedback">
                                 Please provide a valid Industry ID.
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Quantity</label>
+                            <input type="text" class="form-control" id="new-quantity" required></input>
+                            <div class="invalid-feedback">
+                                Please provide a valid number.
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success text-uppercase" id="new-submit">Submit</button>
@@ -64,7 +71,7 @@
                 <br>
                     <form id="deleteform" novalidate>
                         {{!-- Media Select Form  --}}
-                        <div class="form-group">
+                        <div class="form-group col-md-4">
                             <label>Media Type</label>
                             <select class="form-control" id="delete-media-type">
                                 <option>Book</option>
@@ -73,7 +80,7 @@
                             </select>
                         </div>
                         {{!-- Industry ID form --}}
-                        <div class="form-group">
+                        <div class="form-group col-md-4">
                             <label>Industry Identifier</label>
                             <input type="text" class="form-control" id="delete-industry-identifier" required></input>
                             <div class="invalid-feedback">
