@@ -117,12 +117,12 @@ module.exports = {
 		//Adjusts query if querying through users/media table where there are no foreign keys
 
 		if (table === "users") {
-			var id = UserId;
+			var id = userId;
 			query = {
 				id: id
 			};
 		} else if (table === "media") {
-			var industryIdentifier = UserId;
+			var industryIdentifier = userId;
 			query = {
 				industryIdentifier: industryIdentifier
 			};

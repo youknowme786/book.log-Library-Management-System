@@ -35,7 +35,7 @@ module.exports = app => {
 	//DELETE - favorite item - see generic delete route
 	app.delete("/api/favorites/:userId/delete/:mediumId", (req, res) => {
 		Promise.resolve(() => {
-			deleteRowFromTable(
+			return deleteRowFromTable(
 				"favorites",
 				req.params.userId,
 				req.params.mediumId
