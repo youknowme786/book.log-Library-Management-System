@@ -174,13 +174,6 @@ $(document).ready(function() {
 
     isOnShelves();
 
-    $(document).on("click", "a.dropdown-item", function() {
-        var keyWord = $("#search-input")
-            .val()
-            .trim();
-        populateBook(keyWord);
-    });
-
     $("#actionBtnReserve").on("click", function() {
         // gets the book id
         var mediumId = $(this).data("mediumId");
@@ -386,9 +379,16 @@ $(document).ready(function() {
     }
     // ************ Check In Section ************
 
+    $(document).on("click", "a.dropdown-item", function() {
+        var query = $("#search-input")
+            .val()
+            .trim();
+    });
+
     $(".dropdownsearch").on("click", function() {
         console.log("You are searching for");
         console.log($("#searchdropdown").val());
+        console.log($("#dropdownsearch").text());
     });
 
     // Manage user submit button:
