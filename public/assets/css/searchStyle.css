@@ -1,0 +1,12 @@
+.search-image {
+	height: 250px;
+	/*margin: 0 auto;*/
+}
+
+.searchbody {
+	border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.searchrow {
+	/*border-bottom: 1px solid rgba(0, 0, 0, 0.1);*/
+}
