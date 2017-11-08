@@ -1,4 +1,6 @@
 var db = require("../models");
+var Sequelize = require("sequelize");
+var Op = Sequelize.Op;
 //axios - promise based ajax node module. on server side only
 var axios = require("axios");
 //require mediaUpdateExport
@@ -30,26 +32,41 @@ module.exports = app => {
 	// curl -i -H "Content-Type: application/json" -X GET http://localhost:3000/search/title/harry%20potter
 	app.get("/search/:searchBy/:searchQuery", (req, res) => {
 		searchBy = req.params.searchBy.toLowerCase();
-		searchQuery = req.params.searchQuery;
+		searchQuery = "%" + req.params.searchQuery + "%";
 
 		switch (searchBy) {
 			case "title":
 				var query = {
-					title: searchQuery
+					title: { [Op.like]: [searchQuery] }
 				};
 				break;
 
 			case "author":
 				var query = {
-					author: searchQuery
+					author: { [Op.like]: [searchQuery] }
 				};
 				break;
 
 			case "isbn":
 				var query = {
-					industryIdentifier: searchQuery
+					industryIdentifier: { [Op.like]: [searchQuery] }
 				};
 				break;
+
+			case "all":
+				var query = {
+					[Op.or]: [
+						{
+							title: { [Op.like]: [searchQuery] }
+						},
+						{
+							author: { [Op.like]: [searchQuery] }
+						},
+						{
+							industryIdentifier: { [Op.like]: [searchQuery] }
+						}
+					]
+				};
 
 			default:
 				console.log("error");
@@ -64,10 +81,16 @@ module.exports = app => {
 				where: query
 			})
 			.then(data => {
-				var dataDeliverable = JSON.parse(JSON.stringify(data[0]));
+				if (data.length > 0) {
+					var dataDeliverable = JSON.parse(JSON.stringify(data));
+				} else {
+					dataDeliverable = {
+						error: "Item not available in database."
+					};
+				}
 
-				console.log(dataDeliverable);
-				res.render("book", dataDeliverable);
+				res.json(dataDeliverable);
+				// res.render("search", dataDeliverable);
 			});
 	});
 
