@@ -375,47 +375,57 @@ $(document).ready(function() {
         });
     }
     // ************ Check In Section ************
-});
 
-$(document).on("click", "a.dropdown-item", function() {
-    var query = $("#search-input")
-        .val()
-        .trim();
-});
-
-$(".dropdownsearch").on("click", function() {
-    console.log("You are searching for");
-    console.log($("#dropdownsearch").text());
-});
-
-// Manage user submit button:
-$("#user-submit").on("click", function() {
-    event.preventDefault();
-    window.location.href = "/manage/users/" + $("#user-id").val();
-});
-
-// When manager adds a new media:
-$("#new-submit").on("click", function() {
-    event.preventDefault();
-    $("#new-book-modal").modal("show");
-    var newbook = {
-        mediaType: $("#media-type")
+    $(document).on("click", "a.dropdown-item", function() {
+        var query = $("#search-input")
             .val()
-            .toLowerCase(),
-        industryIdentifier: $("#industry-identifier").val(),
-        totalStock: $("#new-quantity").val()
-    };
-    $.post("/api/media/new", newbook);
-});
+            .trim();
+    });
 
-// When manager deletes a media:
-$("#delete-submit").on("click", function() {
-    event.preventDefault();
-    var id = $("#delete-industry-identifier").val();
-    $.ajax({
-        method: "DELETE",
-        url: "/api/media/delete/" + id
-    }).then(function(res) {
-        console.log(res);
+    $(".dropdownsearch").on("click", function() {
+        console.log("You are searching for");
+        console.log($("#searchdropdown").val());
+        console.log($("#dropdownsearch").text());
+    });
+
+    // Manage user submit button:
+    $("#user-submit").on("click", function() {
+        event.preventDefault();
+        console.log(
+            $("#user-id")
+                .val()
+                .trim()
+        );
+        window.location.href =
+            "/manage/users/" +
+            $("#user-id")
+                .val()
+                .trim();
+    });
+
+    // When manager adds a new media:
+    $("#new-submit").on("click", function() {
+        event.preventDefault();
+        $("#new-book-modal").modal("show");
+        var newbook = {
+            mediaType: $("#media-type")
+                .val()
+                .toLowerCase(),
+            industryIdentifier: $("#industry-identifier").val(),
+            totalStock: $("#new-quantity").val()
+        };
+        $.post("/api/media/new", newbook);
+    });
+
+    // When manager deletes a media:
+    $("#delete-submit").on("click", function() {
+        event.preventDefault();
+        var id = $("#delete-industry-identifier").val();
+        $.ajax({
+            method: "DELETE",
+            url: "/api/media/delete/" + id
+        }).then(function(res) {
+            console.log(res);
+        });
     });
 });
