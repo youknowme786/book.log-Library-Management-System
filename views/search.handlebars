@@ -5,40 +5,40 @@
 		<div class="col-md-12 text-center mt-5">
 			<h1>Search Results</h1>
 			<p>
-				<i>Showing results for title 'Harry Potter'</i>
+				<i>Showing results for {{this.searchBy}} '{{this.searchQuery}}'</i>
 			</p>
 			<hr class="mt-3">
 
 		</div>
 	</div>
 	
+	{{#each results}}
 	<div class="searchrow row mb-3">
 		<div class="col-md-3 text-center">
-			<img class="search-image" src="assets/img/search-images/hp1.jpeg">
+			<img class="search-image" src="{{this.image}}">
 		</div>
 		<div class="searchbody col-md-6">
 			<article class="card mt-3">
 				<div class="card-body row">
 					<div class="col-md-11">
-						<h4 class="card-title">Harry Potter and the Sorcerer's Stone</h4>
+						<h4 class="card-title">{{this.title}}</h4>
 						<h6 class="card-subtitle mb-2 text-muted">by
 							<span>
-								<a href="#">J.K. Rowling</a>
+								<a href="#">{{this.author}}</a>
 							</span>
 						</h6>
 						<p>
-							<b class="text-uppercase">7 in stock </b>
+							<b class="text-uppercase">{{this.numShelved}} in stock </b>
 							<span class="alert">
-								<i> {{this.reservationStatus}}</i>
+								{{!-- <i> {{this.reservationStatus}}</i> --}}
 							</span>
 						</p>
-						<button class="btn btn-success text-uppercase action-btn-cancel-media" type="button" data-medium-id="{{this.Medium.id}}"
-						data-user-id="{{../userData.id}}">
+						<button class="btn btn-success text-uppercase action-btn-cancel-media" type="button" data-medium-id="{{this.id}}">
 						Reserve Book
 					</button>
 				</div>
 				<div class="col-md-1">
-					<span class="favorite-book actionBtnFav" data-medium-id="{{this.Medium.id}}" data-user-id="{{../userData.id}}">
+					<span class="favorite-book actionBtnFav" data-medium-id="{{this.id}}">
 						<i class="fa fa-heart-o" aria-hidden="true"></i>
 					</span>
 				</div>
@@ -48,226 +48,7 @@
 	</div>
 	
 	<hr>
-
-	<div class="searchrow row mb-3">
-		<div class="col-md-3 text-center">
-			<img class="search-image" src="assets/img/search-images/hp2.jpg">
-		</div>
-		<div class="searchbody col-md-6">
-			<article class="card mt-3">
-				<div class="card-body row">
-					<div class="col-md-11">
-						<h4 class="card-title">Harry Potter and the Chamber of Secrets</h4>
-						<h6 class="card-subtitle mb-2 text-muted">by
-							<span>
-								<a href="#">J.K. Rowling</a>
-							</span>
-						</h6>
-						<p>
-							<b class="text-uppercase">5 in stock </b>
-							<span class="alert">
-								<i> {{this.reservationStatus}}</i>
-							</span>
-						</p>
-						<button class="btn btn-success text-uppercase action-btn-cancel-media" type="button" data-medium-id="{{this.Medium.id}}"
-						data-user-id="{{../userData.id}}">
-						Reserve Book
-					</button>
-				</div>
-				<div class="col-md-1">
-					<span class="favorite-book actionBtnFav" data-medium-id="{{this.Medium.id}}" data-user-id="{{../userData.id}}">
-						<i class="fa fa-heart-o" aria-hidden="true"></i>
-					</span>
-				</div>
-			</div>
-			</article>
-		</div>
-	</div>
-	
-	<hr> 
-
-	<div class="searchrow row mb-3">
-		<div class="col-md-3 text-center">
-			<img class="search-image" src="assets/img/search-images/hp3.jpg">
-		</div>
-		<div class="searchbody col-md-6">
-			<article class="card mt-3">
-				<div class="card-body row">
-					<div class="col-md-11">
-						<h4 class="card-title">Harry Potter and the Prisoner of Azkaban</h4>
-						<h6 class="card-subtitle mb-2 text-muted">by
-							<span>
-								<a href="#">J.K. Rowling</a>
-							</span>
-						</h6>
-						<p>
-							<b class="text-uppercase">6 in stock </b>
-							<span class="alert">
-								<i> {{this.reservationStatus}}</i>
-							</span>
-						</p>
-						<button class="btn btn-success text-uppercase action-btn-cancel-media" type="button" data-medium-id="{{this.Medium.id}}"
-						data-user-id="{{../userData.id}}">
-						Reserve Book
-					</button>
-				</div>
-				<div class="col-md-1">
-					<span class="favorite-book actionBtnFav" data-medium-id="{{this.Medium.id}}" data-user-id="{{../userData.id}}">
-						<i class="fa fa-heart-o" aria-hidden="true"></i>
-					</span>
-				</div>
-			</div>
-			</article>
-		</div>
-	</div>
-
-	<hr> 
-
-	<div class="searchrow row mb-3">
-		<div class="col-md-3 text-center">
-			<img class="search-image" src="assets/img/search-images/hp4.jpg">
-		</div>
-		<div class="searchbody col-md-6">
-			<article class="card mt-3">
-				<div class="card-body row">
-					<div class="col-md-11">
-						<h4 class="card-title">Harry Potter and the Goblet of Fire</h4>
-						<h6 class="card-subtitle mb-2 text-muted">by
-							<span>
-								<a href="#">J.K. Rowling</a>
-							</span>
-						</h6>
-						<p>
-							<b class="text-uppercase">4 in stock </b>
-							<span class="alert">
-								<i> {{this.reservationStatus}}</i>
-							</span>
-						</p>
-						<button class="btn btn-success text-uppercase action-btn-cancel-media" type="button" data-medium-id="{{this.Medium.id}}"
-						data-user-id="{{../userData.id}}">
-						Reserve Book
-					</button>
-				</div>
-				<div class="col-md-1">
-					<span class="favorite-book actionBtnFav" data-medium-id="{{this.Medium.id}}" data-user-id="{{../userData.id}}">
-						<i class="fa fa-heart-o" aria-hidden="true"></i>
-					</span>
-				</div>
-			</div>
-			</article>
-		</div>
-	</div>
-
-	<hr> 
-
-	<div class="searchrow row mb-3">
-		<div class="col-md-3 text-center">
-			<img class="search-image" src="assets/img/search-images/hp5.jpg">
-		</div>
-		<div class="searchbody col-md-6">
-			<article class="card mt-3">
-				<div class="card-body row">
-					<div class="col-md-11">
-						<h4 class="card-title">Harry Potter and the Order of the Phoenix</h4>
-						<h6 class="card-subtitle mb-2 text-muted">by
-							<span>
-								<a href="#">J.K. Rowling</a>
-							</span>
-						</h6>
-						<p>
-							<b class="text-uppercase">6 in stock </b>
-							<span class="alert">
-								<i> {{this.reservationStatus}}</i>
-							</span>
-						</p>
-						<button class="btn btn-success text-uppercase action-btn-cancel-media" type="button" data-medium-id="{{this.Medium.id}}"
-						data-user-id="{{../userData.id}}">
-						Reserve Book
-					</button>
-				</div>
-				<div class="col-md-1">
-					<span class="favorite-book actionBtnFav" data-medium-id="{{this.Medium.id}}" data-user-id="{{../userData.id}}">
-						<i class="fa fa-heart-o" aria-hidden="true"></i>
-					</span>
-				</div>
-			</div>
-			</article>
-		</div>
-	</div>
-
-	<hr> 
-
-	<div class="searchrow row mb-3">
-		<div class="col-md-3 text-center">
-			<img class="search-image" src="assets/img/search-images/hp6.jpg">
-		</div>
-		<div class="searchbody col-md-6">
-			<article class="card mt-3">
-				<div class="card-body row">
-					<div class="col-md-11">
-						<h4 class="card-title">Harry Potter and the Half-Blood Prince</h4>
-						<h6 class="card-subtitle mb-2 text-muted">by
-							<span>
-								<a href="#">J.K. Rowling</a>
-							</span>
-						</h6>
-						<p>
-							<b class="text-uppercase">4 in stock </b>
-							<span class="alert">
-								<i> {{this.reservationStatus}}</i>
-							</span>
-						</p>
-						<button class="btn btn-success text-uppercase action-btn-cancel-media" type="button" data-medium-id="{{this.Medium.id}}"
-						data-user-id="{{../userData.id}}">
-						Reserve Book
-					</button>
-				</div>
-				<div class="col-md-1">
-					<span class="favorite-book actionBtnFav" data-medium-id="{{this.Medium.id}}" data-user-id="{{../userData.id}}">
-						<i class="fa fa-heart-o" aria-hidden="true"></i>
-					</span>
-				</div>
-			</div>
-			</article>
-		</div>
-	</div>
-
-	<hr>
-
-	<div class="searchrow row mb-3">
-		<div class="col-md-3 text-center">
-			<img class="search-image" src="assets/img/search-images/hp7.jpg">
-		</div>
-		<div class="searchbody col-md-6">
-			<article class="card mt-3">
-				<div class="card-body row">
-					<div class="col-md-11">
-						<h4 class="card-title">Harry Potter and the Deathly Hallows</h4>
-						<h6 class="card-subtitle mb-2 text-muted">by
-							<span>
-								<a href="#">J.K. Rowling</a>
-							</span>
-						</h6>
-						<p>
-							<b class="text-uppercase">3 in stock </b>
-							<span class="alert">
-								<i> {{this.reservationStatus}}</i>
-							</span>
-						</p>
-						<button class="btn btn-success text-uppercase action-btn-cancel-media" type="button" data-medium-id="{{this.Medium.id}}"
-						data-user-id="{{../userData.id}}">
-						Reserve Book
-					</button>
-				</div>
-				<div class="col-md-1">
-					<span class="favorite-book actionBtnFav" data-medium-id="{{this.Medium.id}}" data-user-id="{{../userData.id}}">
-						<i class="fa fa-heart-o" aria-hidden="true"></i>
-					</span>
-				</div>
-			</div>
-			</article>
-		</div>
-	</div>
+	{{/each}}
 
 
 

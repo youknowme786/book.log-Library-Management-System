@@ -34,6 +34,10 @@ module.exports = app => {
 		searchBy = req.params.searchBy.toLowerCase();
 		searchQuery = "%" + req.params.searchQuery + "%";
 
+		var dataDeliverable = {};
+		dataDeliverable.searchBy = req.params.searchBy;
+		dataDeliverable.searchQuery = req.params.searchQuery;
+
 		switch (searchBy) {
 			case "title":
 				var query = {
@@ -82,15 +86,15 @@ module.exports = app => {
 			})
 			.then(data => {
 				if (data.length > 0) {
-					var dataDeliverable = JSON.parse(JSON.stringify(data));
+					dataDeliverable.results = JSON.parse(JSON.stringify(data));
 				} else {
 					dataDeliverable = {
 						error: "Item not available in database."
 					};
 				}
 
-				res.json(dataDeliverable);
-				// res.render("search", dataDeliverable);
+				// res.json(dataDeliverable);
+				res.render("search", dataDeliverable);
 			});
 	});
 
