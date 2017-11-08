@@ -50,6 +50,8 @@ $(document).ready(function() {
                 $.post("api/users/create", newUser, result => {
                     console.log(result);
                     console.log(result.id);
+                }).then(() => {
+                    $("#sign-in-modal").modal("hide");
                 });
             })
             .catch(error => {
